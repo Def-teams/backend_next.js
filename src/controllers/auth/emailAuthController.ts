@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
-import EmailUser from '../../models/EmailUser';
+import EmailUser from '../../models/emailUser';
 import { sendVerificationEmail } from '../../utils/emailService';
 
 // 이메일 전송 설정
