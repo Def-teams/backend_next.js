@@ -12,4 +12,4 @@ export const errorHandler = (err: any, req: NextApiRequest, res: NextApiResponse
   }
 
   return res.status(500).json({ error: '서버 오류가 발생했습니다.' });
-}; 
+};

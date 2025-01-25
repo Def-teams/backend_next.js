@@ -1,26 +1,47 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import EmailUser from '@/models/emailUser';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
   try {
-    // 요청에서 데이터 가져오기
-    const { email, password } = req.body;
+    const body = await req.json();
+    const { email, password } = body;
 
-    // 예시 데이터 처리
-    const user = await EmailUser.create({ email, password });
+    // 이미 존재하는 사용자 확인
+    const existingUser = await EmailUser.findOne({ where: { email } });
+    if (existingUser) {
+      return NextResponse.json(
+        { error: '이미 존재하는 이메일입니다.' },
+        { status: 409 }
+      );
+    }
 
-    // 응답 데이터
-    const data = {
-      message: 'User created successfully!',
+    // 새 사용자 생성
+    const user = await EmailUser.create({
+      email,
+      password,
+      userId: `email_${Date.now()}`,
+      profileImg: {
+        desktop: '/uploads/desktop/default.jpg',
+        mobile: '/uploads/mobile/default.jpg'
+      },
+      stylePreferences: [],
+      isVerified: false
+    });
+
+    return NextResponse.json({
+      message: '사용자가 성공적으로 생성되었습니다.',
       user: {
         id: user.id,
-        email: user.email
+        email: user.email,
+        userId: user.userId
       }
-    };
+    }, { status: 201 });
 
-    return res.status(200).json(data);
   } catch (error) {
     console.error('Error:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    return NextResponse.json(
+      { error: '서버 오류가 발생했습니다.' },
+      { status: 500 }
+    );
   }
 }
