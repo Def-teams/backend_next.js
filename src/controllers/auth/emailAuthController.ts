@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import EmailUser from '../../models/EmailUser';
+import { sendVerificationEmail } from '../../utils/emailService';
 
 // 이메일 전송 설정
 const transporter = nodemailer.createTransport({
@@ -17,55 +18,30 @@ const transporter = nodemailer.createTransport({
 
 export const register = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { email, userId, password } = req.body;
+    const { email, password } = req.body;
 
-    // 이메일 중복 체크
     const existingUser = await EmailUser.findOne({ where: { email } });
     if (existingUser) {
       return res.status(409).json({ error: '이미 존재하는 이메일입니다.' });
     }
 
-    // 인증 토큰 생성
-    const verificationToken = jwt.sign(
-      { email },
-      process.env.JWT_SECRET!,
-      { expiresIn: '24h' }
-    );
-
-    // 사용자 생성
     const user = await EmailUser.create({
       email,
-      userId,
       password,
-      verificationToken,
-      verificationExpires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      userId: `email_${Date.now()}`, // userId 생성
       profileImg: {
         desktop: '/uploads/desktop/default.jpg',
         mobile: '/uploads/mobile/default.jpg'
       },
-      stylePreferences: [],
-      isVerified: false
-    });
-    
-    // 인증 이메일 전송
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: '이메일 인증을 완료해주세요',
-      html: `
-        <h1>이메일 인증</h1>
-        <p>아래 링크를 클릭하여 이메일 인증을 완료해주세요:</p>
-        <a href="${process.env.BASE_URL}/api/auth/verify-email?token=${verificationToken}">
-          이메일 인증하기
-        </a>
-      `
+      stylePreferences: [], // 기본값 설정
+      isVerified: false // 기본값 설정
     });
 
-    res.status(201).json({
-      message: '회원가입이 완료되었습니다. 이메일을 확인해주세요.',
-      userId: user.userId
-    });
+    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET!, { expiresIn: '1h' });
 
+    await sendVerificationEmail(user.email, token);
+
+    res.status(201).json({ message: '회원가입이 완료되었습니다. 이메일 인증을 진행해주세요.' });
   } catch (error) {
     console.error('회원가입 에러:', error);
     res.status(500).json({ error: '서버 오류가 발생했습니다.' });

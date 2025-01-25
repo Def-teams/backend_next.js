@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import passport from 'passport';
 import { Strategy as KakaoStrategy } from 'passport-kakao';
 import jwt from 'jsonwebtoken';
-import KakaoUser from '../../models/KakaoUser';
+import KakaoUser from '../../models/kakaoUser';
 import sharp from 'sharp';
 import path from 'path';
 

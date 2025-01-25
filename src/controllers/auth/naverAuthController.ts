@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import passport from 'passport';
 import { Strategy as NaverStrategy } from 'passport-naver-v2';
 import jwt from 'jsonwebtoken';
-import NaverUser from '../../models/NaverUser';
+import NaverUser from '../../models/naverUser';
 import sharp from 'sharp';
 import path from 'path';
 

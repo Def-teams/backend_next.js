@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import jwt from 'jsonwebtoken';
-import GoogleUser from '../../models/GoogleUser';
+import GoogleUser from '../../models/googleUser';
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
@@ -16,7 +16,7 @@ passport.use(new GoogleStrategy({
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     let user = await GoogleUser.findOne({ where: { googleId: profile.id } });
-
+    
     if (!user) {
       user = await GoogleUser.create({
         email: profile.emails![0].value,
@@ -27,7 +27,9 @@ passport.use(new GoogleStrategy({
           mobile: '/uploads/mobile/default.jpg'
         },
         accessToken,
-        refreshToken
+        refreshToken,
+        stylePreferences: [], // 기본값 설정
+        isVerified: true // 기본값 설정
       });
 
       // 구글 프로필 이미지 처리
@@ -57,10 +59,9 @@ passport.use(new GoogleStrategy({
         });
       }
     }
-
     return done(null, user);
   } catch (error) {
-    return done(error as Error, undefined);
+    return done(error as Error);
   }
 }));
 
