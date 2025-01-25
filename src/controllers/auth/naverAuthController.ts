@@ -54,8 +54,8 @@ passport.use(new NaverStrategy({
 
         await user.update({
           profileImg: {
-            desktop: `/uploads/desktop/${user.id}.jpg`,
-            mobile: `/uploads/mobile/${user.id}.jpg`
+            desktop: `../public/uploads/desktop/${user.id}.jpg`,
+            mobile: `../public/uploads/mobile/${user.id}.jpg`
           }
         });
       }

@@ -38,9 +38,15 @@ export const register = async (req: NextApiRequest, res: NextApiResponse) => {
       userId,
       password,
       verificationToken,
-      verificationExpires: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24시간
+      verificationExpires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      profileImg: {
+        desktop: '/uploads/desktop/default.jpg',
+        mobile: '/uploads/mobile/default.jpg'
+      },
+      stylePreferences: [],
+      isVerified: false
     });
-
+    
     // 인증 이메일 전송
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
@@ -122,7 +128,7 @@ export const verifyEmail = async (req: NextApiRequest, res: NextApiResponse) => 
       return res.status(400).json({ error: '이미 인증된 계정입니다.' });
     }
 
-    await user.update({ isVerified: true, verificationToken: null });
+    await user.update({ isVerified: true, verificationToken: undefined });
     res.status(200).json({ message: '이메일 인증이 완료되었습니다.' });
 
   } catch (error) {

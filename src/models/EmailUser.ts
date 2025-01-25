@@ -12,8 +12,8 @@ interface EmailUserAttributes {
     mobile: string;
   };
   stylePreferences: string[];
-  verificationToken: string;
-  verificationExpires: Date;
+  verificationToken: string | null;  
+  verificationExpires: Date | null;  
   isVerified: boolean;
 }
 
@@ -31,8 +31,8 @@ class EmailUser extends Model<EmailUserAttributes> {
   declare verificationExpires: Date;
   declare isVerified: boolean;
 
-  async comparePassword(candidatePassword: string): Promise<boolean> {
-    return bcrypt.compare(candidatePassword, this.password);
+  async comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
   }
 }
 
@@ -46,10 +46,7 @@ EmailUser.init(
     email: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false,
-      validate: {
-        isEmail: true
-      }
+      allowNull: false
     },
     userId: {
       type: DataTypes.STRING,

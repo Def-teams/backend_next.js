@@ -68,8 +68,8 @@ NaverUser.init(
     profileImg: {
       type: DataTypes.JSON,
       defaultValue: {
-        desktop: '/uploads/desktop/default.jpg',
-        mobile: '/uploads/mobile/default.jpg'
+        desktop: '../public/uploads/desktop/default.jpg',
+        mobile: '../public/uploads/mobile/default.jpg'
       }
     },
     stylePreferences: {
