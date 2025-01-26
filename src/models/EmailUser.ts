@@ -2,8 +2,8 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import bcrypt from 'bcrypt';
 
-interface EmailUserAttributes {
-  id: number;
+export interface EmailUserAttributes {
+  id?: number;
   email: string;
   password: string;
   userId: string;
@@ -18,18 +18,18 @@ interface EmailUserAttributes {
 }
 
 class EmailUser extends Model<EmailUserAttributes> {
-  public id!: number;
-  public email!: string;
-  public password!: string;
-  public userId!: string;
-  public verificationCode!: string;
-  public verificationExpires!: Date;
-  public isVerified!: boolean;
-  public profileImg!: {
+  declare id: number;
+  declare email: string;
+  declare password: string;
+  declare userId: string;
+  declare verificationCode: string | null;
+  declare verificationExpires: Date | null;
+  declare isVerified: boolean;
+  declare profileImg: {
     desktop: string;
     mobile: string;
   };
-  public stylePreferences!: string[];
+  declare stylePreferences: string[];
 
   async comparePassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);
@@ -41,51 +41,50 @@ EmailUser.init(
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
-      allowNull: false
-    },
-    userId: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
     verificationCode: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(6),
       allowNull: true,
-      defaultValue: null
     },
     verificationExpires: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: null
     },
     isVerified: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
     profileImg: {
       type: DataTypes.JSON,
       defaultValue: {
         desktop: '/uploads/desktop/default.jpg',
-        mobile: '/uploads/mobile/default.jpg'
-      }
+        mobile: '/uploads/mobile/default.jpg',
+      },
     },
     stylePreferences: {
       type: DataTypes.JSON,
-      defaultValue: []
-    }
+      defaultValue: [],
+    },
   },
   {
     sequelize,
     modelName: 'EmailUser',
+    tableName: 'EmailUsers',
     hooks: {
       beforeCreate: async (user: EmailUser) => {
         if (user.password) {

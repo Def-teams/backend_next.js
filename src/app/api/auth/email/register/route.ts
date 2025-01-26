@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import { Op } from 'sequelize';
 import { generateVerificationCode } from '@/utils/generateVerificationCode';
 import { sendVerificationEmail } from '@/utils/emailService';
+import { EmailUserAttributes } from '@/models/emailUser';
 
 // GET 메소드 추가
 export async function GET() {
@@ -51,23 +52,33 @@ export async function POST(req: NextRequest) {
     }
 
     const verificationCode = generateVerificationCode();
-    console.log('Generated verification code:', verificationCode);
-    const verificationExpires = new Date(Date.now() + 30 * 60 * 1000);
+    console.log('Registration - Generated code:', {
+      code: verificationCode,
+      type: typeof verificationCode
+    });
 
     // 새 사용자 생성
-    const user = await EmailUser.create({
+    const userData = {
       email,
       password,
       userId,
       verificationCode: verificationCode.toString(),
-      verificationExpires,
+      verificationExpires: new Date(Date.now() + 30 * 60 * 1000),
       isVerified: false,
       profileImg: {
         desktop: '/uploads/desktop/default.jpg',
         mobile: '/uploads/mobile/default.jpg'
       },
       stylePreferences: []
-    } as EmailUserAttributes);
+    };
+
+    console.log('Creating user with data:', userData);
+    const user = await EmailUser.create(userData);
+
+    console.log('Created user verification code:', {
+      code: user.verificationCode,
+      type: typeof user.verificationCode
+    });
 
     // 인증 이메일 발송
     await sendVerificationEmail(email, verificationCode);
