@@ -1,22 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import EmailUser from '@/models/emailUser';
-import jwt from 'jsonwebtoken';
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const searchParams = req.nextUrl.searchParams;
-    const token = searchParams.get('token');
+    const { userId, verificationCode } = await req.json();
 
-    if (!token) {
+    if (!userId || !verificationCode) {
       return NextResponse.json(
-        { error: '인증 토큰이 필요합니다.' },
+        { error: '사용자 ID와 인증 코드가 필요합니다.' },
         { status: 400 }
       );
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { email: string };
-    const user = await EmailUser.findOne({ where: { email: decoded.email } });
-
+    const user = await EmailUser.findOne({ where: { userId } });
+    
     if (!user) {
       return NextResponse.json(
         { error: '사용자를 찾을 수 없습니다.' },
@@ -31,7 +28,28 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    await user.update({ isVerified: true });
+    console.log('Received verification code:', verificationCode);
+    console.log('Stored verification code:', user.verificationCode);
+
+    if (user.verificationCode !== verificationCode.toString()) {
+      return NextResponse.json(
+        { error: '잘못된 인증 코드입니다.' },
+        { status: 400 }
+      );
+    }
+
+    if (user.verificationExpires && new Date() > user.verificationExpires) {
+      return NextResponse.json(
+        { error: '인증 코드가 만료되었습니다.' },
+        { status: 400 }
+      );
+    }
+
+    await user.update({ 
+      isVerified: true,
+      verificationCode: undefined,
+      verificationExpires: undefined
+    });
 
     return NextResponse.json({
       message: '이메일 인증이 완료되었습니다.'

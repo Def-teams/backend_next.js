@@ -2,18 +2,27 @@ import { NextRequest, NextResponse } from 'next/server';
 import EmailUser from '@/models/emailUser';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { Op } from 'sequelize';
+import { generateVerificationCode } from '@/utils/generateVerificationCode';
+import { sendVerificationEmail } from '@/utils/emailService';
+
+// GET 메소드 추가
+export async function GET() {
+  return NextResponse.json(
+    { message: 'Email auth endpoint is working' },
+    { status: 200 }
+  );
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, password } = body;
-
-    console.log('Received registration request:', { email }); // 로깅
+    const { email, password, userId } = body;
 
     // 입력값 검증
-    if (!email || !password) {
+    if (!email || !password || !userId) {
       return NextResponse.json(
-        { error: '이메일과 비밀번호는 필수입니다.' },
+        { error: '이메일, 비밀번호, 사용자ID를 모두 입력해주세요.' },
         { status: 400 }
       );
     }
@@ -27,45 +36,46 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 이미 존재하는 사용자 확인
-    const existingUser = await EmailUser.findOne({ where: { email } });
+    // 이메일, 유저ID 중복 확인
+    const existingUser = await EmailUser.findOne({
+      where: {
+        [Op.or]: [{ email }, { userId }]
+      }
+    });
+
     if (existingUser) {
       return NextResponse.json(
-        { error: '이미 존재하는 이메일입니다.' },
+        { error: '이미 존재하는 이메일 또는 사용자ID입니다.' },
         { status: 409 }
       );
     }
 
+    const verificationCode = generateVerificationCode();
+    console.log('Generated verification code:', verificationCode);
+    const verificationExpires = new Date(Date.now() + 30 * 60 * 1000);
+
     // 새 사용자 생성
     const user = await EmailUser.create({
       email,
-      password, // bcrypt는 모델의 beforeSave 훅에서 처리됨
-      userId: `email_${Date.now()}`,
+      password,
+      userId,
+      verificationCode: verificationCode.toString(),
+      verificationExpires,
+      isVerified: false,
       profileImg: {
         desktop: '/uploads/desktop/default.jpg',
         mobile: '/uploads/mobile/default.jpg'
       },
-      stylePreferences: [],
-      isVerified: false
-    });
+      stylePreferences: []
+    } as EmailUserAttributes);
 
-    // 인증 토큰 생성
-    const token = jwt.sign(
-      { email: user.email },
-      process.env.JWT_SECRET!,
-      { expiresIn: '24h' }
-    );
-
-    console.log('User created successfully:', { userId: user.id }); // 로깅
+    // 인증 이메일 발송
+    await sendVerificationEmail(email, verificationCode);
 
     return NextResponse.json({
-      message: '회원가입이 완료되었습니다. 이메일 인증을 진행해주세요.',
-      user: {
-        id: user.id,
-        email: user.email,
-        userId: user.userId
-      },
-      token
+      message: '회원가입이 완료되었습니다. 이메일로 전송된 인증 코드를 입력해주세요.',
+      userId: user.userId,
+      verificationCode: verificationCode  // 직접 생성한 코드 반환
     }, { status: 201 });
 
   } catch (error) {
@@ -81,20 +91,17 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, password } = body;
+    const { userId, password } = body;
 
-    console.log('Received login request:', { email }); // 로깅
-
-    // 입력값 검증
-    if (!email || !password) {
+    if (!userId || !password) {
       return NextResponse.json(
-        { error: '이메일과 비밀번호는 필수입니다.' },
+        { error: '아이디와 비밀번호를 입력해주세요.' },
         { status: 400 }
       );
     }
 
-    // 사용자 찾기
-    const user = await EmailUser.findOne({ where: { email } });
+    // userId로 사용자 찾기
+    const user = await EmailUser.findOne({ where: { userId } });
     if (!user) {
       return NextResponse.json(
         { error: '존재하지 않는 사용자입니다.' },
@@ -102,7 +109,6 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // 비밀번호 확인
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return NextResponse.json(
@@ -111,7 +117,6 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // 이메일 인증 확인
     if (!user.isVerified) {
       return NextResponse.json(
         { error: '이메일 인증이 필요합니다.' },
@@ -119,14 +124,11 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // 로그인 토큰 생성
     const token = jwt.sign(
       { userId: user.id },
       process.env.JWT_SECRET!,
       { expiresIn: '24h' }
     );
-
-    console.log('User logged in successfully:', { userId: user.id }); // 로깅
 
     return NextResponse.json({
       message: '로그인 성공',
@@ -147,4 +149,16 @@ export async function PUT(req: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+// OPTIONS 메소드 추가
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Origin': '*'
+    },
+  });
 }

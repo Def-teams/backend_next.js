@@ -5,31 +5,31 @@ import bcrypt from 'bcrypt';
 interface EmailUserAttributes {
   id: number;
   email: string;
-  userId: string;
   password: string;
+  userId: string;
+  verificationCode: string | null;
+  verificationExpires: Date | null;
+  isVerified: boolean;
   profileImg: {
     desktop: string;
     mobile: string;
   };
   stylePreferences: string[];
-  verificationToken: string | null;  
-  verificationExpires: Date | null;  
-  isVerified: boolean;
 }
 
 class EmailUser extends Model<EmailUserAttributes> {
-  declare id: number;
-  declare email: string;
-  declare userId: string;
-  declare password: string;
-  declare profileImg: {
+  public id!: number;
+  public email!: string;
+  public password!: string;
+  public userId!: string;
+  public verificationCode!: string;
+  public verificationExpires!: Date;
+  public isVerified!: boolean;
+  public profileImg!: {
     desktop: string;
     mobile: string;
   };
-  declare stylePreferences: string[];
-  declare verificationToken: string;
-  declare verificationExpires: Date;
-  declare isVerified: boolean;
+  public stylePreferences!: string[];
 
   async comparePassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);
@@ -57,6 +57,20 @@ EmailUser.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    verificationCode: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null
+    },
+    verificationExpires: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     profileImg: {
       type: DataTypes.JSON,
       defaultValue: {
@@ -67,26 +81,14 @@ EmailUser.init(
     stylePreferences: {
       type: DataTypes.JSON,
       defaultValue: []
-    },
-    verificationToken: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    verificationExpires: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    isVerified: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     }
   },
   {
     sequelize,
     modelName: 'EmailUser',
     hooks: {
-      beforeSave: async (user: EmailUser) => {
-        if (user.changed('password')) {
+      beforeCreate: async (user: EmailUser) => {
+        if (user.password) {
           const salt = await bcrypt.genSalt(10);
           user.password = await bcrypt.hash(user.password, salt);
         }
