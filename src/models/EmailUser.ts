@@ -15,6 +15,14 @@ export interface EmailUserAttributes {
     mobile: string;
   };
   stylePreferences: string[];
+  size?: {
+    height: number;
+    weight: number;
+    top: string;    // S, M, L, XL 등
+    bottom: string; // 28, 29, 30 등
+    shoe: number;   // 240, 250 등
+  };
+  hasCompletedPreferences: boolean;
 }
 
 class EmailUser extends Model<EmailUserAttributes> {
@@ -30,6 +38,14 @@ class EmailUser extends Model<EmailUserAttributes> {
     mobile: string;
   };
   declare stylePreferences: string[];
+  declare size?: {
+    height: number;
+    weight: number;
+    top: string;
+    bottom: string;
+    shoe: number;
+  };
+  declare hasCompletedPreferences: boolean;
 
   async comparePassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);
@@ -79,6 +95,14 @@ EmailUser.init(
     stylePreferences: {
       type: DataTypes.JSON,
       defaultValue: [],
+    },
+    hasCompletedPreferences: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    size: {
+      type: DataTypes.JSON,
+      allowNull: true,
     },
   },
   {
