@@ -17,6 +17,14 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    // 요청 본문이 비어 있는지 확인
+    if (!req.body) {
+      return NextResponse.json(
+        { error: '요청 본문이 비어 있습니다.' },
+        { status: 400 }
+      );
+    }
+
     const body = await req.json();
     const { email, password, userId } = body;
 
@@ -69,24 +77,20 @@ export async function POST(req: NextRequest) {
         desktop: '/uploads/desktop/default.jpg',
         mobile: '/uploads/mobile/default.jpg'
       },
-      stylePreferences: []
+      stylePreferences: [],
+      hasCompletedPreferences: false
     };
 
-    console.log('Creating user with data:', userData);
-    const user = await EmailUser.create(userData);
-
-    console.log('Created user verification code:', {
-      code: user.verificationCode,
-      type: typeof user.verificationCode
-    });
-
-    // 인증 이메일 발송
-    await sendVerificationEmail(email, verificationCode);
+    const newUser = await EmailUser.create(userData);
+    await sendVerificationEmail(newUser.email, newUser.verificationCode);
 
     return NextResponse.json({
-      message: '회원가입이 완료되었습니다. 이메일로 전송된 인증 코드를 입력해주세요.',
-      userId: user.userId,
-      verificationCode: verificationCode  // 직접 생성한 코드 반환
+      message: '사용자가 성공적으로 생성되었습니다.',
+      user: {
+        id: newUser.id,
+        email: newUser.email,
+        userId: newUser.userId
+      }
     }, { status: 201 });
 
   } catch (error) {
@@ -98,7 +102,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// 로그인 엔드포인트
+
 export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
@@ -111,7 +115,7 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // userId로 사용자 찾기
+    
     const user = await EmailUser.findOne({ where: { userId } });
     if (!user) {
       return NextResponse.json(
@@ -162,7 +166,7 @@ export async function PUT(req: NextRequest) {
   }
 }
 
-// OPTIONS 메소드 추가
+
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,

@@ -7,7 +7,7 @@ import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
 
-// Passport Google 전략 설정
+// Passport Google passport
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID!,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
@@ -28,23 +28,23 @@ passport.use(new GoogleStrategy({
         },
         accessToken,
         refreshToken,
-        stylePreferences: [], // 기본값 설정
-        isVerified: true // 기본값 설정
+        stylePreferences: [],
+        isVerified: true  
       });
 
-      // 구글 프로필 이미지 처리
+      
       if (profile.photos && profile.photos[0].value) {
         const imageResponse = await fetch(profile.photos[0].value);
         const imageBuffer = await imageResponse.arrayBuffer();
 
-        // 데스크톱용 이미지 (170x170)
+        // destop 170 X 170
         const desktopImagePath = path.join(process.cwd(), 'public/uploads/desktop', `${user.id}.jpg`);
         await sharp(Buffer.from(imageBuffer))
           .resize(170, 170)
           .jpeg({ quality: 90 })
           .toFile(desktopImagePath);
 
-        // 모바일용 이미지 (110x110)
+        // mobile 110 X 110
         const mobileImagePath = path.join(process.cwd(), 'public/uploads/mobile', `${user.id}.jpg`);
         await sharp(Buffer.from(imageBuffer))
           .resize(110, 110)

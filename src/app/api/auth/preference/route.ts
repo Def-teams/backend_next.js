@@ -18,8 +18,11 @@ const validSizes = {
 
 export async function PUT(req: NextRequest) {
   try {
-    const body = await req.json(); // formData 대신 json으로 변경
-    const { userId, stylePreferences, size, profileImage } = body;
+    const body = await req.formData(); 
+    const userId = body.get('UserId') as string;
+    const stylePreferences = JSON.parse(body.get('stylePreferences') as string);
+    const size = JSON.parse(body.get('size') as string); 
+    const profileImage = body.get('profileImage') as File;
 
     if (!userId) {
       return NextResponse.json(
@@ -36,7 +39,7 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // 스타일 선호도 검증 (3개 제한)
+    // preference ( 3 max)
     if (stylePreferences) {
       if (!Array.isArray(stylePreferences) || stylePreferences.length > 3) {
         return NextResponse.json(
@@ -54,7 +57,7 @@ export async function PUT(req: NextRequest) {
       user.stylePreferences = stylePreferences;
     }
 
-    // 사이즈 정보 검증
+    // size impormation
     if (size) {
       if (!size.height || !size.weight || !size.top || !size.bottom || !size.shoe) {
         return NextResponse.json(
@@ -65,8 +68,26 @@ export async function PUT(req: NextRequest) {
       user.size = size;
     }
 
-    // 프로필 이미지는 별도의 엔드포인트로 처리하는 것을 추천
-    user.hasCompletedPreferences = true; // 세부사항 완료 표시
+    // profile image upload
+    if (profileImage) {
+      const formData = new FormData();
+      formData.append('profileImage', profileImage);
+      formData.append('userId', userId);
+
+      const uploadResponse = await fetch('http://localhost:3000/api/auth/images', {
+        method: 'POST',
+        body: formData 
+      });
+
+      if (!uploadResponse.ok) {
+        return NextResponse.json(
+          { error: '프로필 이미지 업로드에 실패했습니다.' },
+          { status: 500 }
+        );
+      }
+    }
+
+    user.hasCompletedPreferences = true;
     await user.save();
 
     return NextResponse.json({

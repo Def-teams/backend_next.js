@@ -3,13 +3,13 @@ import EmailUser from '@/models/emailUser';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-// POST 메소드 핸들러
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { userId, password } = body;
 
-    console.log('Login attempt:', { userId }); // 디버깅용 로그 추가
+    console.log('Login attempt:', { userId }); 
 
     if (!userId || !password) {
       return NextResponse.json(

@@ -18,9 +18,9 @@ export interface EmailUserAttributes {
   size?: {
     height: number;
     weight: number;
-    top: string;    // S, M, L, XL 등
-    bottom: string; // 28, 29, 30 등
-    shoe: number;   // 240, 250 등
+    top: string;   
+    bottom: string;
+    shoe: number;  
   };
   hasCompletedPreferences: boolean;
 }

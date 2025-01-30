@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { uploadImage } from '../../../controllers/imageController';
+import { uploadImage } from '../../../../controllers/auth/imageController';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {

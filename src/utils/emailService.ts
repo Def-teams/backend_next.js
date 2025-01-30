@@ -17,7 +17,7 @@ export const sendVerificationEmail = async (email: string, verificationCode: str
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: '[StyleCrush] 이메일 인증 코드',
+      subject: '[LookMate] 이메일 인증 코드',
       html: htmlContent
     });
     return true;

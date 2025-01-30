@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { deleteImage } from '../../../controllers/imageController';
-import { verifyToken } from '../../../middlewares/auth';
+import { deleteImage } from '../../../../controllers/auth/imageController';
+import { verifyToken } from '../../../../middlewares/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'DELETE') {
