@@ -14,30 +14,48 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-    allowedTypes.includes(file.mimetype) 
-      ? cb(null, true) 
-      : cb(new Error('허용되지 않는 파일 형식입니다'));
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb(new Error(
+        `허용되지 않는 파일 형식입니다 (${file.mimetype}). ` +
+        `허용 형식: ${allowedTypes.join(', ')}. ` +
+        `최대 파일 크기: 5MB`
+      ));
+    }
+    cb(null, true);
   }
 });
 
 // 이미지 처리 함수
 const processImage = async (userId: string, file: Buffer) => {
   const userDir = path.join(process.cwd(), 'public/uploads', userId);
-  await fs.mkdir(userDir, { recursive: true });
+  try {
+    await fs.mkdir(userDir, { recursive: true });
+    console.log(`디렉토리 생성 성공: ${userDir}`);
+  } catch (dirError) {
+    console.error(`디렉토리 생성 실패: ${dirError}`);
+    throw new Error('파일 저장소 생성에 실패했습니다');
+  }
 
   const desktopPath = path.join(userDir, `desktop_${userId}.webp`);
   const mobilePath = path.join(userDir, `mobile_${userId}.webp`);
 
-  await Promise.all([
-    sharp(file)
-      .resize(170, 170)
-      .webp({ quality: 80 })
-      .toFile(desktopPath),
-    sharp(file)
-      .resize(110, 110) 
-      .webp({ quality: 80 })
-      .toFile(mobilePath)
-  ]);
+  try {
+    await Promise.all([
+      sharp(file)
+        .resize(170, 170)
+        .webp({ quality: 80 })
+        .toFile(desktopPath),
+      sharp(file)
+        .resize(110, 110)
+        .webp({ quality: 80 })
+        .toFile(mobilePath)
+    ]);
+    console.log('이미지 처리 완료:', { desktopPath, mobilePath });
+  } catch (processingError) {
+    console.error('이미지 처리 실패:', processingError);
+    await Promise.allSettled([deleteFile(desktopPath), deleteFile(mobilePath)]);
+    throw new Error('이미지 변환에 실패했습니다');
+  }
 
   return {
     desktop: `/uploads/${userId}/desktop_${userId}.webp`,
@@ -54,27 +72,28 @@ const convertRequest = (req: NextApiRequest): MulterRequest => {
   return req as unknown as MulterRequest;
 };
 
-export const uploadImage = async (req: NextApiRequest, res: NextApiResponse) => {
+export const uploadImage = async (req: NextApiRequest) => {
   const expressReq = convertRequest(req);
   return new Promise((resolve, reject) => {
-    upload.single('profileImage')(expressReq, res as any, async (err) => {
+    upload.single('profileImage')(expressReq, {} as any, async (err) => {
       if (err) {
-        console.error('Multer error:', err);
-        return reject(err);
+        console.error('Multer 오류:', err);
+        return reject(new Error(`MULTER_ERROR:${err.message}`));
       }
+
       try {
-        console.log('Uploaded File:', expressReq.file);
         if (!expressReq.file) {
-          throw new Error('파일이 업로드되지 않았습니다');
+          throw new Error('FILE_REQUIRED');
         }
 
         const token = req.headers.authorization?.split(' ')[1];
         if (!token) {
-          return res.status(401).json({ error: '인증 토큰이 필요합니다.' });
+          throw new Error('AUTH_TOKEN_REQUIRED');
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-        const userId = (decoded as any).userId; 
+        const userId = (decoded as any).userId;
+        console.log(`사용자 인증 성공: ${userId}`);
 
         const imagePaths = await processImage(userId, expressReq.file.buffer);
 
@@ -82,15 +101,14 @@ export const uploadImage = async (req: NextApiRequest, res: NextApiResponse) => 
         if (user) {
           user.profileImg = imagePaths;
           await user.save();
+          console.log(`사용자 프로필 업데이트: ${userId}`);
         }
 
-        const result = {
+        resolve({
           message: '이미지가 성공적으로 업로드되었습니다.',
           profileImg: imagePaths
-        };
-        resolve(result);
+        });
       } catch (error) {
-        console.error('Image processing error:', error);
         reject(error);
       }
     });
@@ -102,8 +120,9 @@ const deleteFile = async (path: string) => {
   try {
     await fs.access(path);
     await fs.unlink(path);
+    console.log(`파일 삭제 성공: ${path}`);
   } catch (error) {
-    console.log('파일이 존재하지 않습니다:', path);
+    console.log('파일 삭제 시도 실패:', { path, error });
   }
 };
 

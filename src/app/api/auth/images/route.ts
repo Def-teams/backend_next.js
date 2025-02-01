@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { multerMiddleware } from '@/lib/multer-adapter';
 import { uploadImage } from '@/controllers/auth/imageController';
 
 export const config = {
@@ -7,12 +8,26 @@ export const config = {
   },
 };
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const upload = multerMiddleware({
+    limits: { fileSize: 5 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+      allowedTypes.includes(file.mimetype) 
+        ? cb(null, true) 
+        : cb(new Error('INVALID_FILE_TYPE'))
+    }
+  });
+
   try {
-    await uploadImage(req, res);
-    res.status(200).json({ message: '파일 업로드 성공' });
-  } catch (error) {
-    console.error('파일 업로드 실패:', error);
-    res.status(500).json({ error: '서버 오류 발생' });
+    await upload(req, res);
+    const result = await uploadImage(req);
+    res.status(200).json(result);
+  } catch (error: any) {
+    const statusCode = error.message === 'FILE_REQUIRED' ? 400 : 500;
+    res.status(statusCode).json({
+      error: error.message,
+      details: error.details
+    });
   }
 } 
