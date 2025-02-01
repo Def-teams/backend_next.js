@@ -6,6 +6,7 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import EmailUser from '@/models/emailUser';
 import jwt from 'jsonwebtoken';
+import { NextRequest } from 'next/server';
 
 // Multer 구성
 const storage = multer.memoryStorage();
@@ -72,47 +73,44 @@ const convertRequest = (req: NextApiRequest): MulterRequest => {
   return req as unknown as MulterRequest;
 };
 
-export const uploadImage = async (req: NextApiRequest) => {
-  const expressReq = convertRequest(req);
-  return new Promise((resolve, reject) => {
-    upload.single('profileImage')(expressReq, {} as any, async (err) => {
-      if (err) {
-        console.error('Multer 오류:', err);
-        return reject(new Error(`MULTER_ERROR:${err.message}`));
-      }
+export const uploadImage = async (req: NextRequest) => {
+  const formData = await req.formData();
+  const file = formData.get('profileImage') as File;
+  
+  if (!file || file.size === 0) {
+    throw new Error('FILE_REQUIRED');
+  }
 
-      try {
-        if (!expressReq.file) {
-          throw new Error('FILE_REQUIRED');
-        }
+  // 파일 유효성 검사 직접 수행
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+  if (!allowedTypes.includes(file.type)) {
+    throw new Error(`INVALID_FILE_TYPE: ${file.type}`);
+  }
 
-        const token = req.headers.authorization?.split(' ')[1];
-        if (!token) {
-          throw new Error('AUTH_TOKEN_REQUIRED');
-        }
+  const buffer = Buffer.from(await file.arrayBuffer());
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-        const userId = (decoded as any).userId;
-        console.log(`사용자 인증 성공: ${userId}`);
+  const token = req.headers.get('authorization')?.split(' ')[1];
+  if (!token) {
+    throw new Error('AUTH_TOKEN_REQUIRED');
+  }
 
-        const imagePaths = await processImage(userId, expressReq.file.buffer);
+  const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+  const userId = (decoded as any).userId;
+  console.log(`사용자 인증 성공: ${userId}`);
 
-        const user = await EmailUser.findOne({ where: { userId } });
-        if (user) {
-          user.profileImg = imagePaths;
-          await user.save();
-          console.log(`사용자 프로필 업데이트: ${userId}`);
-        }
+  const imagePaths = await processImage(userId, buffer);
 
-        resolve({
-          message: '이미지가 성공적으로 업로드되었습니다.',
-          profileImg: imagePaths
-        });
-      } catch (error) {
-        reject(error);
-      }
-    });
-  });
+  const user = await EmailUser.findOne({ where: { userId } });
+  if (user) {
+    user.profileImg = imagePaths;
+    await user.save();
+    console.log(`사용자 프로필 업데이트: ${userId}`);
+  }
+
+  return {
+    message: '이미지가 성공적으로 업로드되었습니다.',
+    profileImg: imagePaths
+  };
 };
 
 // 파일 삭제 로직 개선 (Promise 기반)
@@ -126,30 +124,25 @@ const deleteFile = async (path: string) => {
   }
 };
 
-export const deleteImage = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
-      return res.status(401).json({ error: '인증 토큰이 필요합니다.' });
-    }
+export const deleteImage = async (req: NextRequest) => {
+  const token = req.headers.get('authorization')?.split(' ')[1];
+  if (!token) throw new Error('AUTH_TOKEN_REQUIRED');
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-    const userId = (decoded as any).userId;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+  const userId = (decoded as any).userId;
 
-    const { filename } = req.query;
-    if (!filename || !filename.toString().startsWith(userId.toString())) {
-      return res.status(403).json({ error: '권한이 없습니다.' });
-    }
+  const { searchParams } = new URL(req.url);
+  const filename = searchParams.get('filename');
 
-    const desktopPath = path.join(process.cwd(), 'public/uploads/desktop', filename as string);
-    const mobilePath = path.join(process.cwd(), 'public/uploads/mobile', filename as string);
-
-    await deleteFile(desktopPath);
-    await deleteFile(mobilePath);
-
-    res.status(200).json({ message: '이미지가 성공적으로 삭제되었습니다.' });
-  } catch (error) {
-    console.error('이미지 삭제 에러:', error);
-    res.status(500).json({ error: '이미지 삭제 중 오류가 발생했습니다.' });
+  if (!filename || !filename.startsWith(userId)) {
+    throw new Error('INVALID_FILE_OWNERSHIP');
   }
+
+  const desktopPath = path.join(process.cwd(), 'public/uploads/desktop', filename as string);
+  const mobilePath = path.join(process.cwd(), 'public/uploads/mobile', filename as string);
+
+  await deleteFile(desktopPath);
+  await deleteFile(mobilePath);
+
+  return { message: '이미지 삭제 성공' };
 };

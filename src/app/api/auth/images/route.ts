@@ -1,33 +1,53 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { multerMiddleware } from '@/lib/multer-adapter';
-import { uploadImage } from '@/controllers/auth/imageController';
+import { NextRequest, NextResponse } from 'next/server';
+import { imageUploader } from './config';
+import { uploadImage, deleteImage } from '@/controllers/auth/imageController';
 
-export const config = {
-  api: {
-    bodyParser: false, // Multer가 직접 body 파싱
-  },
-};
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const upload = multerMiddleware({
-    limits: { fileSize: 5 * 1024 * 1024 },
-    fileFilter: (req, file, cb) => {
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-      allowedTypes.includes(file.mimetype) 
-        ? cb(null, true) 
-        : cb(new Error('INVALID_FILE_TYPE'))
-    }
-  });
-
+export async function POST(req: NextRequest) {
+  const clonedReq = req.clone(); // 요청 복제
   try {
-    await upload(req, res);
-    const result = await uploadImage(req);
-    res.status(200).json(result);
+    // 헤더 로깅
+    console.log('Received headers:', Object.fromEntries(clonedReq.headers));
+
+    // FormData 파싱
+    const formData = await clonedReq.formData();
+    console.log('FormData:', Object.fromEntries(formData));
+
+    // 파일 처리
+    const file = formData.get('profileImage') as File;
+    if (!file) {
+      throw new Error('FILE_REQUIRED');
+    }
+
+    // 이미지 업로드 처리
+    const result = await uploadImage(clonedReq);
+    return NextResponse.json(result);
   } catch (error: any) {
-    const statusCode = error.message === 'FILE_REQUIRED' ? 400 : 500;
-    res.status(statusCode).json({
-      error: error.message,
-      details: error.details
-    });
+    console.error('Full error stack:', error.stack);
+    return NextResponse.json(
+      { error: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const filename = searchParams.get('filename');
+    
+    if (!filename) {
+      return NextResponse.json(
+        { error: '파일명이 필요합니다' },
+        { status: 400 }
+      );
+    }
+
+    const result = await deleteImage(req);
+    return NextResponse.json(result);
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: error.message || '서버 오류 발생' },
+      { status: error.status || 500 }
+    );
   }
 } 
