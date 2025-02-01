@@ -10,18 +10,14 @@ const validStyles = [
   '모던록', '그런지룩', '프레미룩'
 ];
 
-const validSizes = {
-  top: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  bottom: ['28', '29', '30', '31', '32', '33', '34', '35', '36'],
-  shoe: ['240', '245', '250', '255', '260', '265', '270', '275', '280', '285', '290']
-};
+const validSizes = ['XS','S','M','L','XL','XXL'];
 
-export async function PUT(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const body = await req.formData(); 
     const userId = body.get('UserId') as string;
     const stylePreferences = JSON.parse(body.get('stylePreferences') as string);
-    const size = JSON.parse(body.get('size') as string); 
+    const size = body.get('size') as string;
     const profileImage = body.get('profileImage') as File;
 
     if (!userId) {
@@ -39,18 +35,11 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // preference ( 3 max)
+    // 스타일 선호도는 최대 3개까지
     if (stylePreferences) {
-      if (!Array.isArray(stylePreferences) || stylePreferences.length > 3) {
+      if (stylePreferences.length > 3) {
         return NextResponse.json(
-          { error: '스타일은 최대 3개까지만 선택 가능합니다.' },
-          { status: 400 }
-        );
-      }
-
-      if (!stylePreferences.every(style => validStyles.includes(style))) {
-        return NextResponse.json(
-          { error: '유효하지 않은 스타일이 포함되어 있습니다.' },
+          { error: '스타일은 최대 3개까지 선택 가능합니다' },
           { status: 400 }
         );
       }
@@ -59,13 +48,13 @@ export async function PUT(req: NextRequest) {
 
     // size impormation
     if (size) {
-      if (!size.height || !size.weight || !size.top || !size.bottom || !size.shoe) {
+      if (!validSizes.includes(size)) {
         return NextResponse.json(
-          { error: '모든 사이즈 정보를 입력해주세요.' },
+          { error: '유효하지 않은 사이즈입니다' },
           { status: 400 }
         );
       }
-      user.size = size;
+      user.size = size as 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
     }
 
     // profile image upload

@@ -7,6 +7,7 @@ import { generateVerificationCode } from '@/utils/generateVerificationCode';
 import { sendVerificationEmail } from '@/utils/emailService';
 import { EmailUserAttributes } from '@/models/emailUser';
 
+
 // GET 메소드 추가
 export async function GET() {
   return NextResponse.json(
@@ -15,9 +16,20 @@ export async function GET() {
   );
 }
 
+async function generateUniqueUserId(baseId: string) {
+  let newId = baseId;
+  let count = 1;
+
+  while (await EmailUser.findOne({ where: { userId: newId } })) {
+    newId = `${baseId}_${count}`;
+    count++;
+  }
+
+  return newId;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    // 요청 본문이 비어 있는지 확인
     if (!req.body) {
       return NextResponse.json(
         { error: '요청 본문이 비어 있습니다.' },
@@ -28,15 +40,13 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { email, password, userId } = body;
 
-    // 입력값 검증
     if (!email || !password || !userId) {
       return NextResponse.json(
-        { error: '이메일, 비밀번호, 사용자ID를 모두 입력해주세요.' },
+        { error: '이메일, 비밀번호, 그리고 사용자 ID를 입력해주세요.' },
         { status: 400 }
       );
     }
 
-    // 이메일 형식 검증
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -45,7 +55,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 이메일, 유저ID 중복 확인
     const existingUser = await EmailUser.findOne({
       where: {
         [Op.or]: [{ email }, { userId }]
@@ -54,21 +63,16 @@ export async function POST(req: NextRequest) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: '이미 존재하는 이메일 또는 사용자ID입니다.' },
+        { error: '이미 존재하는 이메일 또는 사용자 ID입니다.' },
         { status: 409 }
       );
     }
 
     const verificationCode = generateVerificationCode();
-    console.log('Registration - Generated code:', {
-      code: verificationCode,
-      type: typeof verificationCode
-    });
 
-    // 새 사용자 생성
     const userData = {
       email,
-      password,
+      password: await bcrypt.hash(password, 10),
       userId,
       verificationCode: verificationCode.toString(),
       verificationExpires: new Date(Date.now() + 30 * 60 * 1000),
@@ -78,11 +82,12 @@ export async function POST(req: NextRequest) {
         mobile: '/uploads/mobile/default.jpg'
       },
       stylePreferences: [],
+      size: 'M' as 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL',
       hasCompletedPreferences: false
     };
 
     const newUser = await EmailUser.create(userData);
-    await sendVerificationEmail(newUser.email, newUser.verificationCode);
+    await sendVerificationEmail(newUser.email, newUser.verificationCode!);
 
     return NextResponse.json({
       message: '사용자가 성공적으로 생성되었습니다.',

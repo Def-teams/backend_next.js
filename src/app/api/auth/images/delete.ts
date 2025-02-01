@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     // JWT 토큰 검증
-    await verifyToken(req, res);
+    await verifyToken(req, res, () => {});
     // 이미지 삭제 처리
     await deleteImage(req, res);
   } catch (error) {

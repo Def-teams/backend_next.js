@@ -1,30 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { uploadImage } from '@/controllers/auth/imageController';
 
-export async function POST(req: NextRequest) {
-  const formData = await req.formData();
-  const userId = formData.get('userId') as string;
-  const file = formData.get('profileImage') as File;
+export const config = {
+  api: {
+    bodyParser: false, // Multer가 직접 body 파싱
+  },
+};
 
-  
-  const mockReq = {
-    headers: {
-      authorization: req.headers.get('authorization') || '',
-    },
-    body: { userId, file },
-  } as any; 
-
-  const mockRes = {
-    status: (status: number) => ({
-      json: (data: any) => {
-        mockRes.data = { status, data };
-      },
-    }),
-  } as any;
-
-  
-  await uploadImage(mockReq, mockRes);
-
- 
-  return NextResponse.json(mockRes.data);
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    await uploadImage(req, res);
+    res.status(200).json({ message: '파일 업로드 성공' });
+  } catch (error) {
+    console.error('파일 업로드 실패:', error);
+    res.status(500).json({ error: '서버 오류 발생' });
+  }
 } 

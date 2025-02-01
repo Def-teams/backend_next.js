@@ -1,11 +1,12 @@
-const {createServer: https} = require('https');
-const {createServer: http} = require('http');
-const {parse} = require('url');
-const next = require('next');
-const fs = require('fs');
+import { createServer as https } from 'https';
+import { createServer as http } from 'http';
+import { parse } from 'url';
+import next from 'next';
+import fs from 'fs';
+import { IncomingMessage, ServerResponse } from 'http';
 
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({dev});
+const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const ports = {
@@ -19,19 +20,19 @@ const httpsOptions = {
 };
 
 app.prepare().then(() => {
-  http((req, res) => {
-    const parsedUrl = parse(req.url, true);
+  // HTTP 서버
+  http((req: IncomingMessage, res: ServerResponse) => {
+    const parsedUrl = parse(req.url || '', true);
     handle(req, res, parsedUrl);
-  }).listen(ports.http, (err) => {
-    if (err) throw err;
+  }).listen(ports.http, '0.0.0.0', () => { // 모든 IP에서 접근 가능
     console.log(`> HTTP: Ready on http://localhost:${ports.http}`);
   });
 
-  https(httpsOptions, (req, res) => {
-    const parsedUrl = parse(req.url, true);
+  // HTTPS 서버
+  https(httpsOptions, (req: IncomingMessage, res: ServerResponse) => {
+    const parsedUrl = parse(req.url || '', true);
     handle(req, res, parsedUrl);
-  }).listen(ports.https, (err) => {
-    if (err) throw err;
+  }).listen(ports.https, '0.0.0.0', () => { // 모든 IP에서 접근 가능
     console.log(`> HTTPS: Ready on https://localhost:${ports.https}`);
   });
 });
