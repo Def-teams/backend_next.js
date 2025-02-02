@@ -28,7 +28,7 @@ const upload = multer({
 
 // 이미지 처리 함수
 const processImage = async (userId: string, file: Buffer) => {
-  const userDir = path.join(process.cwd(), 'public/uploads', userId);
+  const userDir = path.join(process.cwd(), 'public/uploads/User_profile', userId);
   try {
     await fs.mkdir(userDir, { recursive: true });
     console.log(`디렉토리 생성 성공: ${userDir}`);

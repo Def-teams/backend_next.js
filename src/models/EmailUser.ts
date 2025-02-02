@@ -147,7 +147,7 @@ EmailUser.init(
         
         // 시퀀스 재설정
         const maxId = await EmailUser.max('id');
-        await sequelize.query(`ALTER SEQUENCE emailusers_id_seq RESTART WITH ${maxId + 1}`);
+        await sequelize.query(`ALTER SEQUENCE emailusers_id_seq RESTART WITH ${(maxId as number) + 1}`);
       }
     },
     indexes: [
@@ -181,8 +181,8 @@ async function createUser(userData: UserData) {
     isVerified: userData.isVerified || false,
     stylePreferences: userData.stylePreferences || [],
     profileImg: userData.profileImg || {
-      desktop: '/uploads/desktop/default.jpg',
-      mobile: '/uploads/mobile/default.jpg'
+      desktop: 'public/uploads/User_profile/defulat/desktop_default.jpg',
+      mobile: 'public/uploads/User_profile/defulat/mobile_default.jpg'
     }
   });
   return newUser;

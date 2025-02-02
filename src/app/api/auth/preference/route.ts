@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import EmailUser from '@/models/emailUser';
 import sharp from 'sharp';
 import path from 'path';
-import { promises as fs } from 'fs';
+import fs from 'fs/promises';
 import { indexCheckMiddleware } from '@/middlewares/indexMonitor';
 
 const validStyles = [
@@ -63,23 +63,27 @@ export async function POST(req: NextRequest) {
       user.size = size as 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
     }
 
-    // profile image upload
+    // 프로필 이미지 업로드
     if (profileImage) {
-      const formData = new FormData();
-      formData.append('profileImage', profileImage);
-      formData.append('userId', userId);
+      const buffer = await profileImage.arrayBuffer();
+      const userProfileDir = path.join(process.cwd(), 'public/uploads/User_profile', userId);
+      const desktopFileName = `desktop_${userId}.webp`;
+      const mobileFileName = `mobile_${userId}.webp`;
 
-      const uploadResponse = await fetch('http://localhost:3000/api/auth/images', {
-        method: 'POST',
-        body: formData 
-      });
+      // 디렉토리 생성
+      await fs.mkdir(userProfileDir, { recursive: true });
 
-      if (!uploadResponse.ok) {
-        return NextResponse.json(
-          { error: '프로필 이미지 업로드에 실패했습니다.' },
-          { status: 500 }
-        );
-      }
+      // 파일 저장
+      await Promise.all([
+        fs.writeFile(path.join(userProfileDir, desktopFileName), Buffer.from(buffer)),
+        fs.writeFile(path.join(userProfileDir, mobileFileName), Buffer.from(buffer))
+      ]);
+
+      // 프로필 이미지 경로 업데이트
+      user.profileImg = {
+        desktop: `/uploads/User_profile/${userId}/${desktopFileName}`,
+        mobile: `/uploads/User_profile/${userId}/${mobileFileName}`
+      };
     }
 
     user.hasCompletedPreferences = true;

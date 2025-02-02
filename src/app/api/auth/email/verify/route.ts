@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import EmailUser from '@/models/emailUser';
-import { sequelize } from '@/config/database';
+import sequelize from '@/config/database';
 
 export async function POST(req: NextRequest) {
   try {
@@ -50,13 +50,18 @@ export async function POST(req: NextRequest) {
       throw new Error('사용자 인스턴스를 찾을 수 없음');
     }
 
-    await sequelize.transaction(async (t) => {
+    const transaction = await sequelize.transaction();
+    try {
       await userInstance.update({
         isVerified: true,
         verificationCode: null,
         verificationExpires: null
-      }, { transaction: t });
-    });
+      }, { transaction });
+      await transaction.commit();
+    } catch (updateError) {
+      await transaction.rollback();
+      throw updateError;
+    }
 
     return NextResponse.json({
       message: '이메일 인증이 완료되었습니다.'
