@@ -5,7 +5,11 @@ import { uploadImage, deleteImage } from '@/controllers/auth/imageController';
 import fs from 'fs/promises';
 
 export const config = {
-  api: { bodyParser: false }
+  api: {
+    bodyParser: {
+      sizeLimit: '5mb' // Next.js 기본 파서 크기 제한 설정
+    }
+  }
 };
 
 // NextRequest를 Node.js 스트림으로 변환
@@ -32,44 +36,39 @@ const convertToNodeStream = async (req: NextRequest) => {
   return incomingMsg;
 };
 
+// 클라이언트-서버 파라미터명 통일을 위한 상수 정의
+const PARAM_USER_ID = 'userid'; 
+
 export async function POST(req: NextRequest) {
   try {
-    const form = new IncomingForm({
-      uploadDir: process.cwd() + '/public/temp',
-      keepExtensions: true
-    });
+    const formData = await req.formData();
     
-    // 스트림 변환
-    const nodeStream = await convertToNodeStream(req);
-    
-    const [fields, files] = await new Promise<[any, any]>((resolve, reject) => {
-      form.parse(nodeStream, (err, fields, files) => {
-        if (err) return reject(err);
-        
-        // 필드 값 검증 추가
-        if (!fields.userId?.[0]) {
-          return reject(new Error('USER_ID_REQUIRED'));
-        }
-        
-        resolve([fields, files]);
-      });
-    });
+    // 파일 크기 사전 검증
+    const contentLength = Number(req.headers.get('content-length') || 0);
+    if (contentLength > 5 * 1024 * 1024) {
+      return NextResponse.json(
+        { error: '최대 5MB까지 업로드 가능합니다' },
+        { status: 413 }
+      );
+    }
 
-    const file = files.profileImage?.[0];
-    if (!file) throw new Error('FILE_REQUIRED');
+    const file = formData.get('profileImage') as File;
+    const userId = formData.get(PARAM_USER_ID)?.toString().trim();
 
-    const buffer = await fs.readFile(file.filepath);
-    const userId = fields.userId?.[0];
-    if (!userId) throw new Error('USER_ID_REQUIRED');
-    
+    if (!file || !userId) {
+      return NextResponse.json(
+        { error: '필수 파라미터 누락' },
+        { status: 400 }
+      );
+    }
+
     const result = await uploadImage({
       userId,
-      buffer,
-      originalFileName: file.originalFilename || '',
-      contentType: file.mimetype || ''
+      buffer: Buffer.from(await file.arrayBuffer()),
+      originalFileName: file.name,
+      contentType: file.type
     });
 
-    await fs.unlink(file.filepath);
     return NextResponse.json(result);
 
   } catch (error: any) {

@@ -17,7 +17,11 @@ const validStyles = [
 const validSizes = ['XS','S','M','L','XL','XXL'];
 
 export const config = {
-  api: { bodyParser: false }
+  api: {
+    bodyParser: {
+      sizeLimit: '5mb'
+    }
+  }
 };
 
 export async function POST(req: NextRequest) {
@@ -26,28 +30,23 @@ export async function POST(req: NextRequest) {
     return indexCheckResult;
   }
 
-  const form = new IncomingForm();
-  
   try {
-    const nodeStream = await convertToNodeStream(req);
-    const [fields, files] = await new Promise<[any, any]>((resolve, reject) => {
-      form.parse(nodeStream, (err, fields, files) => {
-        if (err) return reject(err);
-        resolve([fields, files]);
-      });
-    });
-
-    const userId = fields.UserId?.[0];
-    const stylePreferences = JSON.parse(fields.stylePreferences?.[0] || '[]');
-    const size = fields.size?.[0];
-    const profileImage = files.profileImage?.[0];
+    const formData = await req.formData();
+    const rawUserId = formData.get('userid') || formData.get('UserId') || formData.get('USERID');
+    const userId = String(rawUserId).trim();
 
     if (!userId) {
+      const receivedKeys = Array.from(formData.keys()).join(', ');
+      console.error(`Missing userId. Received keys: ${receivedKeys}`);
       return NextResponse.json(
-        { error: '사용자 ID가 필요합니다.' },
+        { error: `userid 파라미터가 필요합니다 (전달된 키: ${receivedKeys})` },
         { status: 400 }
       );
     }
+
+    const stylePreferences = JSON.parse(formData.get('stylePreferences') as string);
+    const size = formData.get('size') as string;
+    const profileImage = formData.get('profileImage') as File;
 
     const user = await EmailUser.findOne({ where: { userId } });
     if (!user) {
@@ -81,7 +80,7 @@ export async function POST(req: NextRequest) {
 
     // 프로필 이미지 업로드
     if (profileImage) {
-      const buffer = await profileImage.arrayBuffer();
+      const buffer = Buffer.from(await profileImage.arrayBuffer());
       
       // 5MB 초과 검증 추가
       if (buffer.byteLength > 5 * 1024 * 1024) {
@@ -97,8 +96,8 @@ export async function POST(req: NextRequest) {
 
       // 파일 저장
       await Promise.all([
-        fs.writeFile(path.join(userProfileDir, desktopFileName), Buffer.from(buffer)),
-        fs.writeFile(path.join(userProfileDir, mobileFileName), Buffer.from(buffer))
+        fs.writeFile(path.join(userProfileDir, desktopFileName), buffer),
+        fs.writeFile(path.join(userProfileDir, mobileFileName), buffer)
       ]);
 
       // 프로필 이미지 경로 업데이트
@@ -110,6 +109,9 @@ export async function POST(req: NextRequest) {
 
     user.hasCompletedPreferences = true;
     await user.save();
+
+    console.log('수신 데이터 타입:', req.headers.get('content-type'));
+    console.log('요청 본문 크기:', req.headers.get('content-length'));
 
     return NextResponse.json({
       message: '프로필이 업데이트되었습니다.',
@@ -124,10 +126,10 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('FormData 처리 실패:', error);
+    console.error('FormData 파싱 실패:', error);
     return NextResponse.json(
-      { error: '데이터 처리 실패: ' + (error instanceof Error ? error.message : 'Unknown error') },
-      { status: 500 }
+      { error: '잘못된 요청 형식입니다. Content-Type: multipart/form-data 확인 필요' },
+      { status: 400 }
     );
   }
 } 

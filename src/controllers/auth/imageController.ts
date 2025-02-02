@@ -29,38 +29,30 @@ const upload = multer({
 // 이미지 처리 함수
 const processImage = async (userId: string, file: Buffer) => {
   const userDir = path.join(process.cwd(), 'public/uploads/User_profile', userId);
-  try {
-    await fs.mkdir(userDir, { recursive: true });
-    console.log(`디렉토리 생성 성공: ${userDir}`);
-  } catch (dirError) {
-    console.error(`디렉토리 생성 실패: ${dirError}`);
-    throw new Error('파일 저장소 생성에 실패했습니다');
-  }
+  
+  // 디렉토리 생성
+  await fs.mkdir(userDir, { recursive: true });
 
   const desktopPath = path.join(userDir, `desktop_${userId}.webp`);
   const mobilePath = path.join(userDir, `mobile_${userId}.webp`);
 
-  try {
-    await Promise.all([
-      sharp(file)
-        .resize(170, 170)
-        .webp({ quality: 80 })
-        .toFile(desktopPath),
-      sharp(file)
-        .resize(110, 110)
-        .webp({ quality: 80 })
-        .toFile(mobilePath)
-    ]);
-    console.log('이미지 처리 완료:', { desktopPath, mobilePath });
-  } catch (processingError) {
-    console.error('이미지 처리 실패:', processingError);
-    await Promise.allSettled([deleteFile(desktopPath), deleteFile(mobilePath)]);
-    throw new Error('이미지 변환에 실패했습니다');
-  }
+  // 이미지 변환 파이프라인
+  const desktopPipeline = sharp(file)
+    .resize(170, 170, { fit: 'cover', position: 'centre' })
+    .webp({ quality: 80, lossless: false, alphaQuality: 90 });
+
+  const mobilePipeline = sharp(file)
+    .resize(110, 110, { kernel: sharp.kernel.lanczos3 })
+    .webp({ quality: 80 });
+
+  await Promise.all([
+    desktopPipeline.toFile(desktopPath),
+    mobilePipeline.toFile(mobilePath)
+  ]);
 
   return {
-    desktop: `/uploads/${userId}/desktop_${userId}.webp`,
-    mobile: `/uploads/${userId}/mobile_${userId}.webp`
+    desktop: `/uploads/User_profile/${userId}/desktop_${userId}.webp`,
+    mobile: `/uploads/User_profile/${userId}/mobile_${userId}.webp`
   };
 };
 
@@ -80,36 +72,43 @@ interface UploadParams {
   contentType: string;
 }
 
-export const uploadImage = async ({ 
-  userId, 
-  buffer,
-  originalFileName,
-  contentType 
-}: UploadParams) => {
-  // 버퍼 크기 검증 추가
-  if (buffer.byteLength > 5 * 1024 * 1024) {
+// 파일 메타데이터 검증 함수
+const validateFile = (file: {
+  buffer: Buffer;
+  contentType: string;
+  originalFileName: string;
+}) => {
+  const MAX_SIZE = 5 * 1024 * 1024;
+  const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
+  const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+  if (file.buffer.byteLength > MAX_SIZE) {
     throw new Error('FILE_SIZE_EXCEEDED');
   }
-  
-  // 파일 유효성 검사
-  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-  if (!allowedTypes.includes(contentType)) {
-    throw new Error(`INVALID_FILE_TYPE: ${contentType}`);
+
+  const ext = path.extname(file.originalFileName).toLowerCase();
+  if (!ALLOWED_EXTENSIONS.includes(ext)) {
+    throw new Error(`INVALID_EXTENSION: ${ext}`);
   }
 
-  // 기존 로직 유지 (processImage 호출 등)
-  const imagePaths = await processImage(userId, buffer);
+  if (!ALLOWED_MIME_TYPES.includes(file.contentType)) {
+    throw new Error(`INVALID_MIME_TYPE: ${file.contentType}`);
+  }
+};
+
+export const uploadImage = async (params: UploadParams) => {
+  validateFile(params); // 검증 함수 호출
+  const imagePaths = await processImage(params.userId, params.buffer);
   
-  // DB 업데이트 로직
-  const user = await EmailUser.findOne({ where: { userId } });
+  const user = await EmailUser.findOne({ where: { userId: params.userId } });
   if (user) {
     user.profileImg = imagePaths;
     await user.save();
   }
 
-  return {
-    message: '이미지 업로드 성공',
-    paths: imagePaths
+  return { 
+    message: '이미지 업로드 성공', 
+    paths: imagePaths 
   };
 };
 
