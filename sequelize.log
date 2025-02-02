@@ -1,0 +1,134 @@
+[2025-02-02T14:03:35.624Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:03:35.630Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills37') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:03:35.648Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+PARAMETERS: []
+[2025-02-02T14:03:35.775Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?); 
+PARAMETERS: ["sakills914@gmail.com","$2b$10$JI7rppj1zaydtV1SvWA9IOiNo.8bgYbucR78eK3o7P/RKHRfuC2S6","sakills37","728059","2025-02-02 14:33:35",false,"{\"desktop\":\"/uploads/desktop/default.jpg\",\"mobile\":\"/uploads/mobile/default.jpg\"}","[]","M",false,"2025-02-02 14:03:35","2025-02-02 14:03:35"]
+[2025-02-02T14:04:09.606Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills37') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:04:09.610Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+PARAMETERS: []
+[2025-02-02T14:04:09.676Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?); 
+PARAMETERS: ["sakills914@gmail.com","$2b$10$Q.pxc6HXCE0ZM/.PWVc5x.jSppXtkkmDfziBekd/TzXIQZi3XddXq","sakills37","494681","2025-02-02 14:34:09",false,"{\"desktop\":\"/uploads/desktop/default.jpg\",\"mobile\":\"/uploads/mobile/default.jpg\"}","[]","M",false,"2025-02-02 14:04:09","2025-02-02 14:04:09"]
+[2025-02-02T14:04:34.082Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:04:34.085Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:04:34.094Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`id` = 2; 
+PARAMETERS: []
+[2025-02-02T14:06:25.283Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:06:25.285Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T14:06:25.302Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:06:29.370Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:06:29.372Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:06:34.821Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:06:34.823Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills37') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:06:34.832Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+PARAMETERS: []
+[2025-02-02T14:06:34.915Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?); 
+PARAMETERS: ["sakills914@gmail.com","$2b$10$y.hGIM6vh822NU7OnqIgHej9/QAdtbKbEO4wGaDEw8BlRMDwAcyH2","sakills37","813430","2025-02-02 14:36:34",false,"{\"desktop\":\"/uploads/desktop/default.jpg\",\"mobile\":\"/uploads/mobile/default.jpg\"}","[]","M",false,"2025-02-02 14:06:34","2025-02-02 14:06:34"]
+[2025-02-02T14:06:51.630Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:06:59.205Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:06:59.207Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:06:59.216Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`id` = 1; 
+PARAMETERS: []
+[2025-02-02T14:07:20.174Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:07:28.214Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:07:28.215Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills37') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:07:28.225Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+PARAMETERS: []
+[2025-02-02T14:07:28.311Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?); 
+PARAMETERS: ["sakills914@gmail.com","$2b$10$YwuKz3e/2ZKpNdW77wp.9.zbSRVYhTxy7TYOPa6l.ZEReGf73RWsu","sakills37","443492","2025-02-02 14:37:28",false,"{\"desktop\":\"/uploads/desktop/default.jpg\",\"mobile\":\"/uploads/mobile/default.jpg\"}","[]","M",false,"2025-02-02 14:07:28","2025-02-02 14:07:28"]
+[2025-02-02T14:08:04.165Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:08:04.169Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+PARAMETERS: []
+[2025-02-02T14:08:04.234Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?); 
+PARAMETERS: ["example@gmail.com","$2b$10$gF4YRHTOpMnywQ777pTbK.85/rM6fRvHvroy8HwW8AibUNwjk3Iy.","user","476263","2025-02-02 14:38:04",false,"{\"desktop\":\"/uploads/desktop/default.jpg\",\"mobile\":\"/uploads/mobile/default.jpg\"}","[]","M",false,"2025-02-02 14:08:04","2025-02-02 14:08:04"]
+[2025-02-02T14:08:13.169Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:08:33.771Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user1') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:08:41.955Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example3@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:08:55.041Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:09:20.939Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills37') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:09:25.020Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:09:33.484Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:10:12.539Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:10:12.544Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`id` = 1; 
+PARAMETERS: []
+[2025-02-02T14:10:12.549Z] EXECUTING: Executing (default): UPDATE `emailusers` SET `isVerified`=?,`verificationCode`=?,`verificationExpires`=?,`updatedAt`=? WHERE `id` = ? 
+PARAMETERS: [true,null,null,"2025-02-02 14:10:12",1]
+[2025-02-02T14:10:22.365Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:11:12.275Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:11:12.279Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T14:11:12.320Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:15:32.596Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:15:32.601Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T14:15:32.637Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:16:33.168Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:16:33.170Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:19:01.991Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:19:01.993Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills37') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:19:02.013Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+PARAMETERS: []
+[2025-02-02T14:19:02.109Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?); 
+PARAMETERS: ["sakills914@gmail.com","$2b$10$ERdDSJymIN.j0P/Y6QO/R.71KnFwgvT1rb/BTqpCtsvNt/j3Q2edW","sakills37","252399","2025-02-02 14:49:02",false,"{\"desktop\":\"/uploads/desktop/default.jpg\",\"mobile\":\"/uploads/mobile/default.jpg\"}","[]","M",false,"2025-02-02 14:19:02","2025-02-02 14:19:02"]
+[2025-02-02T14:19:19.027Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:19:19.029Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:19:19.036Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`id` = 1; 
+PARAMETERS: []
+[2025-02-02T14:19:19.050Z] EXECUTING: Executing (default): UPDATE `emailusers` SET `isVerified`=?,`verificationCode`=?,`verificationExpires`=?,`updatedAt`=? WHERE `id` = ? 
+PARAMETERS: [true,null,null,"2025-02-02 14:19:19",1]

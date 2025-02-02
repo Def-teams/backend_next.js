@@ -26,7 +26,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    console.log('Stored hash:', user.password);
+    console.log('Input password:', password);
+
     const isValidPassword = await bcrypt.compare(password, user.password);
+    console.log('Password match result:', isValidPassword);
     if (!isValidPassword) {
       return NextResponse.json(
         { error: '비밀번호가 일치하지 않습니다.' },
@@ -48,9 +52,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!process.env.JWT_SECRET) {
+      throw new Error('JWT_SECRET 환경 변수가 정의되지 않았습니다');
+    }
+
     const token = jwt.sign(
       { userId: user.id },
-      process.env.JWT_SECRET!,
+      process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );
 

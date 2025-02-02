@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
 
     const userData = {
       email,
-      password: await bcrypt.hash(password, 10),
+      password: password,
       userId,
       verificationCode: verificationCode.toString(),
       verificationExpires: new Date(Date.now() + 30 * 60 * 1000),

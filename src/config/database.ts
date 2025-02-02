@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize';
 import mysql2 from 'mysql2';
+import fs from 'fs';
 
 // 모든 모델에 적용할 공통 설정
 const dbConfig = {
@@ -23,8 +24,11 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: Number(process.env.DB_PORT),
-  logging: (sql) => {
-    console.log(`[Database] ${sql}`);
+  logging: (sql, options) => {
+    const timestamp = new Date().toISOString();
+    const logMessage = `[${timestamp}] EXECUTING: ${sql} \nPARAMETERS: ${JSON.stringify((options as any)?.bind ?? [])}`;
+    console.log(logMessage); 
+    fs.appendFileSync('sequelize.log', logMessage + '\n');
   },
   pool: {
     max: 5,
@@ -43,10 +47,17 @@ const connectDB = async () => {
   while (connectionAttempts < MAX_RETRIES) {
     try {
       await sequelize.authenticate();
-      console.log('DB 연결 성공');
-      await sequelize.sync({ 
-        force: process.env.NODE_ENV === 'development',
-        match: new RegExp(process.env.DB_NAME!) 
+      
+      // 테이블 존재 여부 확인
+      const tableExists = await sequelize.getQueryInterface().tableExists('emailusers');
+      if (!tableExists) {
+        console.log('테이블 강제 생성 시도');
+        await sequelize.sync({ force: true });
+      }
+
+      await sequelize.sync({
+        alter: process.env.NODE_ENV === 'development',
+        logging: msg => console.log(`[DB Sync] ${msg}`)
       });
       return;
     } catch (error) {

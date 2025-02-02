@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import EmailUser from '@/models/emailUser';
+import { sequelize } from '@/config/database';
 
 export async function POST(req: NextRequest) {
   try {
@@ -45,10 +46,16 @@ export async function POST(req: NextRequest) {
 
     // 인스턴스로 다시 조회하여 업데이트
     const userInstance = await EmailUser.findByPk(user.id);
-    await userInstance?.update({
-      isVerified: true,
-      verificationCode: null,
-      verificationExpires: null
+    if (!userInstance) {
+      throw new Error('사용자 인스턴스를 찾을 수 없음');
+    }
+
+    await sequelize.transaction(async (t) => {
+      await userInstance.update({
+        isVerified: true,
+        verificationCode: null,
+        verificationExpires: null
+      }, { transaction: t });
     });
 
     return NextResponse.json({

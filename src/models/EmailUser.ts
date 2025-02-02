@@ -133,34 +133,31 @@ EmailUser.init(
           throw new Error('인덱스 수가 64개를 초과하여 사용자를 생성할 수 없습니다.');
         }
 
-        if (user.password) {
+        if (user.changed('password')) {
           const salt = await bcrypt.genSalt(10);
           user.password = await bcrypt.hash(user.password, salt);
         }
       },
       afterDestroy: async (user) => {
-        const deletedId = user.id;
-        
-        // 삭제된 ID보다 큰 모든 ID 감소
-        await sequelize.query(`
-          UPDATE emailusers 
-          SET id = id - 1 
-          WHERE id > ${deletedId}
-        `);
+        const isDev = process.env.NODE_ENV === 'development';
+        if (!isDev) return; // 프로덕션 환경에서는 ID 재정렬 비활성화
 
+        // 삭제된 ID 처리 로직
+        await sequelize.query(`UPDATE emailusers SET id = id - 1 WHERE id > ${user.id}`);
+        
         // 시퀀스 재설정
-        const maxId = (await EmailUser.max('id')) as number;
-        await sequelize.query(`
-          ALTER SEQUENCE emailusers_id_seq 
-          RESTART WITH ${(maxId || 0) + 1}
-        `);
+        const maxId = await EmailUser.max('id');
+        await sequelize.query(`ALTER SEQUENCE emailusers_id_seq RESTART WITH ${maxId + 1}`);
       }
     },
     indexes: [
       {
-        name: 'composite_main_idx',
-        fields: ['email', 'userId'],
-        unique: true
+        unique: true,
+        fields: ['email']
+      },
+      {
+        unique: true,
+        fields: ['userId']
       }
     ]
   
