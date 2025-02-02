@@ -73,43 +73,39 @@ const convertRequest = (req: NextApiRequest): MulterRequest => {
   return req as unknown as MulterRequest;
 };
 
-export const uploadImage = async (req: NextRequest) => {
-  const formData = await req.formData();
-  const file = formData.get('profileImage') as File;
+interface UploadParams {
+  userId: string;
+  buffer: Buffer;
+  originalFileName: string;
+  contentType: string;
+}
+
+export const uploadImage = async ({ 
+  userId, 
+  buffer,
+  originalFileName,
+  contentType 
+}: UploadParams) => {
   
-  if (!file || file.size === 0) {
-    throw new Error('FILE_REQUIRED');
-  }
-
-  // 파일 유효성 검사 직접 수행
+  // 파일 유효성 검사
   const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-  if (!allowedTypes.includes(file.type)) {
-    throw new Error(`INVALID_FILE_TYPE: ${file.type}`);
+  if (!allowedTypes.includes(contentType)) {
+    throw new Error(`INVALID_FILE_TYPE: ${contentType}`);
   }
 
-  const buffer = Buffer.from(await file.arrayBuffer());
-
-  const token = req.headers.get('authorization')?.split(' ')[1];
-  if (!token) {
-    throw new Error('AUTH_TOKEN_REQUIRED');
-  }
-
-  const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-  const userId = (decoded as any).userId;
-  console.log(`사용자 인증 성공: ${userId}`);
-
+  // 기존 로직 유지 (processImage 호출 등)
   const imagePaths = await processImage(userId, buffer);
-
+  
+  // DB 업데이트 로직
   const user = await EmailUser.findOne({ where: { userId } });
   if (user) {
     user.profileImg = imagePaths;
     await user.save();
-    console.log(`사용자 프로필 업데이트: ${userId}`);
   }
 
   return {
-    message: '이미지가 성공적으로 업로드되었습니다.',
-    profileImg: imagePaths
+    message: '이미지 업로드 성공',
+    paths: imagePaths
   };
 };
 

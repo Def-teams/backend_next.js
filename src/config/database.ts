@@ -1,6 +1,19 @@
 import { Sequelize } from 'sequelize';
 import mysql2 from 'mysql2';
 
+// 모든 모델에 적용할 공통 설정
+const dbConfig = {
+  define: {
+    freezeTableName: true,
+    paranoid: false,
+    timestamps: true,
+    indexes: [], // 모든 모델에서 자동 인덱스 생성 비활성화
+  },
+  sync: {
+    alter: false, // 자동 스키마 변경 비활성화
+    force: false
+  }
+};
 
 const sequelize = new Sequelize({
   dialect: 'mysql',
@@ -18,26 +31,32 @@ const sequelize = new Sequelize({
     min: 0,
     acquire: 30000,
     idle: 10000
-  }
+  },
+  ...dbConfig
 });
 
+// 연결 재시도 로직 추가
+const MAX_RETRIES = 3;
+let connectionAttempts = 0;
 
-export const connectDB = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('MySql Connect Succescsful!');
-    
-    
-    if (process.env.NODE_ENV === 'development') {
-      await sequelize.sync({ alter: true });
-      console.log('Model Config!');
+const connectDB = async () => {
+  while (connectionAttempts < MAX_RETRIES) {
+    try {
+      await sequelize.authenticate();
+      console.log('DB 연결 성공');
+      await sequelize.sync({ 
+        force: process.env.NODE_ENV === 'development',
+        match: new RegExp(process.env.DB_NAME!) 
+      });
+      return;
+    } catch (error) {
+      console.error(`연결 실패 (시도 ${connectionAttempts + 1}/${MAX_RETRIES}):`, error);
+      connectionAttempts++;
+      await new Promise(res => setTimeout(res, 5000));
     }
-  } catch (error) {
-    console.error('Database not Connect:', error);
-    process.exit(1);
   }
+  throw new Error('DB 연결 최종 실패');
 };
-
 
 connectDB();
 

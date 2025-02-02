@@ -3,6 +3,7 @@ import EmailUser from '@/models/emailUser';
 import sharp from 'sharp';
 import path from 'path';
 import { promises as fs } from 'fs';
+import { indexCheckMiddleware } from '@/middlewares/indexMonitor';
 
 const validStyles = [
   '미니멀록', '스트릿패션', '보히미안룩', '럭셔리룩',
@@ -13,6 +14,11 @@ const validStyles = [
 const validSizes = ['XS','S','M','L','XL','XXL'];
 
 export async function POST(req: NextRequest) {
+  const indexCheckResult = await indexCheckMiddleware(req);
+  if (indexCheckResult) {
+    return indexCheckResult;
+  }
+
   try {
     const body = await req.formData(); 
     const userId = body.get('UserId') as string;

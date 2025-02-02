@@ -1,6 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import bcrypt from 'bcrypt';
+import { QueryTypes } from 'sequelize';
 
 export interface EmailUserAttributes {
   id?: number;
@@ -63,9 +64,12 @@ EmailUser.init(
       primaryKey: true,
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
-      unique: true,
+      unique: 'email_unique_index',
+      validate: {
+        isEmail: true
+      }
     },
     password: {
       type: DataTypes.STRING,
@@ -114,14 +118,18 @@ EmailUser.init(
   {
     sequelize,
     modelName: 'EmailUser',
-    tableName: 'EmailUsers',
+    tableName: 'emailusers',
+    paranoid: false,
     hooks: {
       beforeCreate: async (user: EmailUser) => {
-        const indexCount = await sequelize.query(
-          "SELECT COUNT(*) as count FROM information_schema.STATISTICS WHERE TABLE_SCHEMA = 'Def_project' AND TABLE_NAME = 'EmailUsers'"
-        );
+        const indexCount = await sequelize.query<[{ count: number }]>(`
+          SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers'
+        `, { type: QueryTypes.SELECT });
 
-        if (indexCount[0].length > 0 && (indexCount[0][0] as { count: number }).count >= 64) {
+        if (indexCount?.[0]?.[0]?.count >= 64) {
           throw new Error('인덱스 수가 64개를 초과하여 사용자를 생성할 수 없습니다.');
         }
 
@@ -131,46 +139,42 @@ EmailUser.init(
         }
       },
       afterDestroy: async (user) => {
+        const deletedId = user.id;
+        
+        // 삭제된 ID보다 큰 모든 ID 감소
         await sequelize.query(`
-          ALTER SEQUENCE "EmailUsers_id_seq" 
-          RESTART WITH ${user.id}
+          UPDATE emailusers 
+          SET id = id - 1 
+          WHERE id > ${deletedId}
+        `);
+
+        // 시퀀스 재설정
+        const maxId = (await EmailUser.max('id')) as number;
+        await sequelize.query(`
+          ALTER SEQUENCE emailusers_id_seq 
+          RESTART WITH ${(maxId || 0) + 1}
         `);
       }
     },
     indexes: [
-      { unique: true, fields: ['email'] },
-      { unique: true, fields: ['userId'] }
+      {
+        name: 'composite_main_idx',
+        fields: ['email', 'userId'],
+        unique: true
+      }
     ]
+  
   }
 );
 
-// 삭제된 ID를 추적하는 테이블
-class DeletedId extends Model {
-  declare id: number;
-}
-
-DeletedId.init({
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-  },
-}, {
-  sequelize,
-  modelName: 'DeletedId',
-});
-
 // 사용자 생성 시 ID 재사용
 async function createUser(userData: UserData) {
-  const deletedId = await DeletedId.findOne();
-  let newId;
-
-  if (deletedId) {
-    newId = deletedId.id;
-    await DeletedId.destroy({ where: { id: newId } });
-  } else {
-    const lastUser = await EmailUser.findOne({ order: [['id', 'DESC']] });
-    newId = lastUser ? lastUser.id + 1 : 1;
-  }
+  const lastUser = await EmailUser.findOne({ 
+    order: [['id', 'DESC']],
+    attributes: ['id']
+  });
+  
+  const newId = lastUser ? lastUser.id + 1 : 1;
 
   const newUser = await EmailUser.create({
     ...userData,
