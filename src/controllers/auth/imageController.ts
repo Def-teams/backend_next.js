@@ -14,7 +14,7 @@ const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.mimetype)) {
       return cb(new Error(
         `허용되지 않는 파일 형식입니다 (${file.mimetype}). ` +
@@ -88,7 +88,7 @@ export const uploadImage = async ({
 }: UploadParams) => {
   
   // 파일 유효성 검사
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
   if (!allowedTypes.includes(contentType)) {
     throw new Error(`INVALID_FILE_TYPE: ${contentType}`);
   }

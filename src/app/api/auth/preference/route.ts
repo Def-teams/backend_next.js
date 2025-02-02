@@ -20,7 +20,16 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const body = await req.formData(); 
+    let body: FormData;
+    try {
+      body = await req.formData();
+    } catch (error) {
+      console.error('FormData 파싱 실패:', error);
+      return NextResponse.json(
+        { error: '잘못된 요청 형식입니다. multipart/form-data 확인 필요' },
+        { status: 400 }
+      );
+    }
     const userId = body.get('UserId') as string;
     const stylePreferences = JSON.parse(body.get('stylePreferences') as string);
     const size = body.get('size') as string;
@@ -108,4 +117,12 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb'
+    }
+  }
+}; 

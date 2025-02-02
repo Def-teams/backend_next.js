@@ -235,3 +235,55 @@ PARAMETERS: []
 PARAMETERS: []
 [2025-02-02T14:44:41.324Z] EXECUTING: Executing (default): UPDATE `emailusers` SET `stylePreferences`=?,`profileImg`=?,`hasCompletedPreferences`=?,`updatedAt`=? WHERE `id` = ? 
 PARAMETERS: ["[\"미니멀록\",\"스트릿패션\",\"럭셔리룩\"]","{\"desktop\":\"/uploads/User_profile/sakills37/desktop_sakills37.webp\",\"mobile\":\"/uploads/User_profile/sakills37/mobile_sakills37.webp\"}",true,"2025-02-02 14:44:41",2]
+[2025-02-02T14:47:55.999Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:47:56.003Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T14:47:56.008Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-02T14:49:58.325Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:49:58.328Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'kimyoujin0821@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T14:49:58.330Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-02T14:52:08.796Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T14:52:08.798Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T14:52:08.800Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-02T14:52:21.342Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T15:04:53.085Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T15:04:53.088Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T15:04:53.095Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-02T15:05:33.669Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T15:05:33.683Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T15:06:20.880Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T15:06:20.885Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-02T15:06:29.053Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T15:08:21.324Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-02T15:08:30.694Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T15:08:30.697Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'kimyoujin0821@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-02T15:08:30.699Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-02T15:08:34.390Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T15:08:34.391Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'user'; 
+PARAMETERS: []
+[2025-02-02T15:08:34.394Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-02T15:12:12.580Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
