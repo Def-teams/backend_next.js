@@ -4,6 +4,9 @@ import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs/promises';
 import { indexCheckMiddleware } from '@/middlewares/indexMonitor';
+import { IncomingForm } from 'formidable';
+import { convertToNodeStream } from '@/utils/convertToNodeStream';
+import { Readable } from 'stream';
 
 const validStyles = [
   '미니멀록', '스트릿패션', '보히미안룩', '럭셔리룩',
@@ -13,27 +16,31 @@ const validStyles = [
 
 const validSizes = ['XS','S','M','L','XL','XXL'];
 
+export const config = {
+  api: { bodyParser: false }
+};
+
 export async function POST(req: NextRequest) {
   const indexCheckResult = await indexCheckMiddleware(req);
   if (indexCheckResult) {
     return indexCheckResult;
   }
 
+  const form = new IncomingForm();
+  
   try {
-    let body: FormData;
-    try {
-      body = await req.formData();
-    } catch (error) {
-      console.error('FormData 파싱 실패:', error);
-      return NextResponse.json(
-        { error: '잘못된 요청 형식입니다. multipart/form-data 확인 필요' },
-        { status: 400 }
-      );
-    }
-    const userId = body.get('UserId') as string;
-    const stylePreferences = JSON.parse(body.get('stylePreferences') as string);
-    const size = body.get('size') as string;
-    const profileImage = body.get('profileImage') as File;
+    const nodeStream = await convertToNodeStream(req);
+    const [fields, files] = await new Promise<[any, any]>((resolve, reject) => {
+      form.parse(nodeStream, (err, fields, files) => {
+        if (err) return reject(err);
+        resolve([fields, files]);
+      });
+    });
+
+    const userId = fields.UserId?.[0];
+    const stylePreferences = JSON.parse(fields.stylePreferences?.[0] || '[]');
+    const size = fields.size?.[0];
+    const profileImage = files.profileImage?.[0];
 
     if (!userId) {
       return NextResponse.json(
@@ -75,6 +82,12 @@ export async function POST(req: NextRequest) {
     // 프로필 이미지 업로드
     if (profileImage) {
       const buffer = await profileImage.arrayBuffer();
+      
+      // 5MB 초과 검증 추가
+      if (buffer.byteLength > 5 * 1024 * 1024) {
+        throw new Error('FILE_SIZE_EXCEEDED');
+      }
+
       const userProfileDir = path.join(process.cwd(), 'public/uploads/User_profile', userId);
       const desktopFileName = `desktop_${userId}.webp`;
       const mobileFileName = `mobile_${userId}.webp`;
@@ -111,18 +124,10 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Preference update error:', error);
+    console.error('FormData 처리 실패:', error);
     return NextResponse.json(
-      { error: '서버 오류가 발생했습니다.' },
+      { error: '데이터 처리 실패: ' + (error instanceof Error ? error.message : 'Unknown error') },
       { status: 500 }
     );
   }
-}
-
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb'
-    }
-  }
-}; 
+} 

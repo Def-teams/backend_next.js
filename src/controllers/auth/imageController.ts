@@ -86,6 +86,10 @@ export const uploadImage = async ({
   originalFileName,
   contentType 
 }: UploadParams) => {
+  // 버퍼 크기 검증 추가
+  if (buffer.byteLength > 5 * 1024 * 1024) {
+    throw new Error('FILE_SIZE_EXCEEDED');
+  }
   
   // 파일 유효성 검사
   const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
