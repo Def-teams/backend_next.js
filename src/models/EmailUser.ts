@@ -18,6 +18,10 @@ export interface EmailUserAttributes {
   stylePreferences: string[];
   size: 'XS'|'S'|'M'|'L'|'XL'|'XXL';
   hasCompletedPreferences: boolean;
+  failedAttempts?: number;
+  isLocked: boolean;
+  resetPasswordToken?: string | null;
+  resetPasswordExpires?: Date | null;
 }
 
 // 사용자 데이터 타입 정의
@@ -33,6 +37,7 @@ interface UserData {
   isVerified?: boolean;
   size?: 'XS'|'S'|'M'|'L'|'XL'|'XXL';
   hasCompletedPreferences?: boolean;
+  isLocked?: boolean;
 }
 
 class EmailUser extends Model<EmailUserAttributes> {
@@ -50,6 +55,10 @@ class EmailUser extends Model<EmailUserAttributes> {
   declare stylePreferences: string[];
   declare size: 'XS'|'S'|'M'|'L'|'XL'|'XXL';
   declare hasCompletedPreferences: boolean;
+  declare failedAttempts?: number;
+  declare isLocked: boolean;
+  declare resetPasswordToken?: string | null;
+  declare resetPasswordExpires?: Date | null;
 
   async comparePassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);
@@ -113,13 +122,24 @@ EmailUser.init(
     hasCompletedPreferences: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    }
+    },
+    failedAttempts: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    isLocked: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    resetPasswordToken: DataTypes.STRING,
+    resetPasswordExpires: DataTypes.DATE
   },
   {
     sequelize,
     modelName: 'EmailUser',
     tableName: 'emailusers',
-    paranoid: false,
+    paranoid: true,
+    deletedAt: 'deletedAt',
     hooks: {
       beforeCreate: async (user: EmailUser) => {
         const indexCount = await sequelize.query<[{ count: number }]>(`
@@ -179,6 +199,7 @@ async function createUser(userData: UserData) {
     size: userData.size || 'M',
     hasCompletedPreferences: userData.hasCompletedPreferences || false,
     isVerified: userData.isVerified || false,
+    isLocked: userData.isLocked || false,
     stylePreferences: userData.stylePreferences || [],
     profileImg: userData.profileImg || {
       desktop: 'public/uploads/User_profile/defulat/desktop_default.jpg',

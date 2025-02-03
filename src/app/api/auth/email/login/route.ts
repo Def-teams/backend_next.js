@@ -29,11 +29,27 @@ export async function POST(req: NextRequest) {
     console.log('Stored hash:', user.password);
     console.log('Input password:', password);
 
+    if ((user.failedAttempts ?? 0) >= 10) {
+      await user.update({ isLocked: true });
+      return NextResponse.json(
+        { 
+          error: '계정이 잠겼습니다. 비밀번호 재설정이 필요합니다.',
+          resetRequired: true 
+        },
+        { status: 423 }
+      );
+    }
+
     const isValidPassword = await bcrypt.compare(password, user.password);
     console.log('Password match result:', isValidPassword);
     if (!isValidPassword) {
+      const remainingAttempts = 10 - (user.failedAttempts || 0);
+      await user.increment('failedAttempts');
       return NextResponse.json(
-        { error: '비밀번호가 일치하지 않습니다.' },
+        { 
+          error: `비밀번호가 일치하지 않습니다. (남은 시도: ${remainingAttempts-1}회)`,
+          remainingAttempts: remainingAttempts-1 
+        },
         { status: 401 }
       );
     }
@@ -51,6 +67,11 @@ export async function POST(req: NextRequest) {
         { status: 403 }
       );
     }
+
+    await user.update({ 
+      failedAttempts: 0,
+      isLocked: false 
+    });
 
     if (!process.env.JWT_SECRET) {
       throw new Error('JWT_SECRET 환경 변수가 정의되지 않았습니다');

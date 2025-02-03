@@ -77,6 +77,7 @@ export async function POST(req: NextRequest) {
       verificationCode: verificationCode.toString(),
       verificationExpires: new Date(Date.now() + 30 * 60 * 1000),
       isVerified: false,
+      isLocked: false,
       profileImg: {
         desktop: '/uploads/desktop/default.jpg',
         mobile: '/uploads/mobile/default.jpg'

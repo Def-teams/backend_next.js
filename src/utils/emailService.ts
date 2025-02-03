@@ -93,3 +93,32 @@ const generateVerificationEmailHtml = (code: string): string => {
     </html>
   `;
 };
+
+export const sendPasswordResetEmail = async (email: string, token: string) => {
+  const resetLink = `${process.env.BASE_URL}/reset-password?token=${token}`;
+  
+  await transporter.sendMail({
+    from: `"LookMate 서비스" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: '비밀번호 재설정 안내',
+    html: `
+      <h2>비밀번호 재설정 요청</h2>
+      <p>아래 링크를 클릭하여 비밀번호를 재설정해주세요:</p>
+      <a href="${resetLink}">비밀번호 재설정하기</a>
+      <p>링크 유효시간: 1시간</p>
+    `
+  });
+};
+
+export const sendDeletionConfirmationEmail = async (email: string) => {
+  await transporter.sendMail({
+    from: `"LookMate 서비스" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: '계정 삭제 완료 안내',
+    html: `
+      <h2>계정 삭제가 완료되었습니다</h2>
+      <p>언제든지 다시 가입해주세요!</p>
+      <p>문의사항: support@lookmate.com</p>
+    `
+  });
+};

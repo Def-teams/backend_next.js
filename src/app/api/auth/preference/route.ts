@@ -5,7 +5,6 @@ import path from 'path';
 import fs from 'fs/promises';
 import { indexCheckMiddleware } from '@/middlewares/indexMonitor';
 import { IncomingForm } from 'formidable';
-import { convertToNodeStream } from '@/utils/convertToNodeStream';
 import { Readable } from 'stream';
 
 const validStyles = [

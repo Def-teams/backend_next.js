@@ -490,3 +490,230 @@ PARAMETERS: ["[\"미니멀록\",\"스트릿패션\",\"럭셔리룩\"]","{\"deskt
 PARAMETERS: []
 [2025-02-02T16:22:30.392Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
 PARAMETERS: []
+[2025-02-02T16:26:10.657Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-02T16:26:10.661Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-02T16:26:10.665Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:04:58.804Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:04:58.811Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:05:20.322Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:05:20.335Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:05:25.532Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:05:25.534Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:05:31.388Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:05:31.390Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:05:39.563Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:05:39.592Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:13:15.220Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills37') LIMIT 1; 
+PARAMETERS: []
+[2025-02-03T03:13:38.770Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'sakills914@gmail.com' OR `EmailUser`.`userId` = 'sakills378') LIMIT 1; 
+PARAMETERS: []
+[2025-02-03T03:14:07.022Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user') LIMIT 1; 
+PARAMETERS: []
+[2025-02-03T03:14:15.126Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'users') LIMIT 1; 
+PARAMETERS: []
+[2025-02-03T03:14:15.132Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+PARAMETERS: []
+[2025-02-03T03:14:15.216Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?); 
+PARAMETERS: ["example@gmail.com","$2b$10$./LRLY3iu7VP03EbDhWOaOT4K12S3xT5EVpypewBhLpmrkFy0Qzn.","users","143388","2025-02-03 03:44:15",false,"{\"desktop\":\"/uploads/desktop/default.jpg\",\"mobile\":\"/uploads/mobile/default.jpg\"}","[]","M",false,"2025-02-03 03:14:15","2025-02-03 03:14:15"]
+[2025-02-03T03:14:44.863Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'users') LIMIT 1; 
+PARAMETERS: []
+[2025-02-03T03:16:00.221Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'users') LIMIT 1; 
+PARAMETERS: []
+[2025-02-03T03:17:21.325Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:17:21.326Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-03T03:17:21.330Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:19:42.808Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-03T03:22:45.560Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:22:45.563Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-03T03:22:45.564Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T03:22:45.576Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-03T03:23:25.815Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-03T03:24:05.379Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-03T03:24:05.385Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-03T03:24:11.452Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+PARAMETERS: []
+[2025-02-03T03:24:11.456Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-03T03:25:28.325Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T03:25:28.326Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-03T03:25:28.330Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T14:24:16.380Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:24:16.389Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T14:25:42.884Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:25:42.888Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `createdAt`, `updatedAt` FROM `emailusers` AS `EmailUser` WHERE `EmailUser`.`userId` = 'sakills37'; 
+PARAMETERS: []
+[2025-02-03T14:25:42.900Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T14:26:30.315Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:26:30.317Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T14:27:27.005Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:27:27.007Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:27:27.014Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T14:27:27.015Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+PARAMETERS: []
+[2025-02-03T14:29:40.863Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:29:40.866Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:29:40.869Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:29:40.872Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:34:48.247Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:34:48.248Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:34:48.252Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T14:34:48.254Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:18.060Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:18.062Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:18.068Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:18.069Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:20.781Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:20.783Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:20.785Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:20.787Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:36.317Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:36.320Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:36.325Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:11:36.327Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:27:22.866Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:27:22.869Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:27:22.919Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:27:22.923Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:29:59.836Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:29:59.838Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:29:59.842Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:29:59.844Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:32:57.839Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:32:57.841Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:32:57.858Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:32:57.860Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:51.221Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:51.225Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:51.230Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:51.231Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:56.746Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:56.752Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:56.757Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:33:56.760Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:36:21.550Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:36:21.551Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:36:21.561Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:36:21.564Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:43.624Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:43.625Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:43.633Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:43.637Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:52.539Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:52.540Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:52.545Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:41:52.546Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:57:17.927Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:57:17.928Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:57:17.934Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T15:57:17.936Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:00:37.617Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:00:37.632Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:00:37.639Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:00:37.654Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:03:25.677Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:03:25.685Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:03:25.694Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []
+[2025-02-03T16:03:25.699Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+PARAMETERS: []

@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
+import EmailUser from '../models/emailUser';
 
-export const verifyToken = (req: NextApiRequest, res: NextApiResponse, next: Function) => {
+export const verifyToken = async (req: NextApiRequest, res: NextApiResponse, next: Function) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
     
@@ -9,8 +10,11 @@ export const verifyToken = (req: NextApiRequest, res: NextApiResponse, next: Fun
       return res.status(401).json({ error: '인증 토큰이 필요합니다.' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string };
     (req as any).user = decoded;
+    
+    const userExists = await EmailUser.findByPk(decoded.userId);
+    if (!userExists) return res.status(401).json({ error: '사용자 없음' });
     
     next();
   } catch (error) {

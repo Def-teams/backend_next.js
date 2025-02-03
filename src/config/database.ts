@@ -40,33 +40,27 @@ const sequelize = new Sequelize({
 });
 
 // 연결 재시도 로직 추가
-const MAX_RETRIES = 3;
+const MAX_RETRIES = 5; // 단일 상수로 통합
 let connectionAttempts = 0;
+let retryCount = 0;
 
-const connectDB = async () => {
-  while (connectionAttempts < MAX_RETRIES) {
+// 연결 재시도 로직 강화
+
+export const connectDB = async () => {
+  let retries = 5;
+  while (retries > 0) {
     try {
       await sequelize.authenticate();
-      
-      // 테이블 존재 여부 확인
-      const tableExists = await sequelize.getQueryInterface().tableExists('emailusers');
-      if (!tableExists) {
-        console.log('테이블 강제 생성 시도');
-        await sequelize.sync({ force: true });
-      }
-
-      await sequelize.sync({
-        alter: process.env.NODE_ENV === 'development',
-        logging: msg => console.log(`[DB Sync] ${msg}`)
-      });
+      await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
+      console.log('Database connected successfully');
       return;
     } catch (error) {
-      console.error(`연결 실패 (시도 ${connectionAttempts + 1}/${MAX_RETRIES}):`, error);
-      connectionAttempts++;
+      console.error(`Connection failed, retries left: ${retries}`, error);
+      retries--;
       await new Promise(res => setTimeout(res, 5000));
     }
   }
-  throw new Error('DB 연결 최종 실패');
+  throw new Error('Unable to connect to database');
 };
 
 connectDB();
