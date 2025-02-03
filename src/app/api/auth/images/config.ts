@@ -10,6 +10,6 @@ export const imageUploader = multerMiddleware({
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
     allowedTypes.includes(file.mimetype) 
       ? cb(null, true) 
-      : cb(new Error('INVALID_FILE_TYPE'))
+      : cb(new Error('INVALID_FILE_TYPE'));
   }
 });

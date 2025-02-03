@@ -123,12 +123,16 @@ const deleteFile = async (path: string) => {
   }
 };
 
+interface JwtPayload {
+  userId: string;
+}
+
 export const deleteImage = async (req: NextRequest) => {
   const token = req.headers.get('authorization')?.split(' ')[1];
   if (!token) throw new Error('AUTH_TOKEN_REQUIRED');
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-  const userId = (decoded as any).userId;
+  const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+  const userId = decoded.userId;
 
   const { searchParams } = new URL(req.url);
   const filename = searchParams.get('filename');

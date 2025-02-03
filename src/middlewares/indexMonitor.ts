@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sequelize from '@/config/database';
 
-export const indexCheckMiddleware = async (req: NextRequest) => {
+export const indexCheckMiddleware = async (_req: NextRequest) => {
   try {
     const modelNames = Object.keys(sequelize.models);
     
@@ -13,8 +13,8 @@ export const indexCheckMiddleware = async (req: NextRequest) => {
         const tableName = model.getTableName();
         console.log(`Table name: ${tableName}`);
         
-        const indexes = await sequelize.getQueryInterface().showIndex(tableName) as any[];
-        console.log(`Indexes count: ${(indexes as any[]).length}`);
+        const indexes = await sequelize.getQueryInterface().showIndex(tableName) as Array<{ name: string }>;
+        console.log(`Indexes count: ${indexes.length}`);
         
         if (indexes.length >= 64) {
           return NextResponse.json(

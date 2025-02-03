@@ -24,11 +24,11 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: Number(process.env.DB_PORT),
-  logging: (sql, options) => {
+  logging: (sql: string) => {
     const timestamp = new Date().toISOString();
-    const logMessage = `[${timestamp}] EXECUTING: ${sql} \nPARAMETERS: ${JSON.stringify((options as any)?.bind ?? [])}`;
-    console.log(logMessage); 
-    fs.appendFileSync('sequelize.log', logMessage + '\n');
+    const logMessage = `[${timestamp}] EXECUTING: ${sql} \n`;
+    console.log(logMessage);
+    fs.appendFileSync('sequelize.log', logMessage);
   },
   pool: {
     max: 5,
@@ -40,12 +40,6 @@ const sequelize = new Sequelize({
 });
 
 // 연결 재시도 로직 추가
-const MAX_RETRIES = 5; // 단일 상수로 통합
-let connectionAttempts = 0;
-let retryCount = 0;
-
-// 연결 재시도 로직 강화
-
 export const connectDB = async () => {
   let retries = 5;
   while (retries > 0) {

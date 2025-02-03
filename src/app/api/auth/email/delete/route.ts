@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import EmailUser from '@/models/emailUser';
 import bcrypt from 'bcrypt';
 import { sendDeletionConfirmationEmail } from '@/utils/emailService';
-import { Op } from 'sequelize';
 
 export async function DELETE(req: NextRequest) {
   try {

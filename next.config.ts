@@ -2,7 +2,6 @@ import type { NextConfig } from 'next'
 
 const config: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   compiler: {
     styledComponents: true,
   },
@@ -32,16 +31,11 @@ const config: NextConfig = {
     ]
   },
   publicRuntimeConfig: {
-    apiUrl: process.env.NEXT_PUBLIC_API_URL || 'https://lookmate.kro.kr',
+    apiUrl: process.env.NEXT_PUBLIC_API_URL,
   },
   serverRuntimeConfig: {
     secretKey: process.env.JWT_SECRET,
   },
-  // 프로덕션 환경에서는 외부 웹서버(Nginx/Apache)에서 SSL 처리
-  httpAgentOptions: {
-    // @ts-ignore - Node.js HTTP Agent 옵션 확장
-    rejectUnauthorized: process.env.NODE_ENV === 'production' as any,
-  }
 }
 
 export default config

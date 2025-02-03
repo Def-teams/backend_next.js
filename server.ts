@@ -10,7 +10,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const ports = {
-  http: 3000
+  http: 80
 };
 
 // HTTPS 옵션 주석 처리 (인증서 없음)
