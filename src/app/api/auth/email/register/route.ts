@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import { Op } from 'sequelize';
 import { generateVerificationCode } from '@/utils/generateVerificationCode';
 import { sendVerificationEmail } from '@/utils/emailService';
-import { EmailUserAttributes } from '@/models/emailUser';
 
 
 // GET 메소드 추가

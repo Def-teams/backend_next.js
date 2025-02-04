@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sequelize from '@/config/database';
 
-export const indexCheckMiddleware = async (_req: NextRequest) => {
+export const indexCheckMiddleware = async (_: NextRequest) => {
   try {
     const modelNames = Object.keys(sequelize.models);
     

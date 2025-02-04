@@ -753,3 +753,504 @@ PARAMETERS: []
 [2025-02-03T17:30:23.917Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
 [2025-02-03T17:30:23.920Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
 [2025-02-03T17:30:23.923Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T02:28:34.820Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T02:28:34.829Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T02:28:34.834Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T02:28:34.848Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:46:22.756Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:46:22.758Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:46:22.766Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:46:22.771Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:49:25.127Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:49:25.134Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:49:25.137Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:49:25.142Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:54:48.039Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:54:48.042Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:54:48.044Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T03:54:48.047Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:17:29.204Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:17:29.253Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:17:29.285Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:17:29.297Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:18:10.741Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:18:10.743Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:18:10.747Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:18:10.750Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:27:31.366Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:27:31.419Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:27:31.422Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:27:31.427Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:28:08.640Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:28:08.644Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:28:08.651Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:28:08.653Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:30:47.187Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:30:47.188Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:30:47.194Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:30:47.195Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:31:27.890Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:31:27.893Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND `EmailUser`.`userId` = 'sakills37'); 
+[2025-02-04T04:31:27.897Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T04:31:28.189Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T04:31:28.191Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T04:31:28.738Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` ADD `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T04:31:28.859Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` ADD `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T04:31:28.890Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` ADD `resetPasswordExpires` DATETIME; 
+[2025-02-04T04:31:28.927Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` ADD `deletedAt` DATETIME; 
+[2025-02-04T04:31:28.955Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T04:31:28.974Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T04:31:28.994Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T04:31:29.073Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T04:31:29.092Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T04:31:29.114Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T04:31:29.135Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T04:31:29.159Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T04:31:29.182Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T04:31:29.210Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T04:31:29.232Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T04:31:29.255Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T04:31:29.276Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T04:31:29.322Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T04:33:27.366Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:33:27.369Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T04:33:27.374Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T04:33:27.377Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T04:33:27.381Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T04:33:27.404Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T04:33:27.423Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T04:33:27.458Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T04:33:27.481Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T04:33:27.504Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T04:33:27.524Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T04:33:27.547Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T04:33:27.565Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T04:33:27.584Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T04:33:27.605Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T04:33:27.624Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T04:33:27.643Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T04:33:27.667Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T04:33:27.687Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T04:33:27.706Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T04:33:27.727Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T04:33:27.747Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T04:44:49.494Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:44:49.496Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:44:49.501Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:44:49.503Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:55:49.979Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:55:49.985Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:55:49.988Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T04:55:49.996Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:04:28.196Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:04:28.197Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'users')) LIMIT 1; 
+[2025-02-04T05:04:28.202Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T05:04:28.213Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T05:04:28.215Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T05:04:28.222Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T05:04:28.247Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T05:04:28.271Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T05:04:28.325Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T05:04:28.348Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T05:04:28.368Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:28.394Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T05:04:28.415Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T05:04:28.440Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T05:04:28.463Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:28.492Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T05:04:28.543Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T05:04:28.564Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T05:04:28.585Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:28.629Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T05:04:28.661Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T05:04:28.691Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T05:04:28.715Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T05:04:43.102Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:04:43.106Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` 
+[2025-02-04T05:04:43.137Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND `EmailUser`.`userId` = 'sakills37'); 
+[2025-02-04T05:04:43.141Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T05:04:43.183Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T05:04:43.185Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T05:04:43.190Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T05:04:43.217Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T05:04:43.238Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T05:04:43.283Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T05:04:43.301Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T05:04:43.319Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:43.338Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T05:04:43.358Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T05:04:43.376Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T05:04:43.397Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:43.419Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T05:04:43.442Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T05:04:43.462Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T05:04:43.481Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:43.500Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T05:04:43.520Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T05:04:43.540Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T05:04:43.559Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T05:04:55.802Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:04:55.805Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND `EmailUser`.`userId` = 'sakills37'); 
+[2025-02-04T05:04:55.807Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T05:04:55.812Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T05:04:55.813Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T05:04:55.817Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T05:04:55.839Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T05:04:55.862Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T05:04:55.912Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T05:04:55.933Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T05:04:55.954Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:55.995Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T05:04:56.016Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T05:04:56.069Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T05:04:56.091Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:56.109Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T05:04:56.132Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T05:04:56.155Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T05:04:56.174Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T05:04:56.197Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T05:04:56.215Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T05:04:56.233Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T05:04:56.253Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T05:06:41.223Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:06:41.225Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:06:41.227Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:06:41.228Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:08:29.076Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:08:29.078Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:08:29.081Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T05:08:29.082Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T07:40:37.115Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T07:40:37.125Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T07:40:37.128Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T07:40:37.132Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:37:15.323Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:37:15.328Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:37:15.335Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:37:15.340Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:41:01.293Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:41:01.505Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:41:01.510Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:41:01.514Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:43:43.111Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:43:43.128Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:43:43.133Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T08:43:43.138Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:41.745Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:41.754Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:41.756Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:41.760Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:51.866Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:51.868Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:51.872Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:11:51.874Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:45.042Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:45.047Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:45.054Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:45.067Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:55.707Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:55.711Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:55.714Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:15:55.718Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:31:10.350Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:31:10.352Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:31:10.356Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:31:10.363Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:32:33.080Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:32:33.082Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'users')) LIMIT 1; 
+[2025-02-04T09:32:33.088Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T09:32:33.125Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T09:32:33.131Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T09:32:33.147Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T09:32:33.204Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T09:32:33.285Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T09:32:33.531Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T09:32:33.559Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T09:32:33.616Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T09:32:33.674Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T09:32:33.719Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T09:32:33.762Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T09:32:33.805Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T09:32:33.846Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T09:32:33.908Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T09:32:33.951Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T09:32:33.971Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T09:32:33.993Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T09:32:34.018Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T09:32:34.048Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T09:32:34.070Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T09:32:47.327Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:32:47.329Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:32:47.333Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:32:47.336Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:35:12.435Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:35:12.449Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:35:12.453Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:35:12.455Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:58:08.492Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:58:08.503Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:58:08.509Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T09:58:08.516Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:27:02.129Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:27:02.297Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:27:02.310Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:27:02.336Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:38:09.499Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:38:09.501Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:38:09.513Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:38:09.515Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:50:16.784Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:50:16.788Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:50:16.791Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T10:50:16.811Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:04:57.320Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:04:57.323Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:04:57.329Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:04:57.346Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:20:02.469Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:20:02.474Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:20:02.486Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:20:02.488Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:32:24.718Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:32:24.723Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:32:24.731Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:32:24.737Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:49:45.744Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:49:45.746Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:49:45.756Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:49:45.757Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:04.441Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:04.443Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:04.447Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:04.449Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:14.389Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:14.394Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:14.397Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T11:53:14.401Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:05:46.502Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:05:46.505Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:05:46.507Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:05:46.510Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:36.361Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:36.363Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:36.370Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:36.372Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:46.319Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:46.323Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:46.333Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:07:46.338Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:22:03.248Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:22:03.253Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:22:03.258Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:22:03.267Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:24:30.991Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:24:30.993Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:24:30.997Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:24:31.019Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:28:04.419Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:28:04.505Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:28:04.521Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:28:04.580Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:40:48.464Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:40:48.466Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:40:48.470Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:40:48.475Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:46:22.370Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:46:22.372Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:46:22.381Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:46:22.383Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:50:30.863Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:50:30.867Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:50:30.872Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:50:30.881Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:53:08.114Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:53:08.116Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:53:08.121Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T12:53:08.123Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:00:14.150Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:00:14.152Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:00:14.158Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:00:14.160Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:11:52.248Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:11:52.250Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:11:52.254Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:11:52.257Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:31:21.856Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:31:21.858Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:31:21.862Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T13:31:21.863Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T14:11:16.897Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T14:11:16.901Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T14:11:16.906Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T14:11:16.908Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:39:50.841Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:39:50.843Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:39:50.847Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:39:50.850Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:43:23.374Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:43:23.379Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T15:43:23.424Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T15:43:23.432Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T15:43:23.445Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T15:43:23.533Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T15:43:23.564Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T15:43:23.634Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T15:43:23.657Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T15:43:23.682Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T15:43:23.717Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T15:43:23.744Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T15:43:23.770Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T15:43:23.801Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T15:43:23.827Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T15:43:23.853Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T15:43:23.883Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T15:43:23.907Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T15:43:23.938Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T15:43:23.963Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T15:43:23.994Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T15:43:24.018Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T15:44:03.525Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user')) LIMIT 1; 
+[2025-02-04T15:44:11.701Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'user1')) LIMIT 1; 
+[2025-02-04T15:44:23.015Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND (`EmailUser`.`email` = 'example1@gmail.com' OR `EmailUser`.`userId` = 'user1')) LIMIT 1; 
+[2025-02-04T15:44:23.023Z] EXECUTING: Executing (default): SELECT COUNT(DISTINCT INDEX_NAME) as count 
+          FROM information_schema.STATISTICS 
+          WHERE TABLE_SCHEMA = 'def_project' 
+          AND TABLE_NAME = 'emailusers' 
+[2025-02-04T15:44:23.116Z] EXECUTING: Executing (default): INSERT INTO `emailusers` (`id`,`email`,`password`,`userId`,`verificationCode`,`verificationExpires`,`isVerified`,`profileImg`,`stylePreferences`,`size`,`hasCompletedPreferences`,`failedAttempts`,`isLocked`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-04T15:49:11.065Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:49:11.071Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:49:11.083Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:49:11.087Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:49:48.376Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:49:48.378Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:49:48.382Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:49:48.389Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:56:01.440Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:56:01.441Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND (`EmailUser`.`email` = 'example1@gmail.com' OR `EmailUser`.`userId` = 'user1')) LIMIT 1; 
+[2025-02-04T15:56:01.445Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T15:56:01.455Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T15:56:01.456Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T15:56:01.462Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T15:56:01.489Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T15:56:01.513Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T15:56:01.593Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T15:56:01.615Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T15:56:01.635Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T15:56:01.657Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T15:56:01.679Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T15:56:01.699Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T15:56:01.721Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T15:56:01.742Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T15:56:01.763Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T15:56:01.786Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T15:56:01.809Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T15:56:01.828Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T15:56:01.850Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T15:56:01.870Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T15:56:01.891Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T15:56:04.432Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:56:04.434Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:56:04.437Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T15:56:04.439Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:15:20.226Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:15:20.228Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:15:20.234Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:15:20.238Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:18.052Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:18.076Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:18.095Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:18.103Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:23.766Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:23.768Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:23.771Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T16:26:23.776Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:12:33.539Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:12:33.544Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:12:33.546Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:12:33.548Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:14:06.682Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:14:06.684Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:14:06.688Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T18:14:06.690Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:16:51.764Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:16:51.765Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:16:51.769Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:16:51.771Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:27:09.266Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:27:09.330Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:27:09.346Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:27:09.355Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:28:09.800Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:28:09.804Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:28:09.810Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:28:09.812Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:30:26.063Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:30:26.066Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND (`EmailUser`.`email` = 'example@gmail.com' OR `EmailUser`.`userId` = 'users')) LIMIT 1; 
+[2025-02-04T19:30:26.070Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T19:30:26.168Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T19:30:26.169Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T19:30:26.192Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T19:30:26.289Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T19:30:26.314Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T19:30:26.557Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T19:30:26.577Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T19:30:26.615Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:30:26.638Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T19:30:26.663Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T19:30:26.696Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T19:30:26.737Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:30:26.789Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T19:30:26.819Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T19:30:26.847Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T19:30:26.885Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:30:26.907Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T19:30:26.935Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T19:30:26.985Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T19:30:27.013Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T19:30:54.032Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:30:54.039Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T19:30:54.047Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T19:30:54.056Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T19:30:54.067Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T19:30:54.105Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T19:30:54.130Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T19:30:54.184Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T19:30:54.212Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T19:30:54.246Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:30:54.278Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T19:30:54.303Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T19:30:54.337Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T19:30:54.387Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:30:54.418Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T19:30:54.442Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T19:30:54.477Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T19:30:54.512Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:30:54.543Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T19:30:54.567Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T19:30:54.598Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T19:30:54.662Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T19:31:18.433Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-04T19:31:18.435Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'emailusers' AND TABLE_SCHEMA = 'def_project' 
+[2025-02-04T19:31:18.441Z] EXECUTING: Executing (default): SHOW FULL COLUMNS FROM `emailusers`; 
+[2025-02-04T19:31:18.446Z] EXECUTING: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'emailusers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='def_project' AND REFERENCED_TABLE_NAME IS NOT NULL; 
+[2025-02-04T19:31:18.450Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `email` `email` VARCHAR(255) NOT NULL; 
+[2025-02-04T19:31:18.532Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `password` `password` VARCHAR(255) NOT NULL; 
+[2025-02-04T19:31:18.564Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `userId` `userId` VARCHAR(255) NOT NULL UNIQUE; 
+[2025-02-04T19:31:18.620Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationCode` `verificationCode` VARCHAR(6); 
+[2025-02-04T19:31:18.647Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `verificationExpires` `verificationExpires` DATETIME; 
+[2025-02-04T19:31:18.675Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isVerified` `isVerified` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:31:18.698Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `profileImg` `profileImg` JSON; 
+[2025-02-04T19:31:18.721Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `stylePreferences` `stylePreferences` JSON; 
+[2025-02-04T19:31:18.744Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `size` `size` VARCHAR(255) DEFAULT 'M'; 
+[2025-02-04T19:31:18.769Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `hasCompletedPreferences` `hasCompletedPreferences` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:31:18.793Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `createdAt` `createdAt` DATETIME NOT NULL; 
+[2025-02-04T19:31:18.819Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL; 
+[2025-02-04T19:31:18.848Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `failedAttempts` `failedAttempts` INTEGER DEFAULT 0; 
+[2025-02-04T19:31:18.877Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `isLocked` `isLocked` TINYINT(1) DEFAULT false; 
+[2025-02-04T19:31:18.899Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordToken` `resetPasswordToken` VARCHAR(255); 
+[2025-02-04T19:31:18.923Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `resetPasswordExpires` `resetPasswordExpires` DATETIME; 
+[2025-02-04T19:31:18.949Z] EXECUTING: Executing (default): ALTER TABLE `emailusers` CHANGE `deletedAt` `deletedAt` DATETIME; 
+[2025-02-04T19:31:18.973Z] EXECUTING: Executing (default): SHOW INDEX FROM `emailusers` FROM `def_project` 
+[2025-02-04T19:31:33.859Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND `EmailUser`.`userId` = 'sakills37'); 
+[2025-02-04T19:31:39.442Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND `EmailUser`.`userId` = 'sakills37'); 
+[2025-02-04T19:31:46.702Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `verificationCode`, `verificationExpires`, `isVerified`, `profileImg`, `stylePreferences`, `size`, `hasCompletedPreferences`, `failedAttempts`, `isLocked`, `resetPasswordToken`, `resetPasswordExpires`, `createdAt`, `updatedAt`, `deletedAt` FROM `emailusers` AS `EmailUser` WHERE (`EmailUser`.`deletedAt` IS NULL AND `EmailUser`.`userId` = 'sakill3s37'); 
