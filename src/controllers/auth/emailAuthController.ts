@@ -2,8 +2,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
-import EmailUser from '../../models/emailUser';
+import EmailUser from '../../models/User';
 import { sendVerificationEmail } from '../../utils/emailService';
+
 
 // 이메일 전송 설정
 const transporter = nodemailer.createTransport({
@@ -28,18 +29,22 @@ export const register = async (req: NextApiRequest, res: NextApiResponse) => {
     const user = await EmailUser.create({
       email,
       password,
-      userId: `email_${Date.now()}`, // userId 생성
+      provider: 'email',
+      userId: `email_${Date.now()}`,
       profileImg: {
-        desktop: '/uploads/desktop/default.jpg',
-        mobile: '/uploads/mobile/default.jpg'
+        desktop: 'public/uploads/User_profile/defulat/desktop_default.webp',
+        mobile: 'public/uploads/User_profile/defulat/mobile_default.webp'
       },
-      stylePreferences: [], // 기본값 설정
-      isVerified: false // 기본값 설정
+      stylePreferences: [],
+      isVerified: false,
+      size: 'M',
+      hasCompletedPreferences: false,
+      isLocked: false
     });
 
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET!, { expiresIn: '1h' });
 
-    await sendVerificationEmail(user.email, token);
+    await sendVerificationEmail(user.email!, token);
 
     res.status(201).json({ message: '회원가입이 완료되었습니다. 이메일 인증을 진행해주세요.' });
   } catch (error) {
@@ -61,8 +66,8 @@ export const login = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(403).json({ error: '이메일 인증이 필요합니다.' });
     }
 
-    const isValidPassword = await user.comparePassword(password);
-    if (!isValidPassword) {
+    const isValid = await bcrypt.compare(password, user.password || '');
+    if (!isValid) {
       return res.status(401).json({ error: '비밀번호가 일치하지 않습니다.' });
     }
 
@@ -104,7 +109,7 @@ export const verifyEmail = async (req: NextApiRequest, res: NextApiResponse) => 
       return res.status(400).json({ error: '이미 인증된 계정입니다.' });
     }
 
-    await user.update({ isVerified: true, verificationToken: undefined });
+    await user.update({ isVerified: true, verificationCode: undefined });
     res.status(200).json({ message: '이메일 인증이 완료되었습니다.' });
 
   } catch (error) {

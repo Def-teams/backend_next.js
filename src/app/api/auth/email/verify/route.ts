@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import EmailUser from '@/models/emailUser';
+import EmailUser from '@/models/User';
 import sequelize from '@/config/database';
 
-export async function POST(req: NextRequest) {
+
+export async function POST(req: NextRequest) {  
   try {
     const { userId, verificationCode } = await req.json();
     

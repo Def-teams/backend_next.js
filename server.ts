@@ -27,7 +27,7 @@ app.prepare().then(() => {
   http((req, res) => {
     handle(req, res);
   }).listen(ports.http, '0.0.0.0', () => {
-    console.log(`> Ready on http://lookmate.kro.kr`);
+    console.log(`> Ready on httpS://lookmate.kro.kr`);
   });
 
   // HTTPS 서버

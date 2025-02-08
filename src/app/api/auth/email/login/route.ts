@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import EmailUser from '@/models/emailUser';
+import User from '@/models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -9,105 +9,94 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { userId, password } = body;
 
-    console.log('Login attempt:', { userId }); 
+    console.log('Login attempt:', { userId });
 
-    if (!userId || !password) {
+    // userId와 비밀번호가 모두 제공되었는지 확인
+    if (!userId) {
       return NextResponse.json(
-        { error: '아이디와 비밀번호를 입력해주세요.' },
+        { error: '사용자 ID가 필요합니다.' },
         { status: 400 }
       );
     }
 
-    const user = await EmailUser.findOne({ where: { userId } });
+    if (!password) {
+      return NextResponse.json(
+        { error: '비밀번호가 필요합니다.' },
+        { status: 400 }
+      );
+    }
+
+    const user = await User.findOne({ where: { userId } });
+    
+    // 사용자가 존재하지 않는 경우
     if (!user) {
       return NextResponse.json(
-        { error: '존재하지 않는 사용자입니다.' },
-        { status: 404 }
+        { error: '사용자를 찾을 수 없습니다.' },
+        { status: 404 }  // Not Found
       );
     }
 
-    console.log('Stored hash:', user.password);
-    console.log('Input password:', password);
-
-    if ((user.failedAttempts ?? 0) >= 10) {
-      await user.update({ isLocked: true });
-      return NextResponse.json(
-        { 
-          error: '계정이 잠겼습니다. 비밀번호 재설정이 필요합니다.',
-          resetRequired: true 
-        },
-        { status: 423 }
-      );
-    }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    console.log('Password match result:', isValidPassword);
-    if (!isValidPassword) {
-      const remainingAttempts = 10 - (user.failedAttempts || 0);
-      await user.increment('failedAttempts');
-      return NextResponse.json(
-        { 
-          error: `비밀번호가 일치하지 않습니다. (남은 시도: ${remainingAttempts-1}회)`,
-          remainingAttempts: remainingAttempts-1 
-        },
-        { status: 401 }
-      );
-    }
-
+    // 이메일 인증이 되지 않은 경우
     if (!user.isVerified) {
       return NextResponse.json(
         { error: '이메일 인증이 필요합니다.' },
-        { status: 403 }
+        { status: 403 }  // Forbidden
       );
     }
 
+    // 비밀번호가 일치하지 않는 경우
+    const isValidPassword = await bcrypt.compare(password, user.password || '');
+    if (!isValidPassword) {
+      return NextResponse.json(
+        { error: '비밀번호가 일치하지 않습니다.' },
+        { status: 401 }  // Unauthorized
+      );
+    }
+
+    // 세부사항 설정이 되지 않은 경우
     if (!user.hasCompletedPreferences) {
       return NextResponse.json(
         { error: '세부사항 설정이 필요합니다.' },
-        { status: 403 }
+        { status: 428 }  // Precondition Required
       );
     }
 
-    await user.update({ 
-      failedAttempts: 0,
-      isLocked: false 
-    });
-
-    if (!process.env.JWT_SECRET) {
-      throw new Error('JWT_SECRET 환경 변수가 정의되지 않았습니다');
+    // 서버 오류 조건 (예: 데이터베이스 연결 실패 등)
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      return NextResponse.json(
+        { error: '서버 오류가 발생했습니다.' },
+        { status: 500 }  // Internal Server Error
+      );
     }
 
     const token = jwt.sign(
       { userId: user.id },
-      process.env.JWT_SECRET,
+      secret,
       { expiresIn: '24h' }
     );
 
-    return new NextResponse(
-      JSON.stringify({
-        message: '로그인 성공',
-        user: {
-          id: user.id,
-          email: user.email,
-          userId: user.userId,
-          profileImg: user.profileImg,
-          stylePreferences: user.stylePreferences
-        },
-        token
-      }),
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    // JWT를 데이터베이스에 저장
+    user.accessToken = token; // accessToken 필드에 저장
+    await user.save();
+
+    return NextResponse.json({
+      message: '로그인 성공',
+      user: {
+        id: user.id,
+        email: user.email,
+        userId: user.userId,
+        profileImg: user.profileImg,
+        stylePreferences: user.stylePreferences
+      },
+      token
+    }, { status: 200 });  // OK
 
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
       { error: '서버 오류가 발생했습니다.' },
-      { status: 500 }
+      { status: 500 }  // Internal Server Error
     );
   }
 }

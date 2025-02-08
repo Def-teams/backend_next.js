@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/express-session": "^1.18.1",
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
     "express-session": "^1.18.1",
     "formidable": "^3.5.2",
     "jsonwebtoken": "^9.0.2",
@@ -26,6 +27,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sequelize": "^6.37.5",
+    "sequelize-typescript": "^2.1.6",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
@@ -35,7 +37,7 @@
     "@types/jsonwebtoken": "^9.0.8",
     "@types/multer": "^1.4.12",
     "@types/mysql": "^2.15.26",
-    "@types/node": "^20.17.16",
+    "@types/node": "^20.17.17",
     "@types/nodemailer": "^6.4.17",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.16",

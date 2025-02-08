@@ -22,8 +22,9 @@ const sequelize = new Sequelize({
   host: process.env.DB_HOST,
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  database: 'def',
   port: Number(process.env.DB_PORT),
+
   logging: (sql: string) => {
     const timestamp = new Date().toISOString();
     const logMessage = `[${timestamp}] EXECUTING: ${sql} \n`;
@@ -45,7 +46,11 @@ export const connectDB = async () => {
   while (retries > 0) {
     try {
       await sequelize.authenticate();
-      await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
+      // 개발 환경에서도 force: false로 설정
+      await sequelize.sync({ 
+        force: false,
+        alter: false
+      });
       console.log('Database connected successfully');
       return;
     } catch (error) {
@@ -57,6 +62,5 @@ export const connectDB = async () => {
   throw new Error('Unable to connect to database');
 };
 
-connectDB();
-
+// 중복 sync 제거
 export default sequelize;

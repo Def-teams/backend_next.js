@@ -4,9 +4,10 @@ import multer from 'multer';
 import sharp from 'sharp';
 import path from 'path';
 import { promises as fs } from 'fs';
-import EmailUser from '@/models/emailUser';
+import User from '@/models/User';
 import jwt from 'jsonwebtoken';
 import { NextRequest } from 'next/server';
+
 
 // Multer 구성
 const storage = multer.memoryStorage();
@@ -100,7 +101,7 @@ export const uploadImage = async (params: UploadParams) => {
   validateFile(params); // 검증 함수 호출
   const imagePaths = await processImage(params.userId, params.buffer);
   
-  const user = await EmailUser.findOne({ where: { userId: params.userId } });
+  const user = await User.findOne({ where: { userId: params.userId } });
   if (user) {
     user.profileImg = imagePaths;
     await user.save();

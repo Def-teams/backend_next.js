@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import EmailUser from '@/models/emailUser';
+import User from '@/models/User';
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs/promises';
@@ -8,9 +8,10 @@ import { IncomingForm } from 'formidable';
 import { Readable } from 'stream';
 
 const validStyles = [
-  '미니멀록', '스트릿패션', '보히미안룩', '럭셔리룩',
-  '아방가르드룩', '러블리룩', '빈티지룩', '스포티룩',
-  '모던록', '그런지룩', '프레미룩'
+  '클래식룩', '미니멀룩', '스트릿패션', '보헤미안룩',
+  '럭셔리룩', '아방가르드룩', '러블리룩', '빈티지룩',
+  '스포티룩', '모던룩', '스모키룩', '모던록룩',
+  '그런지룩', '레트로룩'
 ];
 
 const validSizes = ['XS','S','M','L','XL','XXL'];
@@ -43,11 +44,62 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const stylePreferences = JSON.parse(formData.get('stylePreferences') as string);
+    const stylePreferencesRaw = formData.get('stylePreferences');
+    
+    if (!stylePreferencesRaw) {
+      return NextResponse.json(
+        { error: '스타일 선호도는 필수 항목입니다.' },
+        { status: 400 }
+      );
+    }
+
+    let stylePreferences;
+    try {
+      stylePreferences = JSON.parse(stylePreferencesRaw as string);
+      
+      // 배열 타입 검증
+      if (!Array.isArray(stylePreferences)) {
+        return NextResponse.json(
+          { error: '스타일 선호도는 배열 형태여야 합니다.' },
+          { status: 400 }
+        );
+      }
+
+      // 스타일 개수 검증
+      if (stylePreferences.length === 0) {
+        return NextResponse.json(
+          { error: '최소 1개 이상의 스타일을 선택해주세요.' },
+          { status: 400 }
+        );
+      }
+
+      if (stylePreferences.length > 3) {
+        return NextResponse.json(
+          { error: '스타일은 최대 3개까지 선택 가능합니다.' },
+          { status: 400 }
+        );
+      }
+
+      // 유효한 스타일 값 검증
+      const invalidStyles = stylePreferences.filter(style => !validStyles.includes(style));
+      if (invalidStyles.length > 0) {
+        return NextResponse.json(
+          { error: '유효하지 않은 스타일이 포함되어 있습니다.', invalidStyles },
+          { status: 400 }
+        );
+      }
+
+    } catch (e) {
+      return NextResponse.json(
+        { error: '잘못된 스타일 선호도 형식입니다.' },
+        { status: 400 }
+      );
+    }
+
     const size = formData.get('size') as string;
     const profileImage = formData.get('profileImage') as File;
 
-    const user = await EmailUser.findOne({ where: { userId } });
+    const user = await User.findOne({ where: { userId } });
     if (!user) {
       return NextResponse.json(
         { error: '사용자를 찾을 수 없습니다.' },
@@ -57,16 +109,10 @@ export async function POST(req: NextRequest) {
 
     // 스타일 선호도는 최대 3개까지
     if (stylePreferences) {
-      if (stylePreferences.length > 3) {
-        return NextResponse.json(
-          { error: '스타일은 최대 3개까지 선택 가능합니다' },
-          { status: 400 }
-        );
-      }
       user.stylePreferences = stylePreferences;
     }
 
-    // size impormation
+    // 사이즈 정보
     if (size) {
       if (!validSizes.includes(size)) {
         return NextResponse.json(
@@ -77,7 +123,7 @@ export async function POST(req: NextRequest) {
       user.size = size as 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
     }
 
-    // 프로필 이미지 업로드
+    // 프로필 이미지 업데이트
     if (profileImage) {
       const buffer = Buffer.from(await profileImage.arrayBuffer());
       
@@ -125,10 +171,10 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('FormData 파싱 실패:', error);
+    console.error('Error updating preferences:', error);
     return NextResponse.json(
-      { error: '잘못된 요청 형식입니다. Content-Type: multipart/form-data 확인 필요' },
-      { status: 400 }
+      { error: '서버 오류가 발생했습니다.' },
+      { status: 500 }
     );
   }
 } 
