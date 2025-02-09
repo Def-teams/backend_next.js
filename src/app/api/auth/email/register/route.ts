@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Op } from 'sequelize';
 import { generateVerificationCode } from '@/utils/generateVerificationCode';
-import { sendVerificationEmail } from '@/utils/emailService';
+import { sendVerificationEmail, sendPasswordResetEmail } from '@/utils/emailService';
 import sequelize from '@/config/database';
 import { Transaction } from 'sequelize';
 import { Sequelize, DatabaseError } from 'sequelize';
@@ -154,60 +154,63 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { userId, password } = body;
+    const { userId, accessToken } = await req.json();
 
-    if (!userId || !password) {
+    if (!userId) {
       return NextResponse.json(
-        { error: '아이디와 비밀번호를 입력해주세요.' },
+        { error: '사용자 ID가 필요합니다.' },
         { status: 400 }
       );
     }
 
-    const user = await User.findOne({ where: { userId } });
-
-    if (!user) {
+    if (!accessToken) {
       return NextResponse.json(
-        { error: '존재하지 않는 사용자입니다.' },
-        { status: 404 }
+        { error: '액세스 토큰이 필요합니다.' },
+        { status: 400 }
       );
     }
 
-    const isValidPassword = user.password ? await bcrypt.compare(password, user.password) : false;
-    if (!isValidPassword) {
+    // 액세스 토큰 검증
+    let decoded;
+    try {
+      const secret = process.env.JWT_SECRET;
+      if (!secret) {
+        return NextResponse.json(
+          { error: '서버 오류: 비밀 키가 설정되지 않았습니다.' },
+          { status: 500 }
+        );
+      }
+      decoded = jwt.verify(accessToken, secret) as { userId: number };
+    } catch (error) {
+      console.error('Token Verification Error:', error);
       return NextResponse.json(
-        { error: '비밀번호가 일치하지 않습니다.' },
+        { error: '유효하지 않은 토큰입니다.' },
         { status: 401 }
       );
     }
 
-    if (!user.isVerified) {
+    const user = await User.findByPk(decoded.userId);
+
+    if (!user) {
       return NextResponse.json(
-        { error: '이메일 인증이 필요합니다.' },
-        { status: 403 }
+        { error: '사용자를 찾을 수 없습니다.' },
+        { status: 404 }
       );
     }
 
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.JWT_SECRET!,
-      { expiresIn: '24h' }
+    // 비밀번호 재설정 링크 생성
+    const resetToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+    const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL}/reset_password?token=${resetToken}`;
+
+    // 이메일 전송
+    await sendPasswordResetEmail(user.email, resetLink);
+
+    return NextResponse.json(
+      { message: '비밀번호 재설정 이메일이 전송되었습니다.' },
+      { status: 200 }
     );
-
-    return NextResponse.json({
-      message: '로그인 성공',
-      user: {
-        id: user.id,
-        email: user.email,
-        userId: user.userId,
-        profileImg: user.profileImg,
-        stylePreferences: user.stylePreferences
-      },
-      token
-    });
-
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('비밀번호 재설정 오류:', error);
     return NextResponse.json(
       { error: '서버 오류가 발생했습니다.' },
       { status: 500 }

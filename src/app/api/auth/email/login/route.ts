@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import User from '@/models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
+import { generateVerificationCode } from '@/utils/generateVerificationCode';
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,7 +11,6 @@ export async function POST(req: NextRequest) {
 
     console.log('Login attempt:', { userId });
 
-    // userId와 비밀번호가 모두 제공되었는지 확인
     if (!userId) {
       return NextResponse.json(
         { error: '사용자 ID가 필요합니다.' },
@@ -27,57 +26,61 @@ export async function POST(req: NextRequest) {
     }
 
     const user = await User.findOne({ where: { userId } });
-    
-    // 사용자가 존재하지 않는 경우
+
     if (!user) {
       return NextResponse.json(
         { error: '사용자를 찾을 수 없습니다.' },
-        { status: 404 }  // Not Found
+        { status: 404 }
       );
     }
 
-    // 이메일 인증이 되지 않은 경우
     if (!user.isVerified) {
       return NextResponse.json(
         { error: '이메일 인증이 필요합니다.' },
-        { status: 403 }  // Forbidden
+        { status: 403 }
       );
     }
 
-    // 비밀번호가 일치하지 않는 경우
     const isValidPassword = await bcrypt.compare(password, user.password || '');
     if (!isValidPassword) {
       return NextResponse.json(
         { error: '비밀번호가 일치하지 않습니다.' },
-        { status: 401 }  // Unauthorized
+        { status: 401 }
       );
     }
 
-    // 세부사항 설정이 되지 않은 경우
     if (!user.hasCompletedPreferences) {
       return NextResponse.json(
         { error: '세부사항 설정이 필요합니다.' },
-        { status: 428 }  // Precondition Required
+        { status: 428 }
       );
     }
 
-    // 서버 오류 조건 (예: 데이터베이스 연결 실패 등)
     const secret = process.env.JWT_SECRET;
     if (!secret) {
       return NextResponse.json(
         { error: '서버 오류가 발생했습니다.' },
-        { status: 500 }  // Internal Server Error
+        { status: 500 }
       );
     }
 
-    const token = jwt.sign(
+    const accessToken = jwt.sign(
       { userId: user.id },
       secret,
       { expiresIn: '24h' }
     );
 
-    // JWT를 데이터베이스에 저장
-    user.accessToken = token; // accessToken 필드에 저장
+    const refreshToken = jwt.sign(
+      { userId: user.id },
+      secret,
+      { expiresIn: '7d' }
+    );
+
+    // verificationCode 및 verificationExpires 초기화 (로그인 시에는 초기화)
+    user.accessToken = accessToken;
+    user.refreshToken = refreshToken;
+    user.verificationCode = null;
+    user.verificationExpires = null;
     await user.save();
 
     return NextResponse.json({
@@ -89,19 +92,19 @@ export async function POST(req: NextRequest) {
         profileImg: user.profileImg,
         stylePreferences: user.stylePreferences
       },
-      token
-    }, { status: 200 });  // OK
+      accessToken,
+      refreshToken
+    }, { status: 200 });
 
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
       { error: '서버 오류가 발생했습니다.' },
-      { status: 500 }  // Internal Server Error
+      { status: 500 }
     );
   }
 }
 
-// OPTIONS 메소드 핸들러
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,

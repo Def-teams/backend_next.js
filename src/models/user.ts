@@ -28,7 +28,10 @@ interface UserAttributes {
 
 export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
 
-const User = sequelize.define<UserInstance>('User', {
+// UserModel 인터페이스 추가
+interface UserModel extends Model<UserAttributes>, UserAttributes {}
+
+const User = sequelize.define<UserModel>('User', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

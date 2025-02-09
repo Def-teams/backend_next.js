@@ -83,7 +83,7 @@ const generateVerificationEmailHtml = (code: string): string => {
           <p>아래의 6자리 인증 코드를 입력해주세요:</p>
           <div class="code">${code}</div>
           <p>이 인증 코드는 30분 동안 유효합니다.</p>
-        </div>
+        </div>데
         <div class="footer">
           <p>본 이메일은 발신 전용입니다.</p>
           <p>© 2025 LokkMate. All rights reserved.</p>
@@ -95,17 +95,17 @@ const generateVerificationEmailHtml = (code: string): string => {
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-  const resetLink = `${process.env.BASE_URL}/reset-password?token=${token}`;
-  
+  const encodedToken = encodeURIComponent(token);
+  const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL}/reset_password?token=${encodedToken}`;
+
   await transporter.sendMail({
     from: `"LookMate 서비스" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: '비밀번호 재설정 안내',
     html: `
-      <h2>비밀번호 재설정 요청</h2>
-      <p>아래 링크를 클릭하여 비밀번호를 재설정해주세요:</p>
-      <a href="${resetLink}">비밀번호 재설정하기</a>
-      <p>링크 유효시간: 1시간</p>
+      <p>비밀번호 재설정 링크: 
+      <a href="${resetLink}">여기를 클릭하세요</a>
+      (유효시간 1시간)
     `
   });
 };
