@@ -6,7 +6,8 @@
     "dev": "next dev -H 0.0.0.0 -p 8080",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=10240 next build",
     "start": "next start -H 0.0.0.0 -p 8080",
-    "lint": "cross-env NODE_OPTIONS=--max-old-space-size=10240 next lint"
+    "lint": "cross-env NODE_OPTIONS=--max-old-space-size=10240 next lint",
+    "migrate": "ts-node ./node_modules/.bin/sequelize-cli db:migrate --migrations-path src/utils/migrations"
   },
   "dependencies": {
     "@types/express-session": "^1.18.1",

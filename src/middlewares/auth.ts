@@ -9,8 +9,9 @@ export const verifyToken = async (req: NextApiRequest, res: NextApiResponse, nex
     if (!token) return res.status(401).json({ error: '인증 토큰 필요' });
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
-    const user = await User.findByPk(decoded.userId, {
-      attributes: ['id', 'isLocked', 'failedAttempts']
+    const user = await User.findOne({ 
+      where: { userId: decoded.userId },
+      attributes: ['userId', 'isLocked', 'failedAttempts']
     });
 
     if (!user) return res.status(401).json({ error: '사용자 없음' });

@@ -61,15 +61,15 @@ export async function POST(req: NextRequest) {
       }
 
       const existingUser = await User.findOne({
+        attributes: ['id', 'email', 'userId'],
         where: {
           [Op.or]: [
             { email: email as string },
-            { userId: userId as string },
-            { snsId: email as string }
+            { userId: userId as string }
           ]
         },
-        transaction
-      }) as unknown as InstanceType<typeof User>;
+        raw: true
+      });
 
       if (existingUser) {
         if (existingUser.provider === 'email' && existingUser.email === email) {
@@ -155,6 +155,8 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const { userId, accessToken } = await req.json();
+    console.log('Received userId:', userId);
+    console.log('Received accessToken:', accessToken);
 
     if (!userId) {
       return NextResponse.json(
@@ -181,6 +183,7 @@ export async function PUT(req: NextRequest) {
         );
       }
       decoded = jwt.verify(accessToken, secret) as { userId: number };
+      console.log('Decoded accessToken:', decoded);
     } catch (error) {
       console.error('Token Verification Error:', error);
       return NextResponse.json(
@@ -199,7 +202,11 @@ export async function PUT(req: NextRequest) {
     }
 
     // 비밀번호 재설정 링크 생성
-    const resetToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+    const resetToken = jwt.sign(
+      { userId: user.userId },
+      process.env.JWT_SECRET!,
+      { expiresIn: '1h' }
+    );
     const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL}/reset_password?token=${resetToken}`;
 
     // 이메일 전송

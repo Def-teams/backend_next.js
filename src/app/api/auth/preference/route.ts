@@ -7,15 +7,6 @@ import { indexCheckMiddleware } from '@/middlewares/indexMonitor';
 import { IncomingForm } from 'formidable';
 import { Readable } from 'stream';
 
-const validStyles = [
-  '클래식룩', '미니멀룩', '스트릿패션', '보헤미안룩',
-  '럭셔리룩', '아방가르드룩', '러블리룩', '빈티지룩',
-  '스포티룩', '모던룩', '스모키룩', '모던록룩',
-  '그런지룩', '레트로룩'
-];
-
-const validSizes = ['XS','S','M','L','XL','XXL'];
-
 export const config = {
   api: {
     bodyParser: {
@@ -24,139 +15,146 @@ export const config = {
   }
 };
 
+// 타입 정의 추가
+interface FormDataFields {
+  size?: [string];
+  userId?: [string];
+  stylePreferences?: [string];
+  profileImage?: [File];
+}
+
 export async function POST(req: NextRequest) {
   const indexCheckResult = await indexCheckMiddleware(req);
-  if (indexCheckResult) {
-    return indexCheckResult;
-  }
+  if (indexCheckResult) return indexCheckResult;
+
+  const contentType = req.headers.get('content-type') || '';
+  console.log('Content-Type:', contentType); // 디버깅: Content-Type 확인
 
   try {
-    const formData = await req.formData();
-    const rawUserId = formData.get('userid') || formData.get('UserId') || formData.get('USERID');
-    const userId = String(rawUserId).trim();
+    let data: any = {};
 
-    if (!userId) {
-      const receivedKeys = Array.from(formData.keys()).join(', ');
-      console.error(`Missing userId. Received keys: ${receivedKeys}`);
+    // FormData 처리
+    if (contentType.startsWith('multipart/form-data')) {
+      const form = new IncomingForm({
+        maxFileSize: 5 * 1024 * 1024, // 5MB 제한
+        // 파일 형식 검사 추가 (필요한 경우)
+        fileFilter: (req, file, cb) => {
+          if (file.mimeType.startsWith('image/')) {
+            cb(null, true);
+          } else {
+            cb(new Error('이미지 파일만 허용됩니다.'));
+          }
+        }
+      });
+
+      // NextRequest -> Node.js 스트림 변환
+      const chunks = [];
+      const reader = req.body?.getReader();
+      while (true) {
+        const { done, value } = await reader!.read();
+        if (done) break;
+        chunks.push(value);
+      }
+      const buffer = Buffer.concat(chunks);
+
+      // 가상의 Node.js 요청 객체 생성
+      const nodeReq = new Readable();
+      nodeReq.push(buffer);
+      nodeReq.push(null);
+      Object.assign(nodeReq, {
+        headers: Object.fromEntries(req.headers),
+        httpVersion: '1.1'
+      });
+
+      const [fields, files] = await new Promise<[any, any]>((resolve, reject) => {
+        form.parse(nodeReq as any, (err, fields, files) => {
+          if (err) reject(err);
+          else resolve([fields, files]);
+        });
+      });
+
+      console.log('Parsed Fields:', fields); // 디버깅: 파싱된 필드 확인
+      console.log('Parsed Files:', files); // 디버깅: 파싱된 파일 확인
+
+      data = {
+        size: fields.size?.[0],
+        userId: fields.userId?.[0],
+        stylePreferences: fields.stylePreferences?.[0] ?
+          JSON.parse(fields.stylePreferences[0]) : null,
+        profileImage: files.profileImage?.[0]
+      };
+
+      console.log('Data:', data); // 디버깅: 최종 데이터 확인
+
+    // JSON 처리
+    } else if (contentType.startsWith('application/json')) {
+      data = await req.json();
+    } else {
       return NextResponse.json(
-        { error: `userid 파라미터가 필요합니다 (전달된 키: ${receivedKeys})` },
+        { error: '지원하지 않는 Content-Type' },
+        { status: 415 }
+      );
+    }
+
+    // 공통 유효성 검사
+    if (!data.userId) {
+      return NextResponse.json(
+        { error: 'userId 필수' },
         { status: 400 }
       );
     }
 
-    const stylePreferencesRaw = formData.get('stylePreferences');
-    
-    if (!stylePreferencesRaw) {
-      return NextResponse.json(
-        { error: '스타일 선호도는 필수 항목입니다.' },
-        { status: 400 }
-      );
-    }
+    const user = await User.findOne({ where: { userId: data.userId } });
 
-    let stylePreferences;
-    try {
-      stylePreferences = JSON.parse(stylePreferencesRaw as string);
-      
-      // 배열 타입 검증
-      if (!Array.isArray(stylePreferences)) {
-        return NextResponse.json(
-          { error: '스타일 선호도는 배열 형태여야 합니다.' },
-          { status: 400 }
-        );
-      }
-
-      // 스타일 개수 검증
-      if (stylePreferences.length === 0) {
-        return NextResponse.json(
-          { error: '최소 1개 이상의 스타일을 선택해주세요.' },
-          { status: 400 }
-        );
-      }
-
-      if (stylePreferences.length > 3) {
-        return NextResponse.json(
-          { error: '스타일은 최대 3개까지 선택 가능합니다.' },
-          { status: 400 }
-        );
-      }
-
-      // 유효한 스타일 값 검증
-      const invalidStyles = stylePreferences.filter(style => !validStyles.includes(style));
-      if (invalidStyles.length > 0) {
-        return NextResponse.json(
-          { error: '유효하지 않은 스타일이 포함되어 있습니다.', invalidStyles },
-          { status: 400 }
-        );
-      }
-
-    } catch (e) {
-      return NextResponse.json(
-        { error: '잘못된 스타일 선호도 형식입니다.' },
-        { status: 400 }
-      );
-    }
-
-    const size = formData.get('size') as string;
-    const profileImage = formData.get('profileImage') as File;
-
-    const user = await User.findOne({ where: { userId } });
     if (!user) {
-      return NextResponse.json(
-        { error: '사용자를 찾을 수 없습니다.' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: '사용자를 찾을 수 없습니다.' }, { status: 404 });
     }
 
-    // 스타일 선호도는 최대 3개까지
-    if (stylePreferences) {
-      user.stylePreferences = stylePreferences;
-    }
+    const validSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
-    // 사이즈 정보
-    if (size) {
-      if (!validSizes.includes(size)) {
+    // 사이즈 정보 업데이트
+    if (data.size) {
+      if (!validSizes.includes(data.size)) {
         return NextResponse.json(
           { error: '유효하지 않은 사이즈입니다' },
           { status: 400 }
         );
       }
-      user.size = size as 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
+      user.size = data.size as 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
     }
 
     // 프로필 이미지 업데이트
-    if (profileImage) {
-      const buffer = Buffer.from(await profileImage.arrayBuffer());
-      
-      // 5MB 초과 검증 추가
-      if (buffer.byteLength > 5 * 1024 * 1024) {
-        throw new Error('FILE_SIZE_EXCEEDED');
-      }
-
-      const userProfileDir = path.join(process.cwd(), 'public/uploads/User_profile', userId);
-      const desktopFileName = `desktop_${userId}.webp`;
-      const mobileFileName = `mobile_${userId}.webp`;
-
-      // 디렉토리 생성
+    if (data.profileImage) {
+      const userProfileDir = path.join(process.cwd(), 'public', 'uploads', 'User_profile', data.userId);
       await fs.mkdir(userProfileDir, { recursive: true });
 
-      // 파일 저장
-      await Promise.all([
-        fs.writeFile(path.join(userProfileDir, desktopFileName), buffer),
-        fs.writeFile(path.join(userProfileDir, mobileFileName), buffer)
-      ]);
+      const desktopPath = path.join(userProfileDir, `desktop_${data.userId}.webp`);
+      const mobilePath = path.join(userProfileDir, `mobile_${data.userId}.webp`);
 
-      // 프로필 이미지 경로 업데이트
+      await sharp(data.profileImage.filepath)
+        .resize(170, 170, { fit: 'cover' })
+        .webp({ quality: 80 })
+        .toFile(desktopPath);
+
+      await sharp(data.profileImage.filepath)
+        .resize(110, 110)
+        .webp({ quality: 80 })
+        .toFile(mobilePath);
+
       user.profileImg = {
-        desktop: `/uploads/User_profile/${userId}/${desktopFileName}`,
-        mobile: `/uploads/User_profile/${userId}/${mobileFileName}`
+        desktop: `/uploads/User_profile/${data.userId}/desktop_${data.userId}.webp`,
+        mobile: `/uploads/User_profile/${data.userId}/mobile_${data.userId}.webp`
+      };
+    } else {
+      // 이미지가 선택되지 않은 경우 기본 이미지 설정
+      user.profileImg = {
+        desktop: '/uploads/User_profile/default/desktop_default.webp',
+        mobile: '/uploads/User_profile/default/mobile_default.webp'
       };
     }
 
     user.hasCompletedPreferences = true;
     await user.save();
-
-    console.log('수신 데이터 타입:', req.headers.get('content-type'));
-    console.log('요청 본문 크기:', req.headers.get('content-length'));
 
     return NextResponse.json({
       message: '프로필이 업데이트되었습니다.',
@@ -170,11 +168,11 @@ export async function POST(req: NextRequest) {
       }
     });
 
-  } catch (error) {
-    console.error('Error updating preferences:', error);
+  } catch (error: any) {
+    console.error('요청 처리 오류:', error);
     return NextResponse.json(
-      { error: '서버 오류가 발생했습니다.' },
+      { error: '서버 처리 오류' },
       { status: 500 }
     );
   }
-} 
+}

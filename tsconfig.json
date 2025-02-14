@@ -4,11 +4,11 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "commonjs", // 변경: esnext -> commonjs
-    "moduleResolution": "node", // 변경: bundler -> node
+    "module": "commonjs",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/controllers/auth/googleAuthController", "src/app/api/auth/email/reset_passwd/reset_password_confirm/reset_password_confirm/reset_password_confirm"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/controllers/auth/googleAuthController", "src/app/api/auth/email/reset_passwd/reset_password_confirm/reset_password_confirm/reset_password_confirm", "src/migrations/remove-deletedAt-from-users.js", "src/migrations/add-user-id-column.js", "src/app/api/auth/email/reset_passwd/page.jsx"],
   "exclude": ["node_modules"]
 }

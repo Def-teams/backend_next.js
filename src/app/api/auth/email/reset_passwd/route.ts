@@ -17,11 +17,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: '서버 오류: 비밀 키가 설정되지 않았습니다.' }, { status: 500 });
   }
 
-  const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' });
+  const token = jwt.sign({ userId: user.userId }, secret, { expiresIn: '1h' });
   console.log('Generated Token:', token);
 
   // 비밀번호 재설정 이메일 전송
-  await sendPasswordResetEmail(user.email, token); // 토큰을 함께 전달
+  const resetToken = jwt.sign({ userId: user.userId }, secret, { expiresIn: '1h' });
+  const encodedToken = encodeURIComponent(resetToken).replace(/\./g, '%2E');
+  await sendPasswordResetEmail(user.email, encodedToken);
 
   return NextResponse.json({ message: '비밀번호 재설정 이메일이 전송되었습니다.' }, { status: 200 });
 }
@@ -80,11 +82,12 @@ export async function PUT(req: NextRequest) {
 
     // 비밀번호 재설정 링크 생성
     const resetToken = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.userId },
       process.env.JWT_SECRET!,
       { expiresIn: '1h' }
     );
-    await sendPasswordResetEmail(user.email, resetToken); // 토큰만 전달
+    const encodedToken = encodeURIComponent(resetToken).replace(/\./g, '%2E');
+    await sendPasswordResetEmail(user.email, encodedToken);
 
     return NextResponse.json(
       { message: '비밀번호 재설정 이메일이 전송되었습니다.' },
@@ -97,4 +100,8 @@ export async function PUT(req: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function GET(req: NextRequest) {
+  return NextResponse.json({ message: 'GET 요청이 성공적으로 처리되었습니다.' }, { status: 200 });
 } 

@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 인스턴스로 다시 조회하여 업데이트
-    const userInstance = await EmailUser.findByPk(user.id);
+    const userInstance = await EmailUser.findOne({ where: { userId } });
     if (!userInstance) {
       throw new Error('사용자 인스턴스를 찾을 수 없음');
     }

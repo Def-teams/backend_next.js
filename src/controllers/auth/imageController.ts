@@ -15,7 +15,17 @@ const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    const allowedTypes = [
+      'image/jpeg', 
+      'image/jpg', 
+      'image/png', 
+      'image/webp',
+      'image/gif',
+      'image/bmp',
+      'image/tiff',
+      'image/svg+xml',
+      'image/avif'
+    ];
     if (!allowedTypes.includes(file.mimetype)) {
       return cb(new Error(
         `허용되지 않는 파일 형식입니다 (${file.mimetype}). ` +
@@ -28,32 +38,43 @@ const upload = multer({
 });
 
 // 이미지 처리 함수
-const processImage = async (userId: string, file: Buffer) => {
-  const userDir = path.join(process.cwd(), 'public/uploads/User_profile', userId);
-  
+export const processImage = async (userId: string, file: Buffer) => {
+  const uploadBase = path.join(process.cwd(), 'public', 'uploads', 'User_profile');
+  const userDir = path.join(uploadBase, userId);
+
   // 디렉토리 생성
-  await fs.mkdir(userDir, { recursive: true });
+  try {
+    await fs.mkdir(uploadBase, { recursive: true, mode: 0o755 });
+    await fs.mkdir(userDir, { recursive: true, mode: 0o755 });
+  } catch (error) {
+    console.error('디렉토리 생성 실패:', error);
+    throw new Error('DIRECTORY_CREATION_FAILED');
+  }
 
-  const desktopPath = path.join(userDir, `desktop_${userId}.webp`);
-  const mobilePath = path.join(userDir, `mobile_${userId}.webp`);
+  const cleanUserId = userId.replace(/[<>:"/\\|?*]/g, '');
+  const desktopPath = path.join(userDir, `desktop_${cleanUserId}.webp`);
+  const mobilePath = path.join(userDir, `mobile_${cleanUserId}.webp`);
 
-  // 이미지 변환 파이프라인
-  const desktopPipeline = sharp(file)
-    .resize(170, 170, { fit: 'cover', position: 'centre' })
-    .webp({ quality: 80, lossless: false, alphaQuality: 90 });
-
-  const mobilePipeline = sharp(file)
-    .resize(110, 110, { kernel: sharp.kernel.lanczos3 })
-    .webp({ quality: 80 });
-
-  await Promise.all([
-    desktopPipeline.toFile(desktopPath),
-    mobilePipeline.toFile(mobilePath)
-  ]);
+  // 이미지 처리
+  try {
+    await Promise.all([
+      sharp(file)
+        .resize(170, 170)
+        .webp({ quality: 80 })
+        .toFile(desktopPath),
+      sharp(file)
+        .resize(110, 110)
+        .webp({ quality: 80 })
+        .toFile(mobilePath)
+    ]);
+  } catch (error) {
+    console.error('이미지 처리 실패:', error);
+    throw new Error('IMAGE_PROCESSING_FAILED');
+  }
 
   return {
-    desktop: `/uploads/User_profile/${userId}/desktop_${userId}.webp`,
-    mobile: `/uploads/User_profile/${userId}/mobile_${userId}.webp`
+    desktop: `/uploads/User_profile/${cleanUserId}/desktop_${cleanUserId}.webp`,
+    mobile: `/uploads/User_profile/${cleanUserId}/mobile_${cleanUserId}.webp`
   };
 };
 
@@ -73,38 +94,24 @@ interface UploadParams {
   contentType: string;
 }
 
-// 파일 메타데이터 검증 함수
-const validateFile = (file: {
-  buffer: Buffer;
-  contentType: string;
-  originalFileName: string;
-}) => {
-  const MAX_SIZE = 5 * 1024 * 1024;
-  const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
-  const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-
-  if (file.buffer.byteLength > MAX_SIZE) {
-    throw new Error('FILE_SIZE_EXCEEDED');
-  }
-
-  const ext = path.extname(file.originalFileName).toLowerCase();
-  if (!ALLOWED_EXTENSIONS.includes(ext)) {
-    throw new Error(`INVALID_EXTENSION: ${ext}`);
-  }
-
-  if (!ALLOWED_MIME_TYPES.includes(file.contentType)) {
-    throw new Error(`INVALID_MIME_TYPE: ${file.contentType}`);
+const validateFile = (params: UploadParams) => {
+  if (!params.buffer || !params.originalFileName || !params.contentType) {
+    console.error('유효하지 않은 파일 파라미터:', params);
+    throw new Error('INVALID_FILE_PARAMETERS');
   }
 };
 
 export const uploadImage = async (params: UploadParams) => {
   validateFile(params); // 검증 함수 호출
   const imagePaths = await processImage(params.userId, params.buffer);
-  
+
   const user = await User.findOne({ where: { userId: params.userId } });
   if (user) {
     user.profileImg = imagePaths;
     await user.save();
+  } else {
+    console.error('사용자를 찾을 수 없습니다.');
+    throw new Error('USER_NOT_FOUND');
   }
 
   return { 
@@ -139,14 +146,20 @@ export const deleteImage = async (req: NextRequest) => {
   const filename = searchParams.get('filename');
 
   if (!filename || !filename.startsWith(userId)) {
-    throw new Error('INVALID_FILE_OWNERSHIP');
+    console.error('잘못된 파일 이름:', filename, userId);
+    throw new Error('INVALID_FILE_NAME');
   }
 
-  const desktopPath = path.join(process.cwd(), 'public/uploads/desktop', filename as string);
-  const mobilePath = path.join(process.cwd(), 'public/uploads/mobile', filename as string);
+  const filePath = path.join(process.cwd(), 'public', 'uploads', filename);
 
-  await deleteFile(desktopPath);
-  await deleteFile(mobilePath);
-
-  return { message: '이미지 삭제 성공' };
+  try {
+    await fs.unlink(filePath);
+    return NextResponse.json({ message: '이미지 삭제 성공' });
+  } catch (error: any) {
+    console.error('이미지 삭제 실패:', error);
+    return NextResponse.json(
+      { error: error.message || '이미지 삭제 실패' },
+      { status: 500 }
+    );
+  }
 };

@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import bcrypt from 'bcrypt';
+import { Op } from 'sequelize';
 
 interface UserAttributes {
   id?: number;
@@ -24,6 +25,7 @@ interface UserAttributes {
   hasCompletedPreferences: boolean;
   isLocked: boolean;
   failedAttempts?: number;
+  deletedAt?: Date | null;
 }
 
 export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
@@ -34,8 +36,7 @@ interface UserModel extends Model<UserAttributes>, UserAttributes {}
 const User = sequelize.define<UserModel>('User', {
   id: {
     type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+    autoIncrement: true
   },
   email: {
     type: DataTypes.STRING,
@@ -54,6 +55,7 @@ const User = sequelize.define<UserModel>('User', {
   },
   userId: {
     type: DataTypes.STRING,
+    primaryKey: true,
     allowNull: false,
     unique: true
   },
@@ -61,10 +63,12 @@ const User = sequelize.define<UserModel>('User', {
     type: DataTypes.STRING,
     unique: true,
     allowNull: true,
+    field: 'snsId'
   },
   provider: {
     type: DataTypes.ENUM('email', 'google', 'kakao', 'naver'),
     allowNull: false,
+    defaultValue: 'email'
   },
   profileImg: {
     type: DataTypes.JSON,
@@ -72,6 +76,7 @@ const User = sequelize.define<UserModel>('User', {
       desktop: '/uploads/user_profile/default/desktop_default.webp',
       mobile: '/uploads/user_profile/default/mobile_default.webp',
     },
+    field: 'profileImg'
   },
   stylePreferences: {
     type: DataTypes.JSON,
@@ -113,11 +118,15 @@ const User = sequelize.define<UserModel>('User', {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+  }
 }, {
   tableName: 'users',
   freezeTableName: true,
   timestamps: true,
-  paranoid: true,
+  paranoid: false,
   hooks: {
     beforeUpdate: (user: Model<UserAttributes>) => {
       if (user.changed('password' as any) && user.getDataValue('password')) {
@@ -125,7 +134,24 @@ const User = sequelize.define<UserModel>('User', {
         user.setDataValue('password', bcrypt.hashSync(user.getDataValue('password')!, salt));
       }
     }
-  }
+  },
+  defaultScope: {
+    attributes: {
+      exclude: ['deletedAt']
+    }
+  },
+  indexes: [
+    {
+      unique: true,
+      fields: ['email'],
+      where: { provider: 'email' }
+    },
+    {
+      unique: true,
+      fields: ['snsId'],
+      where: { provider: { [Op.ne]: 'email'} }
+    }
+  ]
 });
 
 export default User;

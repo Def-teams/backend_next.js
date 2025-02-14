@@ -65,13 +65,13 @@ export async function POST(req: NextRequest) {
     }
 
     const accessToken = jwt.sign(
-      { userId: user.id },
+      { userId: user.userId },
       secret,
       { expiresIn: '24h' }
     );
 
     const refreshToken = jwt.sign(
-      { userId: user.id },
+      { userId: user.userId },
       secret,
       { expiresIn: '7d' }
     );

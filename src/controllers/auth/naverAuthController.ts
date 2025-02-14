@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import passport from 'passport';
 import { Strategy as NaverStrategy } from 'passport-naver-v2';
 import jwt from 'jsonwebtoken';
-import NaverUser from '../../models/naverUser';
+import rUser from '../../models/User';
 import sharp from 'sharp';
 import path from 'path';
 
@@ -12,7 +12,7 @@ passport.use(new NaverStrategy({
   callbackURL: process.env.NAVER_CALLBACK_URI
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    let user = await NaverUser.findOne({ where: { naverId: profile.id } });
+    let user = await User.findOne({ where: { naverId: profile.id } });
 
     if (!user) {
       user = await NaverUser.create({
@@ -54,8 +54,8 @@ passport.use(new NaverStrategy({
 
         await user.update({
           profileImg: {
-            desktop: `../public/uploads/desktop/${user.id}.jpg`,
-            mobile: `../public/uploads/mobile/${user.id}.jpg`
+            desktop: `/uploads/desktop/${user.id}.jpg`,
+            mobile: `/uploads/mobile/${user.id}.jpg`
           }
         });
       }

@@ -1,4 +1,3 @@
-// pages/reset-password.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -38,23 +37,35 @@ const ResetPasswordPage = () => {
     setErrorMessage('');
 
     try {
+      const safeEncodedToken = encodeURIComponent(token)
+        .replace(/\./g, '%2E')
+        .replace(/%20/g, '+');
+
+      console.log('Generated safeEncodedToken:', safeEncodedToken);
+
       const response = await fetch('/api/auth/email/reset_passwd/reset_password_confirm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ token, newPassword })
+        body: JSON.stringify({ 
+          token: safeEncodedToken,
+          newPassword 
+        })
       });
 
       const data = await response.json();
+      console.log('Response from server:', data);
 
       if (response.ok) {
         setIsSuccess(true);
         setErrorMessage('');
         alert('비밀번호가 성공적으로 변경되었습니다.');
+        console.log('Password change successful for token:', safeEncodedToken);
         router.push('/login');
       } else {
         setErrorMessage(data.error || '비밀번호 변경에 실패했습니다.');
+        console.log('Password change failed:', data.error);
       }
     } catch (error) {
       console.error('비밀번호 변경 오류:', error);
@@ -87,7 +98,7 @@ const ResetPasswordPage = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="newPassword"
                 type="password"
-                placeholder="새 비밀번호를 입력하세요"
+                 placeholder="새 비밀번호를 입력하세요"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
@@ -124,4 +135,4 @@ const ResetPasswordPage = () => {
   );
 };
 
-export default ResetPasswordPage;
+export default ResetPasswordPage; 

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
-import EmailUser from '../../models/User';
+import User from '../../models/User';
 import { sendVerificationEmail } from '../../utils/emailService';
 
 
@@ -21,12 +21,12 @@ export const register = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email, password } = req.body;
 
-    const existingUser = await EmailUser.findOne({ where: { email } });
+    const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(409).json({ error: '이미 존재하는 이메일입니다.' });
     }
 
-    const user = await EmailUser.create({
+    const user = await User.create({
       email,
       password,
       provider: 'email',
@@ -57,7 +57,7 @@ export const login = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email, password } = req.body;
 
-    const user = await EmailUser.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(404).json({ error: '사용자를 찾을 수 없습니다.' });
     }
@@ -99,7 +99,7 @@ export const verifyEmail = async (req: NextApiRequest, res: NextApiResponse) => 
     const { token } = req.query;
 
     const decoded = jwt.verify(token as string, process.env.JWT_SECRET!) as { email: string };
-    const user = await EmailUser.findOne({ where: { email: decoded.email } });
+    const user = await User.findOne({ where: { email: decoded.email } });
 
     if (!user) {
       return res.status(404).json({ error: '사용자를 찾을 수 없습니다.' });

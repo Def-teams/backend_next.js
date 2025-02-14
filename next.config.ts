@@ -36,6 +36,24 @@ const config: NextConfig = {
   serverRuntimeConfig: {
     secretKey: process.env.JWT_SECRET,
   },
+  images: {
+    domains: [
+      'lookmate.kro.kr',
+      'localhost'
+    ],
+    loader: 'default',
+    path: '/_next/image',
+    deviceSizes: [110, 170, 340, 680],
+    imageSizes: [32, 48, 64, 96]
+  },
+  output: 'standalone',
+  webpack: (config) => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300
+    }
+    return config
+  }
 }
 
 export default config
