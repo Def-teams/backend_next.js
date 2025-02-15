@@ -274,7 +274,7 @@ export const sendDeletionConfirmationEmail = async (email: string) => {
           <h2>계정 삭제가 완료되었습니다.</h2>
           <p>LookMate 서비스를 이용해주셔서 감사합니다. 계정이 성공적으로 삭제되었습니다.</p>
           <p>언제든지 다시 LookMate을 찾아주세요! 당신을 다시 뵙기를 희망합니다.</p>
-          <p>계정 복구 또는 기타 문의사항은 support@lookmate.com으로 문의해주시면 친절하게 안내해 드리겠습니다.</p>
+          <p>계정 복구 또는 기타 문의사항은 lookmate101@gmail.com으로 문의해주시면 친절하게 안내해 드리겠습니다.</p>
         </div>
         <div class="footer">
           <p>© 2024 LookMate. All rights reserved.</p>

@@ -4,12 +4,12 @@ import bcrypt from 'bcrypt';
 import { Op } from 'sequelize';
 
 interface UserAttributes {
-  id?: number;
-  email?: string;
+  id: number;
+  email: string;
   password?: string;
   userId: string;
   snsId?: string;
-  provider: 'email' | 'google' | 'kakao' | 'naver';
+  provider: 'email' | 'google' | 'kakao' | 'naver' | 'combined';
   profileImg: {
     desktop: string;
     mobile: string;
@@ -26,6 +26,9 @@ interface UserAttributes {
   isLocked: boolean;
   failedAttempts?: number;
   deletedAt?: Date | null;
+  googleId?: string;
+  kakaoId?: string;
+  naverId?: string;
 }
 
 export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
@@ -36,6 +39,7 @@ interface UserModel extends Model<UserAttributes>, UserAttributes {}
 const User = sequelize.define<UserModel>('User', {
   id: {
     type: DataTypes.INTEGER,
+    primaryKey: true,
     autoIncrement: true
   },
   email: {
@@ -46,16 +50,9 @@ const User = sequelize.define<UserModel>('User', {
   password: {
     type: DataTypes.STRING,
     allowNull: true,
-    set(value: string) {
-      if (value) {
-        const salt = bcrypt.genSaltSync(10);
-        this.setDataValue('password', bcrypt.hashSync(value, salt));
-      }
-    }
   },
   userId: {
     type: DataTypes.STRING,
-    primaryKey: true,
     allowNull: false,
     unique: true
   },
@@ -66,7 +63,7 @@ const User = sequelize.define<UserModel>('User', {
     field: 'snsId'
   },
   provider: {
-    type: DataTypes.ENUM('email', 'google', 'kakao', 'naver'),
+    type: DataTypes.ENUM('email', 'google', 'kakao', 'naver', 'combined'),
     allowNull: false,
     defaultValue: 'email'
   },
@@ -83,11 +80,11 @@ const User = sequelize.define<UserModel>('User', {
     defaultValue: [],
   },
   accessToken: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(1000),
     allowNull: true,
   },
   refreshToken: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(1000),
     allowNull: true,
   },
   isVerified: {
@@ -121,6 +118,21 @@ const User = sequelize.define<UserModel>('User', {
   deletedAt: {
     type: DataTypes.DATE,
     allowNull: true
+  },
+  googleId: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: true
+  },
+  kakaoId: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: true
+  },
+  naverId: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: true
   }
 }, {
   tableName: 'users',
@@ -128,12 +140,7 @@ const User = sequelize.define<UserModel>('User', {
   timestamps: true,
   paranoid: false,
   hooks: {
-    beforeUpdate: (user: Model<UserAttributes>) => {
-      if (user.changed('password' as any) && user.getDataValue('password')) {
-        const salt = bcrypt.genSaltSync(10);
-        user.setDataValue('password', bcrypt.hashSync(user.getDataValue('password')!, salt));
-      }
-    }
+
   },
   defaultScope: {
     attributes: {
@@ -152,6 +159,14 @@ const User = sequelize.define<UserModel>('User', {
       where: { provider: { [Op.ne]: 'email'} }
     }
   ]
+});
+
+// Sequelize 후크 추가
+User.addHook('beforeSave', async (user: UserInstance) => {
+  if ((user as any).changed('password')) {
+    const salt = await bcrypt.genSalt(10);
+    (user as any).password = await bcrypt.hash(user.password, salt);
+  }
 });
 
 export default User;

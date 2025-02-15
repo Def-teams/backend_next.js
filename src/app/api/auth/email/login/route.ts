@@ -25,7 +25,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const user = await User.findOne({ where: { userId } });
+    const user = await User.findOne({ 
+      where: { userId },
+      attributes: ['id', 'userId', 'email', 'password', 'profileImg', 'stylePreferences', 'isVerified', 'hasCompletedPreferences', 'size']
+    });
 
     if (!user) {
       return NextResponse.json(
@@ -65,7 +68,11 @@ export async function POST(req: NextRequest) {
     }
 
     const accessToken = jwt.sign(
-      { userId: user.userId },
+      { 
+        userId: user.userId,
+        stylePreferences: user.stylePreferences,
+        size: user.size
+      },
       secret,
       { expiresIn: '24h' }
     );
@@ -90,7 +97,8 @@ export async function POST(req: NextRequest) {
         email: user.email,
         userId: user.userId,
         profileImg: user.profileImg,
-        stylePreferences: user.stylePreferences
+        stylePreferences: user.stylePreferences,
+        size: user.size
       },
       accessToken,
       refreshToken

@@ -5,27 +5,34 @@ import jwt from 'jsonwebtoken';
 import { sendPasswordResetEmail } from '@/utils/emailService';
 
 export async function POST(req: NextRequest) {
-  const { userId } = await req.json();
+  try {
+    const { userId } = await req.json();
 
-  const user = await User.findOne({ where: { userId } });
-  if (!user) {
-    return NextResponse.json({ error: '사용자를 찾을 수 없습니다.' }, { status: 404 });
+    const user = await User.findOne({ where: { userId } });
+    if (!user) {
+      return NextResponse.json({ error: '사용자를 찾을 수 없습니다.' }, { status: 404 });
+    }
+
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      return NextResponse.json({ error: '서버 오류: 비밀 키가 설정되지 않았습니다.' }, { status: 500 });
+    }
+
+    const resetToken = jwt.sign({ userId: user.userId }, secret, { expiresIn: '1h' });
+    const encodedToken = encodeURIComponent(resetToken).replace(/\./g, '%2E');
+    
+    await sendPasswordResetEmail(user.email, encodedToken);
+
+    return NextResponse.json({ 
+      message: '비밀번호 재설정 이메일이 전송되었습니다.' 
+    }, { status: 200 });
+
+  } catch (error) {
+    console.error('비밀번호 재설정 요청 오류:', error);
+    return NextResponse.json({ 
+      error: '서버 오류가 발생했습니다.' 
+    }, { status: 500 });
   }
-
-  const secret = process.env.JWT_SECRET;
-  if (!secret) {
-    return NextResponse.json({ error: '서버 오류: 비밀 키가 설정되지 않았습니다.' }, { status: 500 });
-  }
-
-  const token = jwt.sign({ userId: user.userId }, secret, { expiresIn: '1h' });
-  console.log('Generated Token:', token);
-
-  // 비밀번호 재설정 이메일 전송
-  const resetToken = jwt.sign({ userId: user.userId }, secret, { expiresIn: '1h' });
-  const encodedToken = encodeURIComponent(resetToken).replace(/\./g, '%2E');
-  await sendPasswordResetEmail(user.email, encodedToken);
-
-  return NextResponse.json({ message: '비밀번호 재설정 이메일이 전송되었습니다.' }, { status: 200 });
 }
 
 export async function PUT(req: NextRequest) {

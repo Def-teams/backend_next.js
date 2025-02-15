@@ -5,7 +5,8 @@ module.exports = {
     await queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true
+        autoIncrement: true,
+        primaryKey: true
       },
       email: {
         type: Sequelize.STRING,
@@ -20,7 +21,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
-        primaryKey: true
       },
       snsId: {
         type: Sequelize.STRING,
@@ -45,11 +45,11 @@ module.exports = {
         defaultValue: [],
       },
       accessToken: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: true,
       },
       refreshToken: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: true,
       },
       isVerified: {
@@ -87,8 +87,22 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: true
+      },
+      googleId: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: true
+      },
+      kakaoId: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: true
+      },
+      naverId: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: true
       }
-      // ... 기타 필드들
     });
   },
   async down(queryInterface) {

@@ -15,10 +15,10 @@ passport.use(new NaverStrategy({
     let user = await User.findOne({ where: { naverId: profile.id } });
 
     if (!user) {
-      user = await NaverUser.create({
+      user = await User.create({
+        naverId: profile.id,
         email: profile.email,
         userId: `naver_${profile.id}`,
-        naverId: profile.id,
         profileImg: {
           desktop: '/uploads/desktop/default.jpg',
           mobile: '/uploads/mobile/default.jpg'

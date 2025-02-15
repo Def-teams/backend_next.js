@@ -90,8 +90,6 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      // const salt = await bcrypt.genSalt(10);
-      // const hashedPassword = await bcrypt.hash(password, salt);
 
       const userData = {
         email,

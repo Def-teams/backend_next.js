@@ -154,12 +154,17 @@ export const deleteImage = async (req: NextRequest) => {
 
   try {
     await fs.unlink(filePath);
-    return NextResponse.json({ message: '이미지 삭제 성공' });
+    return new Response(JSON.stringify({ message: '이미지 삭제 성공' }), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 200
+    });
   } catch (error: any) {
     console.error('이미지 삭제 실패:', error);
-    return NextResponse.json(
-      { error: error.message || '이미지 삭제 실패' },
-      { status: 500 }
-    );
+    return new Response(JSON.stringify({ 
+      error: error.message || '이미지 삭제 실패' 
+    }), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 500
+    });
   }
 };

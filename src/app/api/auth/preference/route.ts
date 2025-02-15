@@ -38,12 +38,11 @@ export async function POST(req: NextRequest) {
       const form = new IncomingForm({
         maxFileSize: 5 * 1024 * 1024, // 5MB 제한
         // 파일 형식 검사 추가 (필요한 경우)
-        fileFilter: (req, file, cb) => {
-          if (file.mimeType.startsWith('image/')) {
-            cb(null, true);
-          } else {
-            cb(new Error('이미지 파일만 허용됩니다.'));
+        filter: ({ mimetype }) => {
+          if (mimetype?.startsWith('image/')) {
+            return true;
           }
+          return false;
         }
       });
 
@@ -121,6 +120,11 @@ export async function POST(req: NextRequest) {
         );
       }
       user.size = data.size as 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL';
+    }
+
+    // 스타일 선호도 업데이트 추가
+    if (data.stylePreferences) {
+      user.stylePreferences = data.stylePreferences;
     }
 
     // 프로필 이미지 업데이트

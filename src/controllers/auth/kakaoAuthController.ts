@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import passport from 'passport';
 import { Strategy as KakaoStrategy } from 'passport-kakao';
 import jwt from 'jsonwebtoken';
-import KakaoUser from '../../models/kakaoUser';
+import User from '../../models/User';
 import sharp from 'sharp';
 import path from 'path';
 
@@ -12,10 +12,10 @@ passport.use(new KakaoStrategy({
   callbackURL: process.env.KAKAO_CALLBACK_URI
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    let user = await KakaoUser.findOne({ where: { kakaoId: profile.id } });
+    let user = await User.findOne({ where: { kakaoId: profile.id } });
 
     if (!user) {
-      user = await KakaoUser.create({
+      user = await User.create({
         email: profile._json.kakao_account.email,
         userId: `kakao_${profile.id}`,
         kakaoId: profile.id,

@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/controllers/auth/googleAuthController", "src/app/api/auth/email/reset_passwd/reset_password_confirm/reset_password_confirm/reset_password_confirm", "src/migrations/remove-deletedAt-from-users.js", "src/migrations/add-user-id-column.js", "src/app/api/auth/email/reset_passwd/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/controllers/auth/googleAuthController", "src/app/api/auth/email/reset_passwd/reset_password_confirm/reset_password_confirm/reset_password_confirm", "src/migrations/remove-deletedAt-from-users.js", "src/migrations/add-user-id-column.js", "src/app/api/auth/email/reset_passwd/page.jsx", "src/**/*", "src/globals.d.ts"],
   "exclude": ["node_modules"]
 }
