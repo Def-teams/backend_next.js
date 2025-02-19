@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import User from '@/models/User';
+import User from '@/models/user'
 import bcrypt from 'bcrypt';
 import sequelize from '@/config/database';
 import { sendDeletionConfirmationEmail } from '@/utils/emailService';

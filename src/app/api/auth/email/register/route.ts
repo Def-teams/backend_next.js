@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import User from '@/models/User';
+import User from '@/models/user';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Op } from 'sequelize';
@@ -99,8 +99,8 @@ export async function POST(req: NextRequest) {
         verificationExpires: new Date(Date.now() + 30 * 60 * 1000),
         isVerified: false,
         profileImg: {
-          desktop: '/public/uploads/User_profile/default/desktop_default.jpg',
-          mobile: '/public/uploads/User_profile/default/mobile_default.jpg'
+          desktop: '/public/uploads/User_profile/default/desktop_default.webp',
+          mobile: '/public/uploads/User_profile/default/mobile_default.webp'
         },
         stylePreferences: [],
         size: 'M' as 'M',

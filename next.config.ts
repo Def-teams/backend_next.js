@@ -1,34 +1,29 @@
 import type { NextConfig } from 'next'
+import { Header } from 'next/dist/lib/load-custom-routes'
 
 const config: NextConfig = {
   reactStrictMode: true,
+  env: {
+    CLIENT_URL: 'https://lookmate.kro.kr',
+    NEXT_PUBLIC_BASE_URL: 'https://lookmate.kro.kr',
+    NODE_ENV: 'production'
+  },
   compiler: {
-    styledComponents: true,
+    styledComponents: false,
   },
   async rewrites() {
-    return process.env.NODE_ENV === 'production'
-      ? []
-      : [{
-        source: '/:path*',
-        destination: 'https://lookmate.kro.kr/:path*'
-      }];
+    return [];
   },
-  async headers() {
+  async headers(): Promise<Header[]> {
     const cspHeader = `
-      default-src 'self' lookmate.kro.kr;
-      script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client;
-      style-src 'self' 'unsafe-inline';
-      img-src 'self' data: https://localhost:8080 https://*.googleusercontent.com https://ssl.gstatic.com;
-      font-src 'self';
-      object-src 'none';
-      base-uri 'self';
-      form-action 'self';
-      frame-ancestors 'none';
-      upgrade-insecure-requests;
-      connect-src 'self' https://localhost:8080 https://*.googleapis.com https://accounts.google.com;
+      default-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL};
+      script-src 'self' 'unsafe-inline' https://accounts.google.com;
+      connect-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} https://*.googleapis.com;
+      frame-src 'self' https://accounts.google.com;
     `;
 
-    const googleAuthHeader = {
+    
+    const googleAuthHeader: Header = {
       source: '/auth/google',
       headers: [
         {
@@ -45,9 +40,9 @@ const config: NextConfig = {
       ]
     };
 
-    const existingHeaders = await (require('./module')).headers();
+    const existingHeaders: Header[] = [];
 
-    return [
+    const defaultHeaders: Header[] = [
       {
         source: '/(.*)',
         headers: [
@@ -58,9 +53,17 @@ const config: NextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload'
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'interest-cohort=()'
           }
         ]
-      },
+      }
+    ];
+
+    return [
+      ...defaultHeaders,
       googleAuthHeader,
       ...existingHeaders
     ];
@@ -88,7 +91,19 @@ const config: NextConfig = {
       aggregateTimeout: 300
     }
     return config
-  }
+  },
+  devIndicators: {
+    // autoPrerender: false, // Next.js 13+에서 deprecated
+  },
+  experimental: {
+    // allowMiddlewareResponseBody: true, // Next.js 13+에서 더 이상 필요 없음
+  },
 }
+
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  siteUrl: "https://lookmate.kro.kr",
+  generateRobotsTxt: true, // robots.txt 자동 생성
+};
 
 export default config

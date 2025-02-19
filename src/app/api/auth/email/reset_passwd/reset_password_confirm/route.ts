@@ -1,46 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
-import User from '@/models/User';
+import User from '@/models/user';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export async function POST(req: NextRequest) {
   try {
-    const { token: encodedToken, newPassword } = await req.json();
-    console.log('Received encodedToken:', encodedToken);
+    const { userId, token: accessToken, newPassword } = await req.json();
     
-    if (!encodedToken) {
-      return NextResponse.json({ error: '토큰이 필요합니다.' }, { status: 400 });
-    }
-
-    const token = decodeURIComponent(encodedToken)
-      .replace(/\%2E/g, '.')
-      .replace(/\+/g, ' ');
-
-    console.log('Decoded token:', token);
-
-    if (!token) {
-      return NextResponse.json({ error: '유효하지 않은 토큰 형식입니다.' }, { status: 400 });
+    if (!userId || !accessToken) {
+      return NextResponse.json({ error: '인증 정보가 부족합니다.' }, { status: 400 });
     }
 
     if (!newPassword) {
       return NextResponse.json({ error: '새 비밀번호가 필요합니다.' }, { status: 400 });
     }
 
+    // 액세스 토큰 검증
     let decoded;
     try {
       const secret = process.env.JWT_SECRET;
       if (!secret) {
         return NextResponse.json({ error: '서버 오류: 비밀 키가 설정되지 않았습니다.' }, { status: 500 });
       }
-      decoded = jwt.verify(token, secret) as { userId: string };
-      console.log('Decoded JWT:', decoded);
+      decoded = jwt.verify(accessToken, secret) as { userId: string };
+      if(String(decoded.userId) !== String(userId)) {
+        return NextResponse.json({ error: '잘못된 접근입니다.' }, { status: 401 });
+      }
     } catch (error) {
       console.error('Token Verification Error:', error);
       return NextResponse.json({ error: '유효하지 않은 토큰입니다.' }, { status: 401 });
     }
 
     const user = await User.findOne({ 
-      where: { userId: decoded.userId }
+      where: { userId: userId }
     });
 
     if (!user) {

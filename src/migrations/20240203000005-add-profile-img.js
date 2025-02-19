@@ -1,18 +1,20 @@
-'use strict';
-
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn('users', 'profileImg', {
-      type: Sequelize.JSON,
-      allowNull: true,
-      defaultValue: {
-        desktop: '/uploads/user_profile/default/desktop_default.webp',
-        mobile: '/uploads/user_profile/default/mobile_default.webp'
-      }
-    });
+  up: async (queryInterface, Sequelize) => {
+    const tableInfo = await queryInterface.describeTable('Users');
+    
+    // JSON 타입 컬럼 추가 전 존재 여부 확인
+    if (!tableInfo.profileImg) {
+      await queryInterface.addColumn('Users', 'profileImg', {
+        type: Sequelize.JSON,
+        allowNull: true,
+        defaultValue: Sequelize.literal(
+          `(CAST('{"desktop":"/default-desktop.webp","mobile":"/default-mobile.webp"}' AS JSON))`
+        )
+      });
+    }
   },
 
-  async down(queryInterface) {
-    await queryInterface.removeColumn('users', 'profileImg');
+  down: async (queryInterface) => {
+    await queryInterface.removeColumn('Users', 'profileImg');
   }
 }; 

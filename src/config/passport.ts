@@ -1,10 +1,11 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { Profile as GooglePassportProfile } from 'passport';
 import { Strategy as KakaoStrategy } from 'passport-kakao';
 import { Strategy as NaverStrategy } from 'passport-naver-v2';
-import User from '../models/User';
-import { Profile } from 'passport-google-oauth20';
+import User from '../models/user';
 import { Op } from 'sequelize';
+import MemoryStore from 'memorystore';
 
 // Kakao 전략 프로필 타입 명시
 interface KakaoProfile extends passport.Profile {
@@ -20,6 +21,14 @@ interface KakaoProfile extends passport.Profile {
   photos?: Array<{ value: string }>;
 }
 
+// Google 전략 프로필 타입 명시
+interface GoogleProfile extends passport.Profile {
+  id: string;
+  displayName: string;
+  emails?: Array<{ value: string }>;
+  photos?: Array<{ value: string }>;
+}
+
 // Naver 전략 프로필 타입 명시
 interface NaverProfile extends passport.Profile {
   id: string;
@@ -27,64 +36,60 @@ interface NaverProfile extends passport.Profile {
   photos?: { value: string }[];
 }
 
-passport.serializeUser((user: any, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id: number, done) => {
-  try {
-    const user = await User.findByPk(id);
-    done(null, user);
-  } catch (error) {
-    done(error);
-  }
-});
-
-// Google Strategy
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_SIGNUP_ID!,
-  clientSecret: process.env.GOOGLE_SIGNUP_SECRET!,
-  callbackURL: process.env.GOOGLE_SIGNUP_CALLBACK_URI || 'http://localhost:8080/api/auth/google/callback',
-  scope: ['profile', 'email']
-}, async (accessToken, refreshToken, profile, done) => {
-  try {
-    const existingUser = await User.findOne({ 
-      where: { 
-        [Op.or]: [
-          { googleId: profile.id },
-          { email: profile.emails?.[0]?.value }
-        ]
+const initializeGoogleStrategy = () => {
+  return new GoogleStrategy({
+    clientID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+    clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
+    callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/google/callback`,
+    passReqToCallback: true
+  }, async (req, accessToken, refreshToken, profile: GoogleProfile, done) => {
+    try {
+      const emailDomain = profile.emails?.[0]?.value.split('@')[1];
+      if (emailDomain !== 'https://lookmate.kro.kr') {
+        return done(null, false, { message: '허용되지 않은 도메인' });
       }
-    });
 
-    // 기존 사용자 체크
-    if (existingUser) {
-      if (!existingUser.googleId) {
-        existingUser.googleId = profile.id;
-        await existingUser.save();
-      }
-      return done(null, existingUser);
+      const [existingUser] = await User.findOrCreate({
+        where: { 
+          [Op.or]: [
+            { googleId: profile.id },
+            { email: profile.emails?.[0]?.value }
+          ]
+        },
+        defaults: {
+          googleId: profile.id,
+          email: profile.emails?.[0]?.value,
+          userId: `google_${profile.id}`,
+          profileImg: {
+            desktop: profile.photos?.[0]?.value?.replace('=s96-c', '=s170-c') || '/default-google.jpg',
+            mobile: profile.photos?.[0]?.value?.replace('=s96-c', '=s110-c') || '/default-google.jpg'
+          },
+          provider: 'google',
+          isVerified: true,
+          hasCompletedPreferences: false
+        }
+      });
+
+      done(null, existingUser);
+    } catch (error) {
+      console.error('인증 프로세스 실패:', {
+        프로필_ID: profile.id,
+        에러_메시지: error.message,
+        스택: error.stack
+      });
+      done(error, false, { 
+        message: '서버 내부 오류',
+        code: 'AUTH_SERVER_ERROR' 
+      });
     }
+  });
+};
 
-    // 신규 회원 생성
-    const newUser = await User.create({
-      googleId: profile.id,
-      email: profile.emails?.[0]?.value,
-      userId: `google_${profile.id}`,
-      provider: 'google',
-      profileImg: {
-        desktop: profile.photos?.[0]?.value || '/default-profile.jpg',
-        mobile: profile.photos?.[0]?.value || '/default-profile.jpg'
-      },
-      isVerified: true,
-      hasCompletedPreferences: false
-    });
-
-    done(null, newUser);
-  } catch (error) {
-    done(error);
-  }
-}));
+export const configurePassport = () => {
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((obj, done) => done(null, obj));
+  passport.use(initializeGoogleStrategy());
+};
 
 // Kakao Strategy
 passport.use(new KakaoStrategy({

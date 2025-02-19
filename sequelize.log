@@ -2932,3 +2932,530 @@ PARAMETERS: []
 [2025-02-15T09:20:22.728Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
 [2025-02-15T09:20:55.949Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
 [2025-02-15T09:20:55.960Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:48:03.666Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:48:03.670Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:49:05.494Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:49:05.497Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:49:14.243Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:49:14.246Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:51:32.834Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T09:51:32.838Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:04:02.386Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:04:02.389Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:15:10.620Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:15:10.625Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:34:01.139Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:34:01.142Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:36:45.010Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:36:45.015Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:44:43.207Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:44:43.210Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:50:13.332Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:50:13.336Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:55:05.509Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:55:05.514Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:55:12.274Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T10:55:12.279Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:00:32.073Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:00:32.077Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:02:07.207Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:02:07.219Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:02:18.583Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:02:18.587Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:03:51.694Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:03:51.740Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:02.718Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:02.724Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:50.835Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:50.838Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:54.202Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:54.205Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:56.330Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:04:56.334Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:05:15.291Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:05:15.294Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:11:10.435Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:11:10.458Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:11:28.043Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:11:28.048Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:14:42.844Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:14:42.850Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:15:02.013Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:15:02.016Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:46:31.444Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:46:31.493Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-15T11:46:31.512Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-15T11:46:31.534Z] EXECUTING: Executing (default): ALTER TABLE `users` ADD UNIQUE INDEX `users_email` (`email`) 
+[2025-02-15T11:46:31.636Z] EXECUTING: Executing (default): ALTER TABLE `users` ADD UNIQUE INDEX `users_sns_id` (`snsId`) 
+[2025-02-15T11:46:32.534Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:46:32.537Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:48:45.473Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = '%7Buser_id%7D'; 
+[2025-02-15T11:49:01.892Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:49:01.902Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-15T11:49:01.920Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-15T11:49:53.866Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = '%7Buser_id%7D'; 
+[2025-02-15T11:50:07.402Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T11:50:07.406Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-15T11:50:07.409Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-15T11:52:57.741Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'userId'; 
+[2025-02-15T11:54:55.305Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'userId'; 
+[2025-02-15T12:00:17.204Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:00:17.206Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:00:46.076Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:00:46.080Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-15T12:00:46.084Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-15T12:02:07.542Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:02:07.548Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:06:12.855Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:06:12.863Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-15T12:06:12.875Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-15T12:11:16.494Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` 
+[2025-02-15T12:11:16.527Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T12:11:27.134Z] EXECUTING: Executing (cc406911-22c8-41a6-93e7-705a1d16e188): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-15T12:11:27.135Z] EXECUTING: Executing (cc406911-22c8-41a6-93e7-705a1d16e188): START TRANSACTION; 
+[2025-02-15T12:11:27.146Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-15T12:11:27.230Z] EXECUTING: Executing (cc406911-22c8-41a6-93e7-705a1d16e188): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-15T12:11:30.591Z] EXECUTING: Executing (cc406911-22c8-41a6-93e7-705a1d16e188): COMMIT; 
+[2025-02-15T12:12:26.516Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` 
+[2025-02-15T12:12:26.538Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T12:13:25.353Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:13:25.373Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:15:36.982Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'userId'; 
+[2025-02-15T12:16:35.062Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'userId'; 
+[2025-02-15T12:17:11.245Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T12:18:25.474Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T12:18:45.249Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T12:19:32.198Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:19:32.202Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:24:45.008Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:24:45.014Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:26:56.438Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T12:27:23.053Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:27:23.056Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:36:35.443Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T12:38:53.790Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:38:53.795Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:47:21.141Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:47:21.148Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:47:52.288Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:47:52.291Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:48:27.986Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T12:48:28.007Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T13:03:37.427Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T13:03:37.431Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T13:18:20.796Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T13:18:20.800Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T13:20:02.978Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T13:21:57.324Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T13:21:57.328Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T13:24:18.190Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-15T14:00:26.283Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T14:00:26.289Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T14:08:55.483Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T14:08:55.487Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T14:28:14.131Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T14:28:14.134Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T14:40:03.891Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T14:40:03.893Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T15:04:43.818Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T15:04:43.821Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T15:08:58.660Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T15:08:58.664Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T15:14:22.051Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T15:14:22.053Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T16:42:12.795Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T16:42:12.800Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T16:42:14.268Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T16:42:14.271Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T16:43:26.428Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-15T16:43:26.431Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:12:06.321Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:12:06.342Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:22:58.416Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:22:58.419Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:57:19.840Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:57:19.844Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:57:52.043Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T05:57:52.046Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T11:01:21.862Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T11:01:21.867Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T11:36:33.108Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-16T11:36:33.112Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T06:20:10.380Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T06:20:10.385Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T07:00:00.096Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T07:00:00.100Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T08:28:10.527Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T08:28:10.532Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T09:22:27.455Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T09:22:27.459Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T10:30:07.372Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T10:30:07.376Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T10:44:43.479Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T10:44:43.482Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T11:02:40.370Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T11:02:40.373Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T11:18:41.302Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T11:18:41.305Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T11:29:32.850Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T11:29:32.852Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T15:24:33.819Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T15:24:33.825Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T15:40:14.949Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-17T15:40:14.952Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T06:07:43.194Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T06:07:43.200Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T06:08:03.200Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T06:08:03.203Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T07:29:50.005Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T07:32:36.635Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T07:32:36.639Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T07:33:16.106Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T07:33:16.111Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T07:34:25.733Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T07:34:25.738Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T07:34:25.750Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T07:34:25.764Z] EXECUTING: Executing (default): ALTER TABLE `users` ADD UNIQUE INDEX `users_email` (`email`) 
+[2025-02-18T07:39:35.695Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T07:40:18.264Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` 
+[2025-02-18T07:40:18.300Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T07:40:18.344Z] EXECUTING: Executing (default): UPDATE `users` SET `stylePreferences`=?,`profileImg`=?,`hasCompletedPreferences`=?,`updatedAt`=? WHERE `id` = ? 
+[2025-02-18T08:19:47.703Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:19:47.707Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:20:47.802Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'userId'; 
+[2025-02-18T08:21:20.320Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:21:20.324Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:21:24.164Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:21:24.167Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:21:38.585Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:21:38.589Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:29:29.060Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:29:29.065Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:29:54.732Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:29:54.736Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T08:29:54.746Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T08:33:12.675Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:33:12.689Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:33:31.031Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:33:31.040Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:36:12.434Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:36:12.442Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:37:05.269Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:37:05.276Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:37:19.014Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:37:19.034Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:18.143Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:18.154Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:24.784Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:24.791Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:25.932Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:25.941Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:34.418Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:38:34.422Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T08:38:34.430Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T08:39:20.447Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:39:20.452Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:40:08.667Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:40:08.669Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:40:28.833Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:40:28.837Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T08:40:28.843Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T08:43:12.300Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:43:12.306Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:44:27.177Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:44:27.184Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:44:32.438Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:44:32.442Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T08:44:32.448Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T08:44:59.287Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:44:59.289Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T08:44:59.308Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T08:45:23.565Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:45:23.568Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:47:21.100Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:47:21.108Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:48:46.552Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:48:46.555Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:49:02.471Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T08:49:02.488Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T08:49:02.494Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T09:06:19.823Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T09:06:19.826Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T09:07:48.980Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T09:07:48.982Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T09:24:36.658Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T09:24:36.661Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:12:36.468Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:12:36.475Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T11:12:36.572Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T11:18:23.108Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:18:23.117Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:18:26.637Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:18:26.642Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:21:11.772Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:21:11.781Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:24:11.897Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'user'; 
+[2025-02-18T11:24:18.343Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'user1'; 
+[2025-02-18T11:24:21.471Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:24:21.478Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:25:00.484Z] EXECUTING: Executing (1ea71d95-6e2e-457d-8bd3-bc45ca2bd2ce): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:25:00.489Z] EXECUTING: Executing (1ea71d95-6e2e-457d-8bd3-bc45ca2bd2ce): START TRANSACTION; 
+[2025-02-18T11:25:00.500Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'example@gmail.com' OR `User`.`userId` = 'user') LIMIT 1; 
+[2025-02-18T11:25:00.583Z] EXECUTING: Executing (1ea71d95-6e2e-457d-8bd3-bc45ca2bd2ce): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:26:13.248Z] EXECUTING: Executing (05b0be3e-025d-4ec4-8281-3eda3ad8a651): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:26:13.250Z] EXECUTING: Executing (05b0be3e-025d-4ec4-8281-3eda3ad8a651): START TRANSACTION; 
+[2025-02-18T11:26:13.257Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'example@gmail.com' OR `User`.`userId` = 'user') LIMIT 1; 
+[2025-02-18T11:26:13.322Z] EXECUTING: Executing (05b0be3e-025d-4ec4-8281-3eda3ad8a651): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:30:15.482Z] EXECUTING: Executing (46f57eea-6b73-4856-98e6-b44236690f56): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:30:15.484Z] EXECUTING: Executing (46f57eea-6b73-4856-98e6-b44236690f56): START TRANSACTION; 
+[2025-02-18T11:30:15.501Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T11:30:30.360Z] EXECUTING: Executing (c5c24ece-06ee-48f5-8092-acb4f5b7bf97): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:30:30.362Z] EXECUTING: Executing (c5c24ece-06ee-48f5-8092-acb4f5b7bf97): START TRANSACTION; 
+[2025-02-18T11:30:47.185Z] EXECUTING: Executing (33c60cef-87b3-4591-bc65-25dbff1f56b9): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:30:47.187Z] EXECUTING: Executing (33c60cef-87b3-4591-bc65-25dbff1f56b9): START TRANSACTION; 
+[2025-02-18T11:30:47.194Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379') LIMIT 1; 
+[2025-02-18T11:30:47.284Z] EXECUTING: Executing (33c60cef-87b3-4591-bc65-25dbff1f56b9): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:31:23.707Z] EXECUTING: Executing (8e5c3ddb-4863-4414-8f93-b3b8feb04285): SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; 
+[2025-02-18T11:31:23.709Z] EXECUTING: Executing (8e5c3ddb-4863-4414-8f93-b3b8feb04285): START TRANSACTION; 
+[2025-02-18T11:31:23.713Z] EXECUTING: Executing (8e5c3ddb-4863-4414-8f93-b3b8feb04285): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379' OR (`User`.`provider` = 'email' AND `User`.`email` = 'kazizibe08@gmail.com')) LIMIT 1; 
+[2025-02-18T11:31:24.028Z] EXECUTING: Executing (8e5c3ddb-4863-4414-8f93-b3b8feb04285): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:31:24.034Z] EXECUTING: Executing (8e5c3ddb-4863-4414-8f93-b3b8feb04285): ROLLBACK; 
+[2025-02-18T11:31:24.036Z] EXECUTING: Executing (b57b86d0-6974-46d7-bca1-f0324b7dedd3): SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; 
+[2025-02-18T11:31:24.037Z] EXECUTING: Executing (b57b86d0-6974-46d7-bca1-f0324b7dedd3): START TRANSACTION; 
+[2025-02-18T11:31:24.038Z] EXECUTING: Executing (b57b86d0-6974-46d7-bca1-f0324b7dedd3): ROLLBACK; 
+[2025-02-18T11:31:24.040Z] EXECUTING: Executing (00de2b90-fd70-4a8e-a2aa-b6e3bbc1a031): SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; 
+[2025-02-18T11:31:24.042Z] EXECUTING: Executing (00de2b90-fd70-4a8e-a2aa-b6e3bbc1a031): START TRANSACTION; 
+[2025-02-18T11:31:24.043Z] EXECUTING: Executing (00de2b90-fd70-4a8e-a2aa-b6e3bbc1a031): ROLLBACK; 
+[2025-02-18T11:32:56.401Z] EXECUTING: Executing (68dc7b2e-8ff3-4e77-98a4-440a14f5e44b): SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; 
+[2025-02-18T11:32:56.403Z] EXECUTING: Executing (68dc7b2e-8ff3-4e77-98a4-440a14f5e44b): START TRANSACTION; 
+[2025-02-18T11:32:56.409Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379') LIMIT 1; 
+[2025-02-18T11:32:56.475Z] EXECUTING: Executing (68dc7b2e-8ff3-4e77-98a4-440a14f5e44b): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:32:56.479Z] EXECUTING: Executing (68dc7b2e-8ff3-4e77-98a4-440a14f5e44b): ROLLBACK; 
+[2025-02-18T11:32:56.481Z] EXECUTING: Executing (72e9a3f8-0d25-4372-b1db-a6d5be54a416): SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; 
+[2025-02-18T11:32:56.482Z] EXECUTING: Executing (72e9a3f8-0d25-4372-b1db-a6d5be54a416): START TRANSACTION; 
+[2025-02-18T11:32:56.484Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379') LIMIT 1; 
+[2025-02-18T11:32:56.549Z] EXECUTING: Executing (72e9a3f8-0d25-4372-b1db-a6d5be54a416): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:32:56.551Z] EXECUTING: Executing (72e9a3f8-0d25-4372-b1db-a6d5be54a416): ROLLBACK; 
+[2025-02-18T11:32:56.553Z] EXECUTING: Executing (a46a33b9-f4f5-4c0c-9456-56d4562e709e): SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; 
+[2025-02-18T11:32:56.555Z] EXECUTING: Executing (a46a33b9-f4f5-4c0c-9456-56d4562e709e): START TRANSACTION; 
+[2025-02-18T11:32:56.557Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379') LIMIT 1; 
+[2025-02-18T11:32:56.622Z] EXECUTING: Executing (a46a33b9-f4f5-4c0c-9456-56d4562e709e): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:32:56.625Z] EXECUTING: Executing (a46a33b9-f4f5-4c0c-9456-56d4562e709e): ROLLBACK; 
+[2025-02-18T11:34:58.359Z] EXECUTING: Executing (4c8ff912-ff82-4dfd-b150-6c63dcf91732): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:34:58.361Z] EXECUTING: Executing (4c8ff912-ff82-4dfd-b150-6c63dcf91732): START TRANSACTION; 
+[2025-02-18T11:34:58.367Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379') LIMIT 1; 
+[2025-02-18T11:34:58.723Z] EXECUTING: Executing (4c8ff912-ff82-4dfd-b150-6c63dcf91732): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:34:58.727Z] EXECUTING: Executing (4c8ff912-ff82-4dfd-b150-6c63dcf91732): ROLLBACK; 
+[2025-02-18T11:34:58.729Z] EXECUTING: Executing (dddbd583-833c-4cfb-a758-900a75873aa6): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:34:58.730Z] EXECUTING: Executing (dddbd583-833c-4cfb-a758-900a75873aa6): START TRANSACTION; 
+[2025-02-18T11:34:58.734Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379') LIMIT 1; 
+[2025-02-18T11:34:59.065Z] EXECUTING: Executing (dddbd583-833c-4cfb-a758-900a75873aa6): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:34:59.067Z] EXECUTING: Executing (dddbd583-833c-4cfb-a758-900a75873aa6): ROLLBACK; 
+[2025-02-18T11:34:59.069Z] EXECUTING: Executing (88c970da-4fca-4bba-921f-bd48ade8890e): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:34:59.070Z] EXECUTING: Executing (88c970da-4fca-4bba-921f-bd48ade8890e): START TRANSACTION; 
+[2025-02-18T11:34:59.074Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills379') LIMIT 1; 
+[2025-02-18T11:34:59.410Z] EXECUTING: Executing (88c970da-4fca-4bba-921f-bd48ade8890e): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:34:59.414Z] EXECUTING: Executing (88c970da-4fca-4bba-921f-bd48ade8890e): ROLLBACK; 
+[2025-02-18T11:35:19.925Z] EXECUTING: Executing (70e34014-def4-483d-b742-6a5ad79aab4e): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:35:19.928Z] EXECUTING: Executing (70e34014-def4-483d-b742-6a5ad79aab4e): START TRANSACTION; 
+[2025-02-18T11:35:19.933Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T11:37:29.487Z] EXECUTING: Executing (ac38ef30-04ce-433b-bd77-3e66b3c5f4fd): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:37:29.489Z] EXECUTING: Executing (ac38ef30-04ce-433b-bd77-3e66b3c5f4fd): START TRANSACTION; 
+[2025-02-18T11:37:29.504Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T11:37:57.100Z] EXECUTING: Executing (4a8291da-f186-46f6-b2ba-ac3047197b80): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:37:57.101Z] EXECUTING: Executing (4a8291da-f186-46f6-b2ba-ac3047197b80): START TRANSACTION; 
+[2025-02-18T11:37:57.109Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T11:38:09.874Z] EXECUTING: Executing (8af8f458-22fb-414f-b851-bb89e656c3b3): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:38:09.877Z] EXECUTING: Executing (8af8f458-22fb-414f-b851-bb89e656c3b3): START TRANSACTION; 
+[2025-02-18T11:38:09.884Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills374') LIMIT 1; 
+[2025-02-18T11:38:20.446Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:38:20.449Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:38:30.254Z] EXECUTING: Executing (1f86517e-4866-4a30-a30a-be9eed7ccd0a): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:38:30.256Z] EXECUTING: Executing (1f86517e-4866-4a30-a30a-be9eed7ccd0a): START TRANSACTION; 
+[2025-02-18T11:38:30.271Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills370') LIMIT 1; 
+[2025-02-18T11:38:30.358Z] EXECUTING: Executing (1f86517e-4866-4a30-a30a-be9eed7ccd0a): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:39:27.942Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:39:27.946Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:41:09.002Z] EXECUTING: Executing (7a5e5f7d-9ec3-4f3b-93a1-e870e3a0a6fc): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:41:09.005Z] EXECUTING: Executing (7a5e5f7d-9ec3-4f3b-93a1-e870e3a0a6fc): START TRANSACTION; 
+[2025-02-18T11:41:09.023Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'kazizibe08@gmail.com' OR `User`.`userId` = 'sakills370') LIMIT 1; 
+[2025-02-18T11:41:09.114Z] EXECUTING: Executing (7a5e5f7d-9ec3-4f3b-93a1-e870e3a0a6fc): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:41:12.495Z] EXECUTING: Executing (7a5e5f7d-9ec3-4f3b-93a1-e870e3a0a6fc): COMMIT; 
+[2025-02-18T11:45:51.168Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:45:51.172Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T11:57:27.144Z] EXECUTING: Executing (d7d64b4c-f8d7-4ddd-af34-732e91f54574): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:57:27.148Z] EXECUTING: Executing (d7d64b4c-f8d7-4ddd-af34-732e91f54574): START TRANSACTION; 
+[2025-02-18T11:57:27.169Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T11:57:27.268Z] EXECUTING: Executing (d7d64b4c-f8d7-4ddd-af34-732e91f54574): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:58:00.861Z] EXECUTING: Executing (0d3d9c59-682a-42bd-8deb-54afcbdd9a45): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T11:58:00.864Z] EXECUTING: Executing (0d3d9c59-682a-42bd-8deb-54afcbdd9a45): START TRANSACTION; 
+[2025-02-18T11:58:00.879Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T11:58:00.999Z] EXECUTING: Executing (0d3d9c59-682a-42bd-8deb-54afcbdd9a45): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T11:58:03.678Z] EXECUTING: Executing (0d3d9c59-682a-42bd-8deb-54afcbdd9a45): COMMIT; 
+[2025-02-18T12:09:16.038Z] EXECUTING: Executing (35ad6b37-b4ab-493d-abce-a2a03d2a55c1): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T12:09:16.040Z] EXECUTING: Executing (35ad6b37-b4ab-493d-abce-a2a03d2a55c1): START TRANSACTION; 
+[2025-02-18T12:09:16.050Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T12:09:16.132Z] EXECUTING: Executing (35ad6b37-b4ab-493d-abce-a2a03d2a55c1): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T12:09:18.663Z] EXECUTING: Executing (35ad6b37-b4ab-493d-abce-a2a03d2a55c1): COMMIT; 
+[2025-02-18T12:11:39.490Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T12:13:52.441Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37' AND `User`.`provider` = 'email'; 
+[2025-02-18T12:13:52.469Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T12:13:52.498Z] EXECUTING: Executing (a04158d0-fa2b-46e2-a72d-83493cc4ad76): START TRANSACTION; 
+[2025-02-18T12:13:52.508Z] EXECUTING: Executing (a04158d0-fa2b-46e2-a72d-83493cc4ad76): ROLLBACK; 
+[2025-02-18T12:16:32.545Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37' AND `User`.`provider` = 'email'; 
+[2025-02-18T12:16:32.561Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T12:16:32.572Z] EXECUTING: Executing (6cee1202-d2b0-4126-8d2e-071f66bb4f7d): START TRANSACTION; 
+[2025-02-18T12:16:32.588Z] EXECUTING: Executing (6cee1202-d2b0-4126-8d2e-071f66bb4f7d): UPDATE `users` SET `isVerified`=?,`verificationCode`=?,`verificationExpires`=?,`updatedAt`=? WHERE `id` = ? 
+[2025-02-18T12:16:32.601Z] EXECUTING: Executing (6cee1202-d2b0-4126-8d2e-071f66bb4f7d): COMMIT; 
+[2025-02-18T12:17:02.055Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` 
+[2025-02-18T12:17:02.087Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T12:17:02.131Z] EXECUTING: Executing (default): UPDATE `users` SET `stylePreferences`=?,`profileImg`=?,`hasCompletedPreferences`=?,`updatedAt`=? WHERE `id` = ? 
+[2025-02-18T12:17:26.258Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T12:18:51.035Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T12:18:51.126Z] EXECUTING: Executing (default): UPDATE `users` SET `accessToken`=?,`refreshToken`=?,`updatedAt`=? WHERE `id` = ? 
+[2025-02-18T12:19:37.817Z] EXECUTING: Executing (23de818d-cb91-4249-adfe-bb360d8f530e): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T12:19:37.821Z] EXECUTING: Executing (23de818d-cb91-4249-adfe-bb360d8f530e): START TRANSACTION; 
+[2025-02-18T12:19:37.833Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'sakills914@gmail.com' OR `User`.`userId` = 'sakills37') LIMIT 1; 
+[2025-02-18T12:25:57.881Z] EXECUTING: Executing (213fb5ba-0c48-4eee-962b-7ca2486e8371): SET TRANSACTION ISOLATION LEVEL READ COMMITTED; 
+[2025-02-18T12:25:57.883Z] EXECUTING: Executing (213fb5ba-0c48-4eee-962b-7ca2486e8371): START TRANSACTION; 
+[2025-02-18T12:25:57.890Z] EXECUTING: Executing (default): SELECT `id`, `email`, `userId` FROM `users` AS `User` WHERE (`User`.`email` = 'example@gmail.com' OR `User`.`userId` = 'user') LIMIT 1; 
+[2025-02-18T12:25:57.961Z] EXECUTING: Executing (213fb5ba-0c48-4eee-962b-7ca2486e8371): INSERT INTO `users` (`id`,`email`,`password`,`userId`,`provider`,`profileImg`,`stylePreferences`,`isVerified`,`verificationCode`,`verificationExpires`,`size`,`hasCompletedPreferences`,`isLocked`,`failedAttempts`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); 
+[2025-02-18T12:26:01.471Z] EXECUTING: Executing (213fb5ba-0c48-4eee-962b-7ca2486e8371): COMMIT; 
+[2025-02-18T12:26:06.039Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'user1'; 
+[2025-02-18T12:26:12.435Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'user'; 
+[2025-02-18T12:46:47.322Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T12:46:47.326Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T13:12:43.013Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T13:12:43.018Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T13:26:39.900Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T13:26:39.902Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T13:31:12.356Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T13:31:12.360Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T14:07:17.978Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T14:07:17.982Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T14:50:32.549Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T14:50:32.551Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T14:51:21.566Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T14:51:21.577Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T15:06:55.507Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T15:06:55.512Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:01:52.786Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:01:52.791Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:01:57.886Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:01:57.890Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:01:57.894Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:01:57.976Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:01:58.002Z] EXECUTING: Executing (default): ALTER TABLE `users` ADD UNIQUE INDEX `users_email` (`email`) 
+[2025-02-18T16:01:58.144Z] EXECUTING: Executing (default): ALTER TABLE `users` ADD UNIQUE INDEX `users_sns_id` (`snsId`) 
+[2025-02-18T16:02:21.047Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:02:21.052Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:03:27.877Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:03:27.880Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:04:39.114Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:04:39.119Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:04:54.970Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:04:54.974Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:07:19.306Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:07:37.773Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:07:37.776Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:07:37.791Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:10:27.534Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:10:27.537Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:10:59.875Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:10:59.915Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:10:59.921Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:10:59.931Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:11:00.004Z] EXECUTING: Executing (default): UPDATE `users` SET `accessToken`=?,`refreshToken`=?,`updatedAt`=? WHERE `id` = ? 
+[2025-02-18T16:11:48.760Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:11:48.831Z] EXECUTING: Executing (default): UPDATE `users` SET `accessToken`=?,`refreshToken`=?,`updatedAt`=? WHERE `id` = ? 
+[2025-02-18T16:12:18.883Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:12:32.352Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:12:32.355Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:12:32.367Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:16:03.752Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:16:03.758Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:16:10.049Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:16:10.052Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:16:27.310Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:16:27.372Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:16:27.401Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:16:27.411Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:20:39.799Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:20:39.802Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:20:51.637Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:20:51.642Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:21:02.103Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:21:02.248Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:21:02.296Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:21:02.305Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:23:39.433Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:23:39.438Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:23:42.245Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:23:42.301Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:23:42.325Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:23:42.332Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:24:11.561Z] EXECUTING: Executing (default): SELECT `id`, `email`, `password`, `userId`, `snsId`, `provider`, `profileImg`, `stylePreferences`, `accessToken`, `refreshToken`, `isVerified`, `verificationCode`, `verificationExpires`, `size`, `hasCompletedPreferences`, `isLocked`, `failedAttempts`, `googleId`, `kakaoId`, `naverId`, `createdAt`, `updatedAt` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:24:11.692Z] EXECUTING: Executing (default): UPDATE `users` SET `password`=?,`updatedAt`=? WHERE `id` = ? 
+[2025-02-18T16:24:14.663Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:24:14.683Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:24:28.915Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-18T16:26:08.405Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:26:08.409Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:30:04.836Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:30:04.842Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:30:04.849Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:30:31.417Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:30:31.419Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:31:56.017Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:31:56.026Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:34:25.491Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:34:25.514Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:38:54.769Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:38:54.774Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:41:02.972Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:41:02.974Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:42:26.402Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:42:26.408Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:42:26.413Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:43:53.771Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:43:53.775Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:46:41.317Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:46:41.321Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:48:39.652Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:48:39.687Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:49:31.886Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:49:31.889Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:49:36.748Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:49:36.764Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:49:36.773Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:53:48.045Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:53:48.049Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:54:58.941Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:54:58.949Z] EXECUTING: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'def' 
+[2025-02-18T16:54:58.961Z] EXECUTING: Executing (default): SHOW INDEX FROM `users` FROM `def` 
+[2025-02-18T16:57:37.681Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:57:37.683Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:59:56.943Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T16:59:56.948Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:02:02.281Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:02:02.286Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:05:53.315Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:05:53.321Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:09:01.200Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:09:01.209Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:13:30.500Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-18T17:13:30.503Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T15:49:34.918Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T15:49:34.926Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T15:49:45.478Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T15:49:45.482Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T15:51:39.253Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-19T15:51:45.303Z] EXECUTING: Executing (default): SELECT `id`, `userId`, `email`, `password`, `profileImg`, `stylePreferences`, `isVerified`, `hasCompletedPreferences`, `size` FROM `users` AS `User` WHERE `User`.`userId` = 'sakills37'; 
+[2025-02-19T15:52:32.674Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T15:52:32.680Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T16:54:00.094Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T16:54:00.147Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T16:54:37.909Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T16:54:37.912Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T17:18:36.200Z] EXECUTING: Executing (default): SELECT 1+1 AS result 
+[2025-02-19T17:18:36.204Z] EXECUTING: Executing (default): SELECT 1+1 AS result 

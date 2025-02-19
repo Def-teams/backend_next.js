@@ -58,13 +58,10 @@ const User = sequelize.define<UserModel>('User', {
   },
   snsId: {
     type: DataTypes.STRING,
-    unique: true,
-    allowNull: true,
-    field: 'snsId'
+    allowNull: true
   },
   provider: {
-    type: DataTypes.ENUM('email', 'google', 'kakao', 'naver', 'combined'),
-    allowNull: false,
+    type: DataTypes.STRING(10),
     defaultValue: 'email'
   },
   profileImg: {
@@ -92,8 +89,11 @@ const User = sequelize.define<UserModel>('User', {
     defaultValue: false,
   },
   verificationCode: {
-    type: DataTypes.STRING,
-    allowNull: true,
+    type: DataTypes.STRING(6),
+    allowNull: false,
+    validate: {
+      len: [6, 6]
+    }
   },
   verificationExpires: {
     type: DataTypes.DATE,

@@ -9,7 +9,11 @@ const ResetPasswordPage = () => {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const token = decodeURIComponent(searchParams.get('token') || '');
+  const userId = searchParams.get('userId');
+  const encodedToken = searchParams.get('token');
+  const accessToken = encodedToken 
+    ? decodeURIComponent(encodedToken).replace(/%2E/g, '.')
+    : null;
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,15 +24,26 @@ const ResetPasswordPage = () => {
     }
   }, [newPassword, confirmPassword]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!token) {
+  useEffect(() => {
+    // userId와 accessToken이 모두 있는지 확인
+    if (!userId || !accessToken) {
       setErrorMessage('유효하지 않은 링크입니다.');
       return;
     }
+    
+    // 추가 검증이 필요한 경우 여기에 작성
+    setErrorMessage('');
+  }, [userId, accessToken]);
 
-    if (!passwordMatch) {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!userId || !accessToken) {
+      setErrorMessage('유효하지 않은 접근입니다.');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
       setErrorMessage('비밀번호가 일치하지 않습니다.');
       return;
     }
@@ -37,35 +52,27 @@ const ResetPasswordPage = () => {
     setErrorMessage('');
 
     try {
-      const safeEncodedToken = encodeURIComponent(token)
-        .replace(/\./g, '%2E')
-        .replace(/%20/g, '+');
-
-      console.log('Generated safeEncodedToken:', safeEncodedToken);
-
       const response = await fetch('/api/auth/email/reset_passwd/reset_password_confirm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ 
-          token: safeEncodedToken,
-          newPassword 
+        body: JSON.stringify({
+          userId,
+          token: accessToken,
+          newPassword
         })
       });
 
       const data = await response.json();
-      console.log('Response from server:', data);
 
       if (response.ok) {
         setIsSuccess(true);
         setErrorMessage('');
         alert('비밀번호가 성공적으로 변경되었습니다.');
-        console.log('Password change successful for token:', safeEncodedToken);
         router.push('/login');
       } else {
         setErrorMessage(data.error || '비밀번호 변경에 실패했습니다.');
-        console.log('Password change failed:', data.error);
       }
     } catch (error) {
       console.error('비밀번호 변경 오류:', error);

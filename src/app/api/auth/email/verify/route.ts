@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import EmailUser from '@/models/User';
+import EmailUser from '@/models/user';
 import sequelize from '@/config/database';
 
 
@@ -10,8 +10,14 @@ export async function POST(req: NextRequest) {
     console.log('Request body:', { userId, verificationCode });
 
     const user = await EmailUser.findOne({ 
-      where: { userId },
-      raw: true  // 순수 데이터 객체로 조회
+      where: { 
+        userId: userId.toString(),
+        provider: 'email'
+      },
+      attributes: { // 명시적 컬럼 지정
+        exclude: ['googleId', 'kakaoId', 'naverId'] 
+      },
+      raw: true
     });
     
     console.log('Found user:', user);
@@ -57,7 +63,11 @@ export async function POST(req: NextRequest) {
         isVerified: true,
         verificationCode: null,
         verificationExpires: null
-      }, { transaction });
+      }, { 
+        transaction,
+        fields: ['isVerified', 'verificationCode', 'verificationExpires'], // 명시적 필드 지정
+        validate: false // 임시 유효성 검사 비활성화
+      });
       await transaction.commit();
     } catch (updateError) {
       await transaction.rollback();

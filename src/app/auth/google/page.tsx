@@ -1,35 +1,43 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function GoogleAuthPage() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [error, setError] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('error') === 'auth_failed') {
+      router.replace('/error?code=auth_failed');
+      return;
+    }
+
     const initializeGoogle = () => {
       try {
-        if (typeof window.google === 'undefined' || !window.google.accounts) {
-          throw new Error('Google 객체 초기화 실패');
-        }
-        
+        const buttonElement = document.getElementById("google-button");
+        if (!buttonElement || buttonElement.hasChildNodes()) return;
+
+        const redirectURI = 'https://lookmate.kro.kr/api/auth/google/callback';
+
         window.google.accounts.id.initialize({
-          client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+          client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
           callback: handleCredentialResponse,
-          context: 'signup',
           ux_mode: 'redirect',
-          redirect_uri: process.env.GOOGLE_SIGNUP_CALLBACK_URI
+          redirect_uri: redirectURI
         });
 
-        window.google.accounts.id.renderButton(
-          document.getElementById("google-button"),
-          {
-            type: 'standard',
-            theme: 'filled_blue',
-            size: 'large',
-            text: 'signup_with',
-            shape: 'rectangular',
-            logo_alignment: 'left'
-          }
-        );
+        window.google.accounts.id.renderButton(buttonElement, {
+          type: 'standard',
+          theme: 'filled_blue',
+          size: 'large',
+          text: 'signup_with',
+          shape: 'rectangular',
+          logo_alignment: 'left'
+        });
       } catch (error) {
         console.error('Google 초기화 실패:', error);
       }
@@ -42,9 +50,10 @@ export default function GoogleAuthPage() {
         script.async = true;
         script.defer = true;
         script.onload = () => {
-          setScriptLoaded(true);
-          initializeGoogle();
-          console.log('Google 스크립트 로드 완료', window.google);
+          if (window.google?.accounts?.id) {
+            setScriptLoaded(true);
+            initializeGoogle();
+          }
         };
         script.onerror = () => {
           console.error('Google 스크립트 로드 실패');
@@ -60,7 +69,7 @@ export default function GoogleAuthPage() {
       const scripts = document.querySelectorAll('script[src^="https://accounts.google.com"]');
       scripts.forEach(script => script.remove());
     };
-  }, []);
+  }, [router]);
 
   const handleCredentialResponse = async (response: any) => {
     try {
@@ -88,7 +97,11 @@ export default function GoogleAuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      padding: '20px' 
+    }}>
       {scriptLoaded ? (
         <div id="google-button" className="w-[300px] h-[50px]" />
       ) : (

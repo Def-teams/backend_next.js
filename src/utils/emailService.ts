@@ -11,19 +11,30 @@ export const transporter = nodemailer.createTransport({
 });
 
 export const sendVerificationEmail = async (email: string, verificationCode: string) => {
-  const htmlContent = generateVerificationEmailHtml(verificationCode);
-
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    if (!/^\d{6}$/.test(verificationCode)) {
+      throw new Error(`유효하지 않은 코드 형식: ${verificationCode}`);
+    }
+
+    const mailOptions = {
+      from: `"LookMate" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: '[LookMate] 이메일 인증 코드',
-      html: htmlContent
-    });
+      html: generateVerificationEmailHtml(verificationCode),
+      headers: {
+        'X-Priority': '1' // 높은 중요도 표시
+      }
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`인증 코드 전송 성공: ${email.substring(0, 3)}***@***${email.split('@')[1]?.substring(-3)}`);
     return true;
   } catch (error) {
-    console.error('이메일 전송 에러:', error);
-    throw new Error('이메일 전송에 실패했습니다.');
+    console.error('이메일 전송 실패:', {
+      email,
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+    throw new Error('이메일 발송 시스템 오류');
   }
 };
 
@@ -118,13 +129,8 @@ const generateVerificationEmailHtml = (code: string): string => {
   `;
 };
 
-export const sendPasswordResetEmail = async (email: string, token: string) => {
-  const safeToken = encodeURIComponent(token)
-    .replace(/\./g, '%2E')
-    .replace(/%20/g, '+');
-
-  const resetLink = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/email/reset_passwd?token=${safeToken}`;
-  console.log('Reset link generated:', resetLink);
+export const sendPasswordResetEmail = async (email: string, resetLink: string) => {
+  console.log('Reset link received:', resetLink);
 
   const resetPasswordHTML = `
     <!DOCTYPE html>

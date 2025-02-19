@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import User from '@/models/User';
+import User from '@/models/user';
 import sequelize from '@/config/database';
 
 export async function POST(req: NextRequest) {
